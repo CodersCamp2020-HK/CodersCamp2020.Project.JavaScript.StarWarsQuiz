@@ -13,7 +13,7 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 -   [Anna Marszałek](https://github.com/Ania-Em)
 -   [Mateusz Baciak](https://github.com/bat098)
 -   [Mateusz Król](https://github.com/KrolMateusz)
--   [Norbert Lipiński](github.com/Baarosh)
+-   [Norbert Lipiński](https://github.com/Baarosh)
 -   [Tomasz Dudek](https://github.com/dudeek)
 -   [Weronika Dziedzic](https://github.com/blackrabbit2)
 
@@ -23,7 +23,7 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 
 ### Demo
 
-Wersja demonstracyjna aplikacji jest dostępna [TUTAJ](https://htk4.github.io/CodersCamp2020.Project.JavaScript.StarWarsQuiz/).
+Wersja demonstracyjna aplikacji jest dostępna [TUTAJ](https://htk4.github.io/CodersCamp2020.Project.JavaScript.StarWarsQuiz/index.html).
 
 Powodzenia, niech Moc będzie z Tobą!
 
@@ -38,7 +38,7 @@ Komputer — zależnie od ustawień — odpowiada losowo lub inteligentnie — p
 -->
 
 Aplikacja została wykonana wg dostarczonych przez organizatorów CodersCamp wymagań.
-Szablon projektu dostępny jest [TUTAJ](https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz/index.html).
+Szablon projektu dostępny jest [TUTAJ](https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz/).
 
 ### Działanie aplikacji
 
