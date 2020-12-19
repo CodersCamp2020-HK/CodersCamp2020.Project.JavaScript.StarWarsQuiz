@@ -1,1 +1,1 @@
-export const App = ({ options }) => {};
+export const App = () => {};
