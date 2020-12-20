@@ -23,7 +23,7 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 
 ### Demo
 
-Wersja demonstracyjna aplikacji jest dostępna [TUTAJ](https://htk4.github.io/CodersCamp2020.Project.JavaScript.StarWarsQuiz/index.html).
+Wersja demonstracyjna aplikacji jest dostępna [TUTAJ](https://coderscamp2020-hk.github.io/CodersCamp2020.Project.JavaScript.StarWarsQuiz/index.html).
 
 Powodzenia, niech Moc będzie z Tobą!
 
