@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Raleway', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+textarea,
+select,
+input,
+button {
+    outline: none;
+}
+
+html {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
