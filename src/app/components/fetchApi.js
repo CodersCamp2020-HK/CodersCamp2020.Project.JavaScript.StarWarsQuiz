@@ -1,5 +1,5 @@
 class Data {
-    static async getPeopleData() {
+    static async getPeopleJsonData() {
         const peopleEndpoints = [];
         for (let i = 1; i < 10; i++) {
             peopleEndpoints.push(`https://swapi.dev/api/people/?page=${i}`);
@@ -17,7 +17,7 @@ class Data {
         ]);
     }
 
-    static async getVehiclesData() {
+    static async getVehiclesJsonData() {
         const vehicleEndpoints = [];
         for (let i = 1; i < 5; i++) {
             vehicleEndpoints.push(`https://swapi.dev/api/vehicles/?page=${i}`);
@@ -30,7 +30,7 @@ class Data {
         ]);
     }
 
-    static async getStarshipsData() {
+    static async getStarshipsJsonData() {
         const starshipsEndpoints = [];
         for (let i = 1; i < 5; i++) {
             starshipsEndpoints.push(`https://swapi.dev/api/starships/?page=${i}`);
