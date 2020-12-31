@@ -1,0 +1,43 @@
+@use '../../../styles/colors';
+@use '../../../styles/typography';
+@use '../../../styles/common';
+
+.description-segment-view-container {
+    padding: 10px;
+    background-color: colors.$primary-background;
+    @extend %common-border;
+}
+
+.description-segment-view-header {
+    display: flex;
+    flex-flow: column nowrap;
+    padding-bottom: 1rem;
+    color: colors.$primary-dark;
+    @extend %typography-h5;
+
+    &::after {
+        content: '';
+        height: 1px;
+        width: 100%;
+        margin: {
+            bottom: 5px;
+            top: 5px;
+        }
+        background-color: colors.$primary-border;
+    }
+}
+
+.description-segment-view-properties {
+    padding-bottom: 1rem;
+    color: colors.$primary-main;
+    @extend %typography-body;
+    > li {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+
+        > span:first-child {
+            margin-right: 2rem;
+        }
+    }
+}
