@@ -1,18 +1,17 @@
-import { DescriptionSegmentComponent } from './components/DescriptionSegment/DescriptionSegmentComponent';
+import { ProfileComponent } from './components/Profile/ProfileComponent';
 import { renderElement } from './shared/dom';
 import './App.scss';
+import { UserProvider } from './infrastructure/UserProvider';
+import { UserImageProvider } from './infrastructure/UserImageProvider';
 
-export const App = () => {
-    const desc = new DescriptionSegmentComponent({ header: 'Napis', values: { Key1: 'Prop1', Key2: 'Prop2' } });
-    renderElement({ element: desc.view, on: '#swquiz-app' });
-    const id = setInterval(() => {
-        desc.model.changeDescription({ key: 'Time', newValue: new Date().toISOString() });
-    }, 1000);
-    setTimeout(() => {
-        desc.model.changeDescription({ key: 'Key1', newValue: null });
-    }, 5000);
-    setTimeout(() => {
-        desc.model.changeDescription({ key: 'Key2', newValue: null });
-        clearInterval(id);
+export const App = async () => {
+    const userProvider = new UserProvider();
+    const userImageProvider = new UserImageProvider();
+    const user = await userProvider.getRandomUser();
+    const profile = new ProfileComponent({ user, userImageProvider });
+    renderElement({ element: profile.view, on: '#swquiz-app' });
+    setInterval(async () => {
+        const user = await userProvider.getRandomUser();
+        profile.model.user = user;
     }, 10000);
 };

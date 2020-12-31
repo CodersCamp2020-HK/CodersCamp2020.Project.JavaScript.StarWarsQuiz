@@ -1,11 +1,11 @@
 @use '../../../styles/colors';
 @use '../../../styles/typography';
+@use '../../../styles/common';
 
 .description-segment-view-container {
-    padding: 1rem;
+    padding: 10px;
     background-color: colors.$primary-background;
-    border: 1px solid colors.$primary-border;
-    border-radius: 8px;
+    @extend %common-border;
 }
 
 .description-segment-view-header {

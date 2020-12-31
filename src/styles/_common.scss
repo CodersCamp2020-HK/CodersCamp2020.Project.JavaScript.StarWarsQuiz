@@ -1,0 +1,11 @@
+@use '../../../styles/colors';
+
+%common-border {
+    border: 1px solid colors.$primary-border;
+    border-radius: 8px;
+}
+
+%common-center {
+    display: grid;
+    place-items: center;
+}
