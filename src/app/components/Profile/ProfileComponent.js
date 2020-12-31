@@ -45,9 +45,9 @@ class ProfileComponent extends ViewModelComponent {
             view: ProfileView,
             model: new ProfileModel({ user, userImageProvider }),
             children: {
-                '#profile-view-info': infoComponent.view,
-                '#profile-view-location': locationComponent.view,
-                '#profile-view-contact': contactComponent.view,
+                '#profile-view-info': () => infoComponent.view,
+                '#profile-view-location': () => locationComponent.view,
+                '#profile-view-contact': () => contactComponent.view,
             },
         });
         this.model.onUserChange

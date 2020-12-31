@@ -11,8 +11,8 @@ class ViewModelComponent {
 
     __render() {
         this.__view = elementFrom({ html: this.__template(this.__model) });
-        for (let [on, element] of Object.entries(this.__children)) {
-            renderElement({ element, on, elementScope: this.view });
+        for (let [on, lazyElement] of Object.entries(this.__children)) {
+            renderElement({ element: lazyElement(), on, elementScope: this.view });
         }
     }
 
