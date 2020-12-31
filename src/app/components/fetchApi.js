@@ -1,6 +1,6 @@
 class Data {
     static async getPeopleData() {
-        const peopleEndpoints = ['https://swapi.dev/api/people/'];
+        const peopleEndpoints = [];
         for (let i = 1; i < 10; i++) {
             peopleEndpoints.push(`https://swapi.dev/api/people/?page=${i}`);
         }
@@ -14,12 +14,11 @@ class Data {
             (await fetch(peopleEndpoints[6])).json(),
             (await fetch(peopleEndpoints[7])).json(),
             (await fetch(peopleEndpoints[8])).json(),
-            (await fetch(peopleEndpoints[9])).json(),
         ]);
     }
 
     static async getVehiclesData() {
-        const vehicleEndpoints = ['https://swapi.dev/api/vehicles/'];
+        const vehicleEndpoints = [];
         for (let i = 1; i < 5; i++) {
             vehicleEndpoints.push(`https://swapi.dev/api/vehicles/?page=${i}`);
         }
@@ -28,14 +27,20 @@ class Data {
             (await fetch(vehicleEndpoints[1])).json(),
             (await fetch(vehicleEndpoints[2])).json(),
             (await fetch(vehicleEndpoints[3])).json(),
-            (await fetch(vehicleEndpoints[4])).json(),
         ]);
     }
 
-    getStarshipsData() {
-        fetch('https://swapi.dev/api/starships/')
-            .then((response) => response.json())
-            .then((data) => console.log(data));
+    static async getStarshipsData() {
+        const starshipsEndpoints = [];
+        for (let i = 1; i < 5; i++) {
+            starshipsEndpoints.push(`https://swapi.dev/api/starships/?page=${i}`);
+        }
+        return await Promise.all([
+            (await fetch(starshipsEndpoints[0])).json(),
+            (await fetch(starshipsEndpoints[1])).json(),
+            (await fetch(starshipsEndpoints[2])).json(),
+            (await fetch(starshipsEndpoints[3])).json(),
+        ]);
     }
 }
 
