@@ -6,7 +6,7 @@ class Data {
     }
 
     getVehiclesData() {
-        fetch('https://swapi.dev/api/starships/')
+        fetch('https://swapi.dev/api/vehicles/')
             .then((response) => response.json())
             .then((data) => console.log(data));
     }
