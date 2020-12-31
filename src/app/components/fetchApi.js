@@ -5,23 +5,31 @@ class Data {
             peopleEndpoints.push(`https://swapi.dev/api/people/?page=${i}`);
         }
         return await Promise.all([
-            fetch(peopleEndpoints[0]),
-            fetch(peopleEndpoints[1]),
-            fetch(peopleEndpoints[2]),
-            fetch(peopleEndpoints[3]),
-            fetch(peopleEndpoints[4]),
-            fetch(peopleEndpoints[5]),
-            fetch(peopleEndpoints[6]),
-            fetch(peopleEndpoints[7]),
-            fetch(peopleEndpoints[8]),
-            fetch(peopleEndpoints[9]),
+            (await fetch(peopleEndpoints[0])).json(),
+            (await fetch(peopleEndpoints[1])).json(),
+            (await fetch(peopleEndpoints[2])).json(),
+            (await fetch(peopleEndpoints[3])).json(),
+            (await fetch(peopleEndpoints[4])).json(),
+            (await fetch(peopleEndpoints[5])).json(),
+            (await fetch(peopleEndpoints[6])).json(),
+            (await fetch(peopleEndpoints[7])).json(),
+            (await fetch(peopleEndpoints[8])).json(),
+            (await fetch(peopleEndpoints[9])).json(),
         ]);
     }
 
-    getVehiclesData() {
-        fetch('https://swapi.dev/api/vehicles/')
-            .then((response) => response.json())
-            .then((data) => console.log(data));
+    static async getVehiclesData() {
+        const vehicleEndpoints = ['https://swapi.dev/api/vehicles/'];
+        for (let i = 1; i < 5; i++) {
+            vehicleEndpoints.push(`https://swapi.dev/api/vehicles/?page=${i}`);
+        }
+        return await Promise.all([
+            (await fetch(vehicleEndpoints[0])).json(),
+            (await fetch(vehicleEndpoints[1])).json(),
+            (await fetch(vehicleEndpoints[2])).json(),
+            (await fetch(vehicleEndpoints[3])).json(),
+            (await fetch(vehicleEndpoints[4])).json(),
+        ]);
     }
 
     getStarshipsData() {
