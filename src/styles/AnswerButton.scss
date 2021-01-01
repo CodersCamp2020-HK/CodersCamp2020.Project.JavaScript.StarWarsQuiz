@@ -1,0 +1,19 @@
+.answer {
+    border: 1px solid white;
+    width: 100px;
+    height: 100px;
+}
+
+.hovered {
+    border: 1px solid purple;
+}
+
+.correct {
+    border: 1px solid black;
+    background-color: green;
+}
+
+.wrong {
+    border: 1px solid black;
+    background-color: red;
+}
