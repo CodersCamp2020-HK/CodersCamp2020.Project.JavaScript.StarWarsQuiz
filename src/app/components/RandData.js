@@ -1,4 +1,5 @@
-import { PrepareData } from './processData';
+import { PrepareData } from '../infrastructure/processData';
+import { Data } from '../infrastructure/fetchApi';
 
 const n = 10 // Liczba pytań w Quiz
 
@@ -16,8 +17,12 @@ class RandData {
             }
             return localArr
         }
+
+
+        const peopleData = await Data.getPeopleJsonData()
+
         
-        const categoryArr = await PrepareData.preprocessPeople(); //Tablica wszystkich obiektów z danej kategori
+        const categoryArr = await PrepareData.preprocessData(peopleData); //Tablica wszystkich obiektów z danej kategori
         const questionsArr = randElementsfromArr(n, categoryArr) // Tablica poprawnych odpowiedzi
         const diffArr = categoryArr.filter(item => !questionsArr.some(x => x.index === item.index) ) // Tablica będąca różnicą pomiędzy categoryArr a questionsArr || categoryArr = questionsArr + diffArr
 
