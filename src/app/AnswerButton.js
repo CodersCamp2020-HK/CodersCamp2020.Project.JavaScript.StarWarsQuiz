@@ -1,46 +1,41 @@
 //import '../styles/AnswerButton.scss';
+export const generateAnswerButton = ({ text, onClick, onHover, onUnhover }) => {
+    const state = { isSelectedAnswer: false, text: text, isCorrectAnswer: null };
 
-const changeChosenAnswerColor = (ev) => {
-    let previousSelected = document.querySelector('selected');
-    if (previousSelected) {
-        previousSelected.isSelectedAnswer = false;
-        ev.currentTarget.classList.remove('selected');
-    }
-    ev.currentTarget.isSelectedAnswer = true;
-    ev.currentTarget.classList.add('selected');
-};
+    const button = document.createElement('button');
+    button.classList.add('answer-button');
+    button.appendChild(document.createTextNode(text));
 
-export const markCorrectAndWrongAnswers = (arrayOfButtons) => {
-    arrayOfButtons.forEach((el) => {
-        if (el.isCorrectAnswer) {
-            el.classList.add('correct');
-        }
-        if (el.isSelectedAnswer && !el.isCorrectAnswer) {
-            el.classList.add('wrong');
-        }
-    });
-};
+    const view = {
+        element: button,
+        select: () => {
+            state.isSelectedAnswer = true;
+            button.removeEventListener('mouseover', onHover, false);
+            button.removeEventListener('mouseover', onUnhover, false);
+        },
+        unselect: () => {
+            state.isSelectedAnswer = false;
+            button.removeEventListener('mouseover', onHover, false);
+            button.removeEventListener('mouseover', onUnhover, false);
+        },
+        markAsCorrect: () => {
+            state.isCorrectAnswer = true;
+            button.removeEventListener('mouseover', onHover, false);
+            button.removeEventListener('mouseover', onUnhover, false);
+        },
+        markAsWrong: () => {
+            state.isCorrectAnswer = false;
+            button.removeEventListener('mouseover', onHover, false);
+            button.removeEventListener('mouseover', onUnhover, false);
+        },
+        isSelectedAnswer: () => state.isSelectedAnswer,
+        isCorrectAnswer: () => state.isCorrectAnswer,
+        text: () => state.text,
+    };
 
-const changeHoveredButtonColor = (ev) => {
-    if (!ev.currentTarget.isSelectedAnswer) {
-        ev.currentTarget.classList.add('hovered');
-    }
-};
+    button.addEventListener('click', onClick, false);
+    button.addEventListener('mouseover', onHover, false);
+    button.addEventListener('mouseout', onUnhover, false);
 
-const changeUnhoveredButtonColor = (ev) => {
-    if (!ev.currentTarget.isSelectedAnswer) {
-        ev.currentTarget.classList.remove('hovered');
-    }
-};
-
-export const generateAnswerButton = (button, isCorrectAnswer) => {
-    button.classList.add('answer');
-
-    button.isCorrectAnswer = isCorrectAnswer;
-    button.isSelectedAnswer = false;
-    button.addEventListener('click', changeChosenAnswerColor, false);
-    button.addEventListener('mouseover', changeHoveredButtonColor, false);
-    button.addEventListener('mouseout', changeUnhoveredButtonColor, false);
-
-    return button;
+    return view;
 };
