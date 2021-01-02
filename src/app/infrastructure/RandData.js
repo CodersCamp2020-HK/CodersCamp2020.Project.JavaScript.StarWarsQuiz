@@ -46,7 +46,7 @@ class RandData {
             questions: questionsArr,
             answers: answers
         }
-        console.log(output)
+        // console.log(output)
         return output
     }
 }

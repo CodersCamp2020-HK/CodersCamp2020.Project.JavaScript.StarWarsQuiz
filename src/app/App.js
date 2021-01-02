@@ -1,9 +1,7 @@
-import {RandData} from './infrastructure/RandData'
-
+import {chooseQuestions} from './infrastructure/chooseQuestion'
 
 export const App = () => {
-    RandData.randData()
-    
+    chooseQuestions(0)
 };
 
 
