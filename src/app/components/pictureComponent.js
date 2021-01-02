@@ -1,9 +1,10 @@
 import {  } from "";
 
-const generatePicture = (Questioncategory, pictureNumber) =>{
-   const Questioncategory= "people";
-   const pictureNumber= 1;
+const questionCategory= "people";
+const pictureNumber= 1;
 
+const generatePicture = (Questioncategory, pictureNumber) =>{
+   
    const picture = document.createElement("img");
    img.src=`./src/static/assets/img/modes/${Questioncategory}/${pictureNumber}.jpg`;
 }
