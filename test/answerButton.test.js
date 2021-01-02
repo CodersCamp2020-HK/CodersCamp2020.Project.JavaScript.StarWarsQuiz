@@ -2,6 +2,12 @@
 // import userEvent from '@testing-library/user-event';
 // import { generateAnswerButton } from '../src/app/AnswerButton.js';
 
+describe('when sample', () => {
+    it('then sample', () => {
+        expect(true).toBeTruthy();
+    });
+});
+
 // const setupDOM = (isCorrectAnswer) => {
 //     const testid = 'answer-button';
 //     let button = null;
