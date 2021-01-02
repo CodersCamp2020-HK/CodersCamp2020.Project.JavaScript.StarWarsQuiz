@@ -1,6 +1,6 @@
 import { queries } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { generateAnswerButton, markCorrectAndWrongAnswers } from '../src/app/AnswerButton.js';
+import { generateAnswerButton } from '../src/app/AnswerButton.js';
 
 const setupDOM = (isCorrectAnswer) => {
     const testid = 'answer-button';
