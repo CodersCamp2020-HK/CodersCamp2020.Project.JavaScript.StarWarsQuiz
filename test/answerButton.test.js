@@ -1,18 +1,20 @@
 import { queries } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { generateAnswerButton } from '../src/app/AnswerButton.js';
+import { generateAnswerButton, markCorrectAndWrongAnswers } from '../src/app/AnswerButton.js';
 
-describe('generate answer button', () => {
+describe('generate answer states', () => {
     test('return button', () => {
         let div = document.createElement('div');
-        let button = generateAnswerButton(true);
+        let button = document.createElement('button');
+        button = generateAnswerButton(button, true);
         button.dataset.testid = 'normal';
         div.appendChild(button);
         expect(queries.getByTestId(div, 'normal').tagName).toBe('BUTTON');
     });
     test('hovered button', () => {
         let div = document.createElement('div');
-        let button = generateAnswerButton(true);
+        let button = document.createElement('button');
+        button = generateAnswerButton(button, true);
         button.dataset.testid = 'hovered';
         div.appendChild(button);
         userEvent.hover(button);
@@ -20,49 +22,84 @@ describe('generate answer button', () => {
     });
     test('not hovered button', () => {
         let div = document.createElement('div');
-        let button = generateAnswerButton(true);
+        let button = document.createElement('button');
+        button = generateAnswerButton(button, true);
         button.dataset.testid = 'unhovered';
         div.appendChild(button);
         userEvent.hover(button);
         userEvent.unhover(button);
         expect(queries.getByTestId(div, 'unhovered').classList.contains('hovered')).toBe(false);
     });
-    test('clicked correct answer', () => {
-        let div = document.createElement('div');
-        let button = generateAnswerButton(true);
-        button.dataset.testid = 'clicked-correct';
-        div.appendChild(button);
-        button.click();
-        expect(queries.getByTestId(div, 'clicked-correct').classList.contains('correct')).toBe(true);
-    });
-    test('clicked wrong answer', () => {
-        let div = document.createElement('div');
-        let button = generateAnswerButton(false);
-        button.dataset.testid = 'clicked-wrong';
-        div.appendChild(button);
-        button.click();
-        expect(queries.getByTestId(div, 'clicked-wrong').classList.contains('wrong')).toBe(true);
-    });
     test('hovered choosen answer', () => {
         let div = document.createElement('div');
-        let button = generateAnswerButton(true);
-        button.dataset.testid = 'hovered-correct';
+        let button = document.createElement('button');
+        button = generateAnswerButton(button, true);
+        button.dataset.testid = 'hovered-selected';
         div.appendChild(button);
         button.click();
         userEvent.hover(button);
         userEvent.unhover(button);
-        expect(queries.getByTestId(div, 'hovered-correct').classList.contains('hovered')).toBe(false);
-        expect(queries.getByTestId(div, 'hovered-correct').classList.contains('correct')).toBe(true);
+        expect(queries.getByTestId(div, 'hovered-selected').classList.contains('hovered')).toBe(false);
+        expect(queries.getByTestId(div, 'hovered-selected').classList.contains('selected')).toBe(true);
     });
     test('hovered out choosen answer', () => {
         let div = document.createElement('div');
-        let button = generateAnswerButton(false);
-        button.dataset.testid = 'unhovered-wrong';
+        let button = document.createElement('button');
+        button = generateAnswerButton(button, false);
+        button.dataset.testid = 'unhovered-selected';
         div.appendChild(button);
         button.click();
         userEvent.hover(button);
         userEvent.unhover(button);
-        expect(queries.getByTestId(div, 'unhovered-wrong').classList.contains('hovered')).toBe(false);
-        expect(queries.getByTestId(div, 'unhovered-wrong').classList.contains('wrong')).toBe(true);
+        expect(queries.getByTestId(div, 'unhovered-selected').classList.contains('hovered')).toBe(false);
+        expect(queries.getByTestId(div, 'unhovered-selected').classList.contains('selected')).toBe(true);
+    });
+    test('mark only correct answer', () => {
+        let div = document.createElement('div');
+
+        let correctAnswer = document.createElement('button');
+        correctAnswer = generateAnswerButton(correctAnswer, true);
+        correctAnswer.dataset.testid = 'selected-correct';
+
+        let wrongAnswer = document.createElement('button');
+        wrongAnswer = generateAnswerButton(wrongAnswer, true);
+
+        const arrayOfButtons = [wrongAnswer, correctAnswer, wrongAnswer, wrongAnswer];
+
+        arrayOfButtons.forEach((el) => {
+            div.appendChild(el);
+        });
+
+        correctAnswer.click();
+        markCorrectAndWrongAnswers(arrayOfButtons);
+
+        expect(queries.getByTestId(div, 'selected-correct').classList.contains('correct')).toBe(true);
+    });
+
+    test('mark wrong and correct answer', () => {
+        let div = document.createElement('div');
+
+        let correctAnswer = document.createElement('button');
+        correctAnswer = generateAnswerButton(correctAnswer, true);
+        correctAnswer.dataset.testid = 'notselected-correct';
+
+        let wrongAnswer = document.createElement('button');
+        wrongAnswer = generateAnswerButton(wrongAnswer, false);
+
+        let wrongAnswerSelected = document.createElement('button');
+        wrongAnswerSelected = generateAnswerButton(wrongAnswerSelected, false);
+        wrongAnswerSelected.dataset.testid = 'selected-wrong';
+
+        const arrayOfButtons = [wrongAnswer, correctAnswer, wrongAnswerSelected, wrongAnswer];
+
+        arrayOfButtons.forEach((el) => {
+            div.appendChild(el);
+        });
+
+        wrongAnswerSelected.click();
+        markCorrectAndWrongAnswers(arrayOfButtons);
+
+        expect(queries.getByTestId(div, 'notselected-correct').classList.contains('correct')).toBe(true);
+        expect(queries.getByTestId(div, 'selected-wrong').classList.contains('wrong')).toBe(true);
     });
 });
