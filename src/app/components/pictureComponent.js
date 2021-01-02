@@ -1,14 +1,8 @@
 import {  } from "";
 
-
-
-const generatePicture = (Questioncategory, pictureNumber) =>{
-   
-const questionCategory= "people";
-const pictureNumber= 1;
-
+const generatePicture = (questionCategory="people", pictureNumber=1) =>{
    const picture = document.createElement("img");
-   img.src=`./src/static/assets/img/modes/${Questioncategory}/${pictureNumber}.jpg`;
+   picture.src=`./src/static/assets/img/modes/${questionCategory}/${pictureNumber}.jpg`;
 }
 
 export{generatePicture};
