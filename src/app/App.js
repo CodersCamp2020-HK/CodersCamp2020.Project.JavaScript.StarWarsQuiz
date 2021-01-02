@@ -1,5 +1,5 @@
-import { Data } from '../app/components/fetchApi';
-import { PrepareData } from './components/processData';
+import { Data } from './infrastructure/fetchApi';
+import { PrepareData } from './infrastructure/processData';
 
 export const App = () => {
     // Dane przygotowane do pytań

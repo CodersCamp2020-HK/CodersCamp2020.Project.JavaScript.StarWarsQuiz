@@ -1,4 +1,4 @@
-import { PrepareData } from '../src/app/components/processData';
+import { PrepareData } from '../src/app/infrastructure/processData';
 
 const peopleData = require('./peopleData.json');
 const vehiclesData = require('./vehiclesData.json');
