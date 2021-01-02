@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/htk4/CodersCamp2020.Project.JavaScript.StarWarsQuiz#readme",
   "dependencies": {
-    "node-fetch": "^2.6.1",
     "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"
   },
