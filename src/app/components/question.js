@@ -1,7 +1,7 @@
 class Question {
-    constructor(name, id) {
+    constructor(name, index) {
         this.name = name;
-        this.id = id;
+        this.index = index;
     }
 }
 
