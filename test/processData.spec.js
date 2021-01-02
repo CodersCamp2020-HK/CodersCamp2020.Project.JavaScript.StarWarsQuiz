@@ -1,29 +1,41 @@
 import { PrepareData } from '../src/app/infrastructure/processData';
+import { Question } from '../src/app/domain/question';
 
-const peopleData = require('./peopleData.json');
-const vehiclesData = require('./vehiclesData.json');
-const starshipsData = require('./starshipsData.json');
+// const peopleData = require('./peopleData.json');
+// const vehiclesData = require('./vehiclesData.json');
+// const starshipsData = require('./starshipsData.json');
 
 describe('Fetching data from API', () => {
     describe('check if people data', () => {
-        test('has 82 objects', () => {
-            return PrepareData.preprocessData(peopleData).then((data) => {
-                expect(data.length).toBe(82);
-            });
-        });
-    });
-    describe('check if vehicles data', () => {
-        test('has 39 objects', () => {
-            return PrepareData.preprocessData(vehiclesData).then((data) => {
-                expect(data.length).toBe(39);
-            });
-        });
-    });
-    describe('check if starships data', () => {
-        test('has 36 objects', () => {
-            return PrepareData.preprocessData(starshipsData).then((data) => {
-                expect(data.length).toBe(36);
-            });
+        it('preprocess properly', () => {
+            const samplePerson1 = {
+                name: 'Luke Skywalker',
+                url: 'http://swapi.dev/api/people/1/',
+            };
+            const samplePerson2 = {
+                name: 'C-3PO',
+                url: 'http://swapi.dev/api/people/2/',
+            };
+            const samplePerson3 = {
+                name: 'Chewbacca',
+                url: 'http://swapi.dev/api/people/14/',
+            };
+            const sampleResults1 = {
+                results: [samplePerson1, samplePerson2],
+            };
+            const sampleResults2 = {
+                results: [samplePerson3],
+            };
+            const samplePeopleData = [sampleResults1, sampleResults2];
+            const expected = [
+                new Question('Luke Skywalker', '1'),
+                new Question('C-3PO', '2'),
+                new Question('Chewbacca', '14'),
+            ];
+
+            const preprocess = new PrepareData();
+            const result = preprocess.preprocessData(samplePeopleData);
+            expect(result).toStrictEqual(expected);
         });
     });
 });

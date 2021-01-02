@@ -3,13 +3,9 @@ import { PrepareData } from './infrastructure/processData';
 
 export const App = () => {
     // Dane przygotowane do pytań
-    Data.getPeopleJsonData()
-        .then((data) => PrepareData.preprocessData(data))
-        .then((questions) => console.log(questions));
-    Data.getVehiclesJsonData()
-        .then((data) => PrepareData.preprocessData(data))
-        .then((questions) => console.log(questions));
-    Data.getStarshipsJsonData()
-        .then((data) => PrepareData.preprocessData(data))
-        .then((questions) => console.log(questions));
+    const data = new Data();
+    const process = new PrepareData();
+    data.getPeopleJsonData().then((questions) => console.log(process.preprocessData(questions)));
+    data.getVehiclesJsonData().then((questions) => console.log(process.preprocessData(questions)));
+    data.getStarshipsJsonData().then((questions) => console.log(process.preprocessData(questions)));
 };

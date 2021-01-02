@@ -1,7 +1,7 @@
 import { Question } from '../domain/question';
 
 class PrepareData {
-    static async preprocessData(jsonData) {
+    preprocessData(jsonData) {
         const regexForEndpoint = /\d+\/$/;
         const dataQuestions = [];
 
