@@ -1,7 +1,9 @@
-import {RandData} from './components/RandData'
+import {RandData} from './infrastructure/RandData'
+
 
 export const App = () => {
     RandData.randData()
+    
 };
 
 

@@ -1,5 +1,5 @@
-import { PrepareData } from '../infrastructure/processData';
-import { Data } from '../infrastructure/fetchApi';
+import { PrepareData } from './processData';
+import { Data } from './fetchApi';
 
 const n = 10 // Liczba pytań w Quiz
 
@@ -26,18 +26,22 @@ class RandData {
         const questionsArr = randElementsfromArr(n, categoryArr) // Tablica poprawnych odpowiedzi
         const diffArr = categoryArr.filter(item => !questionsArr.some(x => x.index === item.index) ) // Tablica będąca różnicą pomiędzy categoryArr a questionsArr || categoryArr = questionsArr + diffArr
 
-        // Tworzenie tablicay odpowiedzi (odpowiedż A jest poprawna)
+        // Tworzenie tablicay odpowiedzi
         const answers = [] 
         for (let i = 0; i < n; i++) {
-            const fakeAnswers = randElementsfromArr(3, diffArr)
-            let answer = {
-                answerA: {...questionsArr[i], correct: true},
-                answerB: {...fakeAnswers[0], correct: false},
-                answerC: {...fakeAnswers[1], correct: false},
-                answerD: {...fakeAnswers[2], correct: false},
-            }
+            const fakeAnswers = randElementsfromArr(3, diffArr) //losowanie dodatkowych 3 złych odpowiedzi
+            //tablica odpowiedzi gdzie w answer[0] jest zawsze poprawna odpowiedz
+            const answer = [
+                {...questionsArr[i], correct: true},
+                {...fakeAnswers[0], correct: false},
+                {...fakeAnswers[1], correct: false},
+                {...fakeAnswers[2], correct: false},
+            ]
+            answer.sort((a,b) => parseInt(a.index) - parseInt(b.index)) // wymieszanie odpowiedzi (poprawna odpowiedz nie jest już zawsze pierwsza)     
             answers.push(answer)
         }
+        // console.log(answers)
+        
         const output = {
             questions: questionsArr,
             answers: answers
