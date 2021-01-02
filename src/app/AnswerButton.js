@@ -1,10 +1,22 @@
 const changeChosenAnswerColor = (ev) => {
-    if (ev.currentTarget.isCorrectAnswer) {
-        ev.currentTarget.classList.add('correct');
-    } else {
-        ev.currentTarget.classList.add('wrong');
+    let previousSelected = document.querySelector('selected');
+    if (previousSelected) {
+        previousSelected.isSelectedAnswer = false;
+        ev.currentTarget.classList.remove('selected');
     }
     ev.currentTarget.isSelectedAnswer = true;
+    ev.currentTarget.classList.add('selected');
+};
+
+export const markCorrectAndWrongAnswers = (arrayOfButtons) => {
+    arrayOfButtons.forEach((el) => {
+        if (el.isCorrectAnswer) {
+            el.classList.add('correct');
+        }
+        if (el.isSelectedAnswer && !el.isCorrectAnswer) {
+            el.classList.add('wrong');
+        }
+    });
 };
 
 const changeHoveredButtonColor = (ev) => {
@@ -19,8 +31,7 @@ const changeUnhoveredButtonColor = (ev) => {
     }
 };
 
-export const generateAnswerButton = (isCorrectAnswer) => {
-    const button = document.createElement('button');
+export const generateAnswerButton = (button, isCorrectAnswer) => {
     button.classList.add('answer');
 
     button.isCorrectAnswer = isCorrectAnswer;
