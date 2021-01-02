@@ -1,3 +1,5 @@
+//import '../styles/AnswerButton.scss';
+
 const changeChosenAnswerColor = (ev) => {
     let previousSelected = document.querySelector('selected');
     if (previousSelected) {
