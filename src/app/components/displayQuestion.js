@@ -1,11 +1,13 @@
 export class DisplayQuestion {
     constructor() {
-        this.questionNumber = 1;
+        this.questionNumber = 0;
         this.questionWrapper;
         this.questionParagraph;
     }
 
     generateQuestion(category) {
+        this.questionNumber++;
+
         this.questionWrapper = document.createElement('div');
         this.questionWrapper.className = 'display-question-wrapper';
 
@@ -28,7 +30,6 @@ export class DisplayQuestion {
         }
 
         this.questionWrapper.appendChild(this.questionParagraph);
-        this.questionNumber++;
 
         return this.questionWrapper;
     }

@@ -37,5 +37,16 @@ describe('Creating question element', () => {
             const p = div.querySelector('.display-question-text');
             expect(p.textContent).toBe('1. Who/What is this character/vehicle/starship?');
         });
+        it('numbers change properly', () => {
+            const displayQuestion = new DisplayQuestion();
+            displayQuestion.generateQuestion();
+            displayQuestion.generateQuestion();
+            displayQuestion.generateQuestion();
+            displayQuestion.generateQuestion();
+            displayQuestion.generateQuestion();
+            displayQuestion.generateQuestion();
+            displayQuestion.generateQuestion();
+            expect(displayQuestion.questionNumber).toBe(7);
+        });
     });
 });
