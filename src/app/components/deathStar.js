@@ -7,4 +7,9 @@ export const deathStar = () => {
     image.src = '../static/assets/img/modes/deathStar/deathstar.png';
     deathStarDiv.appendChild(image);
     document.body.appendChild(deathStarDiv);
+    setTimeout(function () {
+        deathStarDiv.style.display = 'none';
+    }, 5000);
+
+    return deathStarDiv;
 };
