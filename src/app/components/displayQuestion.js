@@ -19,7 +19,7 @@ export class DisplayQuestion {
             case 'vehicles':
                 this.questionParagraph.textContent = `${this.questionNumber}. What is this vehicle?`;
                 break;
-            case 'starshipts':
+            case 'starships':
                 this.questionParagraph.textContent = `${this.questionNumber}. What is this starship?`;
                 break;
             default:
