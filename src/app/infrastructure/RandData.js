@@ -1,55 +1,47 @@
-import { PrepareData } from './processData';
-import { Data } from './fetchApi';
+import {PrepareData} from './processData'
+import {Data} from './fetchApi'
+import _ from 'lodash'
 
-const n = 10 // Liczba pytań w Quiz
+const num = 10
 
 class RandData {
-      static async randData() {
-
-        //Funkcja zwracajaca określoną liczbę (count) indeksów z tablicy arr
-        const randElementsfromArr = (count, arr) => {
-            const localArr = []
-            while (localArr.length < count) {
-                let randomNumber = Math.floor(Math.random() * arr.length);
-                if (!localArr.some(item => item.index === arr[randomNumber].index)) {
-                    localArr.push(arr[randomNumber])
-                }     
-            }
-            return localArr
+     async randData(category) {
+        const data = new Data();
+        const prepareData = new PrepareData();
+        let categoryArr = []
+        switch (category) {
+            case 'people':
+                categoryArr = await data.getPeopleJsonData().then(res => prepareData.preprocessData(res) )
+                break;
+            case 'starships':
+                categoryArr = await data.getStarshipsJsonData().then(res => prepareData.preprocessData(res) )
+                break;
+            case 'vehicles':
+                categoryArr = await data.getVehiclesJsonData().then(res => prepareData.preprocessData(res) )
+            default:
+                categoryArr = await data.getPeopleJsonData().then(res => prepareData.preprocessData(res) )
+                break;
         }
-
-
-        const peopleData = await Data.getPeopleJsonData()
-
-        
-        const categoryArr = await PrepareData.preprocessData(peopleData); //Tablica wszystkich obiektów z danej kategori
-        const questionsArr = randElementsfromArr(n, categoryArr) // Tablica poprawnych odpowiedzi
-        const diffArr = categoryArr.filter(item => !questionsArr.some(x => x.index === item.index) ) // Tablica będąca różnicą pomiędzy categoryArr a questionsArr || categoryArr = questionsArr + diffArr
-
-        // Tworzenie tablicay odpowiedzi
-        const answers = [] 
-        for (let i = 0; i < n; i++) {
-            const fakeAnswers = randElementsfromArr(3, diffArr) //losowanie dodatkowych 3 złych odpowiedzi
-            //tablica odpowiedzi gdzie w answer[0] jest zawsze poprawna odpowiedz
+        const questionsArr = _.sampleSize(categoryArr, num);
+        const diffArr = categoryArr.filter(item => !questionsArr.some(x => x.index === item.index) )
+        const answers = []
+        for (let i = 0; i < num; i++) {
+            const wrongAwnswers =  _.sampleSize(diffArr, 3);
             const answer = [
                 {...questionsArr[i], correct: true},
-                {...fakeAnswers[0], correct: false},
-                {...fakeAnswers[1], correct: false},
-                {...fakeAnswers[2], correct: false},
+                wrongAwnswers[0],
+                wrongAwnswers[1],
+                wrongAwnswers[2]
             ]
-            answer.sort((a,b) => parseInt(a.index) - parseInt(b.index)) // wymieszanie odpowiedzi (poprawna odpowiedz nie jest już zawsze pierwsza)     
-            answers.push(answer)
+            answers.push(_.shuffle(answer))
         }
-        // console.log(answers)
-        
         const output = {
-            questions: questionsArr,
-            answers: answers
+            questionsArr,
+            answers
         }
-        console.log(output)
         return output
+       
     }
 }
 
- export {RandData}
-
+export {RandData}
