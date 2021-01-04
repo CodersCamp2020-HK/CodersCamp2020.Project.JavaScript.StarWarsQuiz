@@ -4,7 +4,8 @@ describe('Creating question element', () => {
     describe('check if wrapper', () => {
         it('is <div>', () => {
             const displayQuestion = new DisplayQuestion('people');
-            expect(displayQuestion.generateQuestion(1).tagName).toBe('DIV');
+            const tagName = displayQuestion.generateQuestion({ questionNumber: 1 }).tagName;
+            expect(tagName).toBe('DIV');
         });
         it('has a class display-question-wrapper', () => {
             const displayQuestion = new DisplayQuestion('starships');
