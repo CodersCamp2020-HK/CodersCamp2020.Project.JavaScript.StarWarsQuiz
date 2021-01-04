@@ -9,7 +9,7 @@ describe('Creating question element', () => {
         });
         it('has a class display-question-wrapper', () => {
             const displayQuestion = new DisplayQuestion('starships');
-            const question = displayQuestion.generateQuestion(1);
+            const question = displayQuestion.generateQuestion({ questionNumber: 1 });
             expect(question.className).toBe('display-question-wrapper');
         });
     });
