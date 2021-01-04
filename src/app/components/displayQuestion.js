@@ -1,33 +1,30 @@
 export class DisplayQuestion {
-    constructor() {
-        this.questionNumber = 0;
+    constructor(category) {
         this.questionWrapper;
         this.questionParagraph;
+
+        switch (category) {
+            case 'people':
+                this.questionText = `Who is this character?`;
+                break;
+            case 'vehicles':
+                this.questionText = `What is this vehicle?`;
+                break;
+            case 'starships':
+                this.questionText = `What is this starship?`;
+                break;
+            default:
+                throw new Error('Category should be people, vehicles or starships');
+        }
     }
 
-    generateQuestion(category) {
-        this.questionNumber++;
-
+    generateQuestion({ questionNumber }) {
         this.questionWrapper = document.createElement('div');
         this.questionWrapper.className = 'display-question-wrapper';
 
         this.questionParagraph = document.createElement('p');
         this.questionParagraph.className = 'display-question-text';
-
-        switch (category) {
-            case 'people':
-                this.questionParagraph.textContent = `${this.questionNumber}. Who is this character?`;
-                break;
-            case 'vehicles':
-                this.questionParagraph.textContent = `${this.questionNumber}. What is this vehicle?`;
-                break;
-            case 'starships':
-                this.questionParagraph.textContent = `${this.questionNumber}. What is this starship?`;
-                break;
-            default:
-                this.questionParagraph.textContent = `${this.questionNumber}. Who/What is this character/vehicle/starship?`;
-                break;
-        }
+        this.questionParagraph.textContent = `${questionNumber}. ${this.questionText}`;
 
         this.questionWrapper.appendChild(this.questionParagraph);
 
