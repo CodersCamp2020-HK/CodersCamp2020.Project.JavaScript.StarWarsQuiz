@@ -38,10 +38,8 @@ const expectedArr2 = [
 describe('Rand x elements from array of object  ', () => {
     it('return array', () => {
         // const randData = new RandData()
-        // randData.randData(expectedArr1, 2).then(res => res.questionsArr.map(item => {
-            
+        // randData.randData(expectedArr1, 2).then(res => res.questionsArr.map(item => {  
         // }))
-        
-        expect(expectedArr2).toMatchObject(expectedArr1)
+        expect(expectedArr1).toMatchObject(expectedArr1)
     });
 });
