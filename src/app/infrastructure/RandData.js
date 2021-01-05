@@ -1,27 +1,7 @@
-import {PrepareData} from './processData'
-import {Data} from './fetchApi'
 import _ from 'lodash'
 
-const num = 10
-
 class RandData {
-     async randData(category) {
-        const data = new Data();
-        const prepareData = new PrepareData();
-        let categoryArr = []
-        switch (category) {
-            case 'people':
-                categoryArr = await data.getPeopleJsonData().then(res => prepareData.preprocessData(res) )
-                break;
-            case 'starships':
-                categoryArr = await data.getStarshipsJsonData().then(res => prepareData.preprocessData(res) )
-                break;
-            case 'vehicles':
-                categoryArr = await data.getVehiclesJsonData().then(res => prepareData.preprocessData(res) )
-            default:
-                categoryArr = await data.getPeopleJsonData().then(res => prepareData.preprocessData(res) )
-                break;
-        }
+     async randData(categoryArr, num) {
         const questionsArr = _.sampleSize(categoryArr, num);
         const diffArr = categoryArr.filter(item => !questionsArr.some(x => x.index === item.index) )
         const answers = []
@@ -39,9 +19,7 @@ class RandData {
             questionsArr,
             answers
         }
-        return output
-       
+        return output  
     }
 }
-
 export {RandData}
