@@ -1,4 +1,4 @@
-class QuestionScoreComponent {
+export class QuestionScoreComponent {
     constructor(numOfAllAns) {
       this.numOfAllAns = numOfAllAns;
       this.numofCorrectAns = 0
