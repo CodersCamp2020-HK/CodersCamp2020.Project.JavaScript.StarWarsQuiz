@@ -7,7 +7,6 @@ export const deathStar = ({ sec }) => {
     image.className = 'deathStar';
     image.src = '../static/assets/img/modes/deathStar/deathstar.png';
     deathStarDiv.appendChild(image);
-    document.body.appendChild(deathStarDiv);
     deathStarDiv.animate(
         [
             { clipPath: 'polygon(50% 0%, 50% 50%, 50% 0, 100% 0, 100% 100%, 0 100%, 0 0)' },
@@ -21,5 +20,5 @@ export const deathStar = ({ sec }) => {
             duration: sec * 1000,
         },
     );
-    return deathStarDiv();
+    return deathStarDiv;
 };
