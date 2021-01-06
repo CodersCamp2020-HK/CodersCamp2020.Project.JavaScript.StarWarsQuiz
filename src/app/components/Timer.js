@@ -6,17 +6,19 @@ const convertSeconds = (sec) => {
     return { minutes, seconds };
 };
 
-export const generateTimer = ({ timeleft }) => {
+export const generateTimer = ({ timeleft, onTimerEnd }) => {
     const timerDiv = document.createElement('div');
+    timerDiv.classList.add('timer-to-zero');
     const { minutes, seconds } = convertSeconds(timeleft);
     timerDiv.appendChild(document.createTextNode(`${minutes}:${seconds}`));
 
-    setInterval(() => {
+    const interval = setInterval(() => {
         timeleft--;
         const { minutes, seconds } = convertSeconds(timeleft);
         timerDiv.textContent = `${minutes}:${seconds}`;
         if (timeleft == 0) {
-            console.log('skończone');
+            clearInterval(interval);
+            return onTimerEnd();
         }
     }, 1000);
 
