@@ -1,4 +1,3 @@
-
 class Button {
     constructor(text, onClickFunction) {
         this._element = document.createElement('button');

@@ -3,7 +3,7 @@ import { Button } from '../src/app/components/Button';
 describe('generate button', () => {
     const buttonClassName = 'button';
     const alertFunction = () => new Error('Button clicked');
-    const sample = new ButtonNext('Blablabla', alertFunction);
+    const sample = new Button('Blablabla', alertFunction);
 
     it('should create button element', () => {
         expect(sample.element.tagName).toEqual('BUTTON');
@@ -26,5 +26,4 @@ describe('generate button', () => {
         sample.activate();
         expect(sample.element.disabled).toEqual(false);
     });
-
 });
