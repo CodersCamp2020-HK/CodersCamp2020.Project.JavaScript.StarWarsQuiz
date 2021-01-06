@@ -35,7 +35,7 @@
     "@testing-library/dom": "^7.26.6",
     "@types/jest": "^26.0.19",
     "babel-jest": "^26.5.0",
-    "eslint": "^7.15.0",
+    "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^3.3.0",
     "jest": "^26.4.2",
