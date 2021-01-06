@@ -1,6 +1,6 @@
 //import '../styles/AnswerButton.scss';
-export const generateAnswerButton = ({ text, onClick, onHover, onUnhover }) => {
-    const state = { isSelectedAnswer: false, text: text, isCorrectAnswer: null, isHoveredAnswer: false };
+export const generateAnswerButton = ({ text, onClick }) => {
+    const state = { isSelectedAnswer: false, text: text, isCorrectAnswer: null };
 
     const button = document.createElement('button');
     button.classList.add('answer-button');
@@ -10,25 +10,24 @@ export const generateAnswerButton = ({ text, onClick, onHover, onUnhover }) => {
         element: button,
         select: () => {
             state.isSelectedAnswer = true;
+            button.classList.add('answer-button-selected');
         },
         unselect: () => {
             state.isSelectedAnswer = false;
-        },
-        hover: () => {
-            state.isHoveredAnswer = true;
-        },
-        unhover: () => {
-            state.isHoveredAnswer = false;
+            button.classList.remove('answer-button-selected');
         },
         markAsCorrect: () => {
             state.isCorrectAnswer = true;
+            button.classList.remove('answer-button-selected');
+            button.classList.add('answer-button-correct');
         },
         markAsWrong: () => {
             state.isCorrectAnswer = false;
+            button.classList.remove('answer-button-selected');
+            button.classList.add('answer-button-wrong');
         },
         isSelectedAnswer: () => state.isSelectedAnswer,
         isCorrectAnswer: () => state.isCorrectAnswer,
-        isHoveredAnswer: () => state.isHoveredAnswer,
         text: () => state.text,
     };
 
@@ -41,24 +40,5 @@ export const generateAnswerButton = ({ text, onClick, onHover, onUnhover }) => {
             false,
         );
     }
-    if (onHover) {
-        view.element.addEventListener(
-            'mouseover',
-            () => {
-                onHover(view);
-            },
-            false,
-        );
-    }
-    if (onUnhover) {
-        view.element.addEventListener(
-            'mouseout',
-            () => {
-                onUnhover(view);
-            },
-            false,
-        );
-    }
-
     return view;
 };
