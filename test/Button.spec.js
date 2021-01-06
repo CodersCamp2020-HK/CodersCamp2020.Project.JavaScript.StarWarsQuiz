@@ -1,4 +1,4 @@
-import { ButtonNext } from '../src/app/components/ButtonNext';
+import { Button } from '../src/app/components/Button';
 
 describe('generate button', () => {
     const buttonClassName = 'button';

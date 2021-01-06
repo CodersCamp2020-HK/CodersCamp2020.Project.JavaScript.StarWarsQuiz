@@ -1,7 +1,6 @@
-//import {} from {}
 
-class ButtonNext {
-    constructor(text = 'NEXT', onClickFunction) {
+class Button {
+    constructor(text, onClickFunction) {
         this._element = document.createElement('button');
         this._element.textContent = text;
         this._element.classList.add('button');
@@ -23,4 +22,4 @@ class ButtonNext {
     }
 }
 
-export { ButtonNext };
+export { Button };
