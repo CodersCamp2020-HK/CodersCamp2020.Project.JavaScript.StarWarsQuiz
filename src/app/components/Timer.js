@@ -1,4 +1,4 @@
-const convertSeconds = (sec) => {
+export const convertSeconds = (sec) => {
     let minutes = Math.floor(sec / 60);
     minutes = minutes < 10 ? `0${minutes}` : minutes;
     let seconds = sec % 60;
@@ -7,6 +7,8 @@ const convertSeconds = (sec) => {
 };
 
 export const generateTimer = ({ timeleft, onTimerEnd }) => {
+    if (timeleft < 0) throw new Error('Time can not be negative!');
+    if (timeleft == 0) return onTimerEnd();
     const timerDiv = document.createElement('div');
     timerDiv.classList.add('timer-to-zero');
     const { minutes, seconds } = convertSeconds(timeleft);
