@@ -1,0 +1,57 @@
+@font-face {
+   font-family: 'AnakinMono';
+   src: url('../static/assets/ui/AnakinMono-font/AnakinMono.woff2') format('woff2'),
+       url('../static/assets/ui/AnakinMono-font/AnakinMono.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'Star Jedi';
+   src: url('../static/assets/ui/StarJedi-font/StarJedi.woff2') format('woff2'),
+       url('../static/assets/ui/StarJedi-font/StarJedi.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+}
+
+$family-text: 'Star Jedi', Helvetica, Arial, sans-serif;
+
+$family-el: 'AnakinMono', Helvetica, Arial, sans-serif;
+
+%typography-h5{
+    font-family: $family-text;
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    font-size: 40px;
+    line-height: 140%;
+}
+
+%typography-h6 {
+   font-family: $family-text;
+   font-style: normal;
+   font-weight: normal;
+   font-display: swap;
+   font-size: 25px;
+   line-height: 140%;
+}
+
+%typography-body {
+    font-family: $family-el;
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    font-size: 30px;
+    line-height: 150%;
+}
+
+%typography-button {
+   font-family: $family-el;
+   font-style: normal;
+   font-weight: normal;
+   font-display: swap;
+   font-size: 40px;
+   line-height: 150%;
+}
