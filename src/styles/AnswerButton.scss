@@ -1,23 +1,33 @@
+@use './colors';
+@use './common';
+@use './typography';
 .answer-button {
-    border: 1px solid white;
-    width: 100px;
-    height: 100px;
+    font-family: typograpghy.$family-el;
+    color: colors.$primary-text;
+    background-color: colors.$primary-background;
+    border: 3px solid colors.$primary-main;
 }
 
-.answer-button-hovered {
-    border: 1px solid purple;
+.answer-button:hover {
+    background-color: colors.$primary-main;
 }
 
 .answer-button-correct {
-    border: 1px solid black;
-    background-color: green;
+    border: 3px solid colors.$secondary-green;
+}
+
+.answer-button-correct:hover {
+    background-color: colors.$primary-background;
 }
 
 .answer-button-wrong {
-    border: 1px solid black;
-    background-color: red;
+    border: 3px solid colors.$secondary-red;
+}
+
+.answer-button-wrong:hover {
+    background-color: colors.$primary-background;
 }
 
 .answer-button-selected {
-    border: 1px solid blue;
+    border: 3px solid colors.$secondary-blue;
 }
