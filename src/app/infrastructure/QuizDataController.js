@@ -1,15 +1,18 @@
 import { Data } from './fetchApi';
-// import { PrepareData } from './processData';
-// import { RandData } from './RandData';
+import { PrepareData } from './processData';
+import { RandData } from './RandData';
 
 export class QuizDataController {
-    constructor({ category, data }) {
-        this.category = category;
-        this.data = data;
+    constructor({ category, data, answers }) {
+        this.__category = category;
+        this.__data = data;
+        this.__answers = answers;
     }
 
     static async createController(category) {
         const jsonData = new Data();
+        const processedData = new PrepareData();
+        const randData = new RandData();
         let data;
 
         switch (category) {
@@ -26,6 +29,10 @@ export class QuizDataController {
                 throw new Error('Category should be people, vehicles or starships');
         }
 
-        return new QuizDataController({ category, data });
+        data = processedData.preprocessData(data);
+
+        const answers = await randData.randData(data, 10);
+
+        return new QuizDataController({ category, data, answers });
     }
 }
