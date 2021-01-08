@@ -3,7 +3,7 @@ import { PrepareData } from './processData';
 import { RandData } from './RandData';
 import { QuizDataController } from '../domain/QuizDataController';
 
-export const createController = async ({ category }) => {
+export const createController = async ({ category, numberOfQuestions }) => {
     const jsonData = new Data();
     const processedData = new PrepareData();
     const randData = new RandData();
@@ -25,7 +25,7 @@ export const createController = async ({ category }) => {
 
     data = processedData.preprocessData(data);
 
-    const answers = await randData.randData(data, 10);
+    const answers = await randData.randData(data, numberOfQuestions);
 
     return new QuizDataController({ category, answers });
 };

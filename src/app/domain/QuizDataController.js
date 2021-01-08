@@ -9,6 +9,6 @@ export class QuizDataController {
     }
 
     get answers() {
-        return this.__answers;
+        return this.__answers['answers'];
     }
 }
