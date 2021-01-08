@@ -3,9 +3,8 @@ import { PrepareData } from './processData';
 import { RandData } from './RandData';
 
 export class QuizDataController {
-    constructor({ category, data, answers }) {
+    constructor({ category, answers }) {
         this.__category = category;
-        this.__data = data;
         this.__answers = answers;
     }
 
@@ -33,6 +32,14 @@ export class QuizDataController {
 
         const answers = await randData.randData(data, 10);
 
-        return new QuizDataController({ category, data, answers });
+        return new QuizDataController({ category, answers });
+    }
+
+    get category() {
+        return this.__category;
+    }
+
+    get answers() {
+        return this.__answers;
     }
 }
