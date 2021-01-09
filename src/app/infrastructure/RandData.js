@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 class RandData {
     async randData(categoryArr, num) {
-        console.log(categoryArr);
+        // console.log(categoryArr);
         const questionsArr = _.sampleSize(categoryArr, num);
         const diffArr = categoryArr.filter((item) => !questionsArr.some((x) => x.index === item.index));
         const answers = [];

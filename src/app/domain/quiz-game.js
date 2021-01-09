@@ -6,19 +6,29 @@ import { DisplayQuestion } from '../components/displayQuestion';
 import { logoPicture } from '../components/logo';
 import { generatePictureQuestion } from '../components/pictureComponent';
 import { createController } from '../infrastructure/createController';
+import { QuestionScoreComponent } from '../components/QuestionScoreView';
 
 export class QuizGame {
     async main() {
         const mainDiv = await createController({ category: 'people', numberOfQuestions: 5 }).then((controller) => {
-            console.log(controller.answers);
+            const pointsController = new QuestionScoreComponent(controller.answers.length);
+            const questionIndex = controller.currentQuestionNumber - 1;
+            // console.log(controller.answers[0]);
+            // console.log(controller.currentQuestionNumber);
+            // console.log(controller.correctAnswer);
+            const pointsDiv = pointsController.generateViewDiv();
             const mainDiv = document.createElement('div');
             const logo = logoPicture();
-            const question = new DisplayQuestion('people');
+            const question = new DisplayQuestion(controller.category);
             const points = pointsCounter(1);
-            const questionPicture = generatePictureQuestion('people', 1);
+            const questionPicture = generatePictureQuestion(
+                controller.category,
+                controller.correctAnswer[questionIndex].index,
+            );
             let currentSelected = null;
+
             const answer1 = generateAnswerButton({
-                text: 'Luke Skywalker',
+                text: controller.answers[questionIndex][0].name,
                 onClick: () => {
                     if (currentSelected) {
                         currentSelected.unselect();
@@ -31,7 +41,7 @@ export class QuizGame {
                 },
             });
             const answer2 = generateAnswerButton({
-                text: 'Yoda',
+                text: controller.answers[questionIndex][1].name,
                 onClick: () => {
                     if (currentSelected) {
                         currentSelected.unselect();
@@ -44,7 +54,7 @@ export class QuizGame {
                 },
             });
             const answer3 = generateAnswerButton({
-                text: 'R2D2',
+                text: controller.answers[questionIndex][2].name,
                 onClick: () => {
                     if (currentSelected) {
                         currentSelected.unselect();
@@ -57,7 +67,7 @@ export class QuizGame {
                 },
             });
             const answer4 = generateAnswerButton({
-                text: 'C3PO',
+                text: controller.answers[questionIndex][3].name,
                 onClick: () => {
                     if (currentSelected) {
                         currentSelected.unselect();
@@ -79,7 +89,8 @@ export class QuizGame {
             answerDiv.appendChild(answer4.element);
 
             mainDiv.appendChild(logo);
-            mainDiv.appendChild(question.generateQuestion({ questionNumber: 1 }));
+            mainDiv.appendChild(question.generateQuestion({ questionNumber: controller.currentQuestionNumber }));
+            mainDiv.appendChild(pointsDiv);
             mainDiv.appendChild(questionPicture);
             mainDiv.appendChild(answerDiv);
             mainDiv.appendChild(deathStarDiv.element);
