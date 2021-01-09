@@ -10,6 +10,7 @@ import { createController } from '../infrastructure/createController';
 export class QuizGame {
     async main() {
         const mainDiv = await createController({ category: 'people', numberOfQuestions: 5 }).then((controller) => {
+            console.log(controller.answers);
             const mainDiv = document.createElement('div');
             const logo = logoPicture();
             const question = new DisplayQuestion('people');
