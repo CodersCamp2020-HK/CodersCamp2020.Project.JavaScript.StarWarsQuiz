@@ -20,4 +20,8 @@ export class QuizDataController {
     get correctAnswer() {
         return this.__answers['questionsArr'];
     }
+
+    set currentQuestionNumber(val) {
+        this.__currentQuestionNumber = val;
+    }
 }

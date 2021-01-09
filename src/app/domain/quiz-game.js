@@ -12,7 +12,7 @@ export class QuizGame {
     async main() {
         const mainDiv = await createController({ category: 'people', numberOfQuestions: 5 }).then((controller) => {
             const pointsController = new QuestionScoreComponent(controller.answers.length);
-            const questionIndex = controller.currentQuestionNumber - 1;
+            let questionIndex = controller.currentQuestionNumber - 1;
             const pointsDiv = pointsController.generateViewDiv();
             const mainDiv = document.createElement('div');
             const logo = logoPicture();
@@ -85,25 +85,24 @@ export class QuizGame {
             const buttonNext = new Button('NEXT', () => {
                 if (currentSelected.text() == controller.correctAnswer[questionIndex].name) {
                     currentSelected.markAsCorrect();
-                } else {
-                    const correctAnswer = answersArray.filter(
-                        (answer) => answer.text() == controller.correctAnswer[questionIndex].name,
-                    )[0];
-                    correctAnswer.markAsCorrect();
-                    currentSelected.markAsWrong();
-                }
-                if (currentSelected.isCorrectAnswer()) {
                     pointsController.numofCorrectAns++;
                     pointsController.setCorrectAns(pointsController.numofCorrectAns);
                     points = parseInt(points);
                     points += 10;
                     pointsWrapper.querySelector('.pointsCounter_points').textContent = points;
                 } else {
+                    const correctAnswer = answersArray.filter(
+                        (answer) => answer.text() == controller.correctAnswer[questionIndex].name,
+                    )[0];
+                    correctAnswer.markAsCorrect();
+                    currentSelected.markAsWrong();
                     pointsController.numofIncorrectAns++;
                     pointsController.setIncorrectAns(pointsController.numofIncorrectAns);
-                    console.log(pointsController.numofIncorrectAns);
                 }
-                // console.log(points);
+                controller.currentQuestionNumber++;
+                console.log(controller.currentQuestionNumber);
+                questionIndex = controller.currentQuestionNumber - 1;
+                questionPicture.src = `/static/assets/img/modes/${controller.category}/${controller.correctAnswer[questionIndex].index}.jpg`;
             });
 
             answerDiv.appendChild(answer1.element);
