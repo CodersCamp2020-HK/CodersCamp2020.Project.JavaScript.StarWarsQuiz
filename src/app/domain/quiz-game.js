@@ -1,21 +1,18 @@
 import { generateAnswerButton } from '../components/AnswerButton';
 import { pointsCounter } from '../components/PointsCounter';
-import { buttonNextQuestion } from '../components/buttonNextQuestion';
 import { deathStar } from '../components/deathStar';
 import { DisplayQuestion } from '../components/displayQuestion';
 import { logoPicture } from '../components/logo';
 import { generatePictureQuestion } from '../components/pictureComponent';
 import { createController } from '../infrastructure/createController';
 import { QuestionScoreComponent } from '../components/QuestionScoreView';
+import { Button } from '../components/Button';
 
 export class QuizGame {
     async main() {
         const mainDiv = await createController({ category: 'people', numberOfQuestions: 5 }).then((controller) => {
             const pointsController = new QuestionScoreComponent(controller.answers.length);
             const questionIndex = controller.currentQuestionNumber - 1;
-            // console.log(controller.answers[0]);
-            // console.log(controller.currentQuestionNumber);
-            // console.log(controller.correctAnswer);
             const pointsDiv = pointsController.generateViewDiv();
             const mainDiv = document.createElement('div');
             const logo = logoPicture();
@@ -79,9 +76,22 @@ export class QuizGame {
                     }
                 },
             });
+
+            const answersArray = [answer1, answer2, answer3, answer4];
+
             const answerDiv = document.createElement('div');
             const deathStarDiv = deathStar({ sec: 10 });
-            const buttonNext = buttonNextQuestion;
+            const buttonNext = new Button('NEXT', () => {
+                if (currentSelected.text() == controller.correctAnswer[questionIndex].name) {
+                    currentSelected.markAsCorrect();
+                } else {
+                    const correctAnswer = answersArray.filter(
+                        (answer) => answer.text() == controller.correctAnswer[questionIndex].name,
+                    )[0];
+                    correctAnswer.markAsCorrect();
+                    currentSelected.markAsWrong();
+                }
+            });
 
             answerDiv.appendChild(answer1.element);
             answerDiv.appendChild(answer2.element);
@@ -96,6 +106,8 @@ export class QuizGame {
             mainDiv.appendChild(deathStarDiv.element);
             mainDiv.appendChild(points);
             mainDiv.appendChild(buttonNext.element);
+
+            buttonNext.element.onclick;
 
             return mainDiv;
         });
