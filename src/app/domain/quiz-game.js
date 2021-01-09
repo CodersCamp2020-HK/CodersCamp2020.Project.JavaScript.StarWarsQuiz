@@ -17,7 +17,8 @@ export class QuizGame {
             const mainDiv = document.createElement('div');
             const logo = logoPicture();
             const question = new DisplayQuestion(controller.category);
-            const points = pointsCounter(1);
+            let pointsWrapper = pointsCounter(0);
+            let points = pointsWrapper.querySelector('.pointsCounter_points').textContent;
             const questionPicture = generatePictureQuestion(
                 controller.category,
                 controller.correctAnswer[questionIndex].index,
@@ -91,6 +92,18 @@ export class QuizGame {
                     correctAnswer.markAsCorrect();
                     currentSelected.markAsWrong();
                 }
+                if (currentSelected.isCorrectAnswer()) {
+                    pointsController.numofCorrectAns++;
+                    pointsController.setCorrectAns(pointsController.numofCorrectAns);
+                    points = parseInt(points);
+                    points += 10;
+                    pointsWrapper.querySelector('.pointsCounter_points').textContent = points;
+                } else {
+                    pointsController.numofIncorrectAns++;
+                    pointsController.setIncorrectAns(pointsController.numofIncorrectAns);
+                    console.log(pointsController.numofIncorrectAns);
+                }
+                // console.log(points);
             });
 
             answerDiv.appendChild(answer1.element);
@@ -104,7 +117,7 @@ export class QuizGame {
             mainDiv.appendChild(questionPicture);
             mainDiv.appendChild(answerDiv);
             mainDiv.appendChild(deathStarDiv.element);
-            mainDiv.appendChild(points);
+            mainDiv.appendChild(pointsWrapper);
             mainDiv.appendChild(buttonNext.element);
 
             buttonNext.element.onclick;

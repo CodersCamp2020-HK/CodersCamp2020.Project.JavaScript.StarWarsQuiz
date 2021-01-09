@@ -37,6 +37,6 @@ export class QuestionScoreComponent {
 
     setIncorrectAns(value) {
         this.numofIncorrectAns = value;
-        this.numofIncorrectAnsView.textContent = this.numofCorrectAns.toString();
+        this.numofIncorrectAnsView.textContent = this.numofIncorrectAns.toString();
     }
 }
