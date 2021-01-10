@@ -85,6 +85,7 @@ export class QuizGame {
 
             const timerAndDeathStarDiv = document.createElement('div');
             const answerDiv = document.createElement('div');
+            answerDiv.className = 'answers-wrapper';
             const deathStarDiv = deathStar({ sec: timeInSeconds });
             const timer = generateTimer({
                 timeleftInSeconds: timeInSeconds,
@@ -133,6 +134,8 @@ export class QuizGame {
                     });
                 }, 2000);
             });
+
+            buttonNext.element.classList.add('button-next');
 
             answerDiv.appendChild(answer1.element);
             answerDiv.appendChild(answer2.element);

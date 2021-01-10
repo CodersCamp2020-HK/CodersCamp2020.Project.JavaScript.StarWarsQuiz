@@ -2,8 +2,9 @@
 @use './common';
 @use './typography';
 .answer-button {
-    @extend %typography-button;
+    @extend %typography-body;
     color: colors.$primary-text;
+    width: 100%;
     background-color: colors.$primary-background;
     @extend %common-border-button;
     @extend %common-shadow;
