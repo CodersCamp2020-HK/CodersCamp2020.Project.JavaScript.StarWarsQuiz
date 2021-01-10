@@ -11,8 +11,9 @@ import { generateTimer } from '../components/Timer';
 
 export class QuizGame {
     async main() {
-        const mainDiv = await createController({ category: 'people', numberOfQuestions: 5 }).then((controller) => {
-            const pointsController = new QuestionScoreComponent(controller.answers.length);
+        const mainDiv = await createController({ category: 'people', numberOfQuestions: 10 }).then((controller) => {
+            const numberOfQuestions = controller.answers.length;
+            const pointsController = new QuestionScoreComponent(numberOfQuestions);
             let questionIndex = controller.currentQuestionNumber - 1;
             const pointsDiv = pointsController.generateViewDiv();
             const mainDiv = document.createElement('div');
@@ -88,13 +89,15 @@ export class QuizGame {
             const timer = generateTimer({
                 timeleftInSeconds: timeInSeconds,
                 onTimerEnd: () => {
-                    console.log('Koniec');
+                    console.log('Koniec czasu');
+                    return;
                 },
             });
             timerAndDeathStarDiv.appendChild(deathStarDiv.element);
             timerAndDeathStarDiv.appendChild(timer);
 
             const buttonNext = new Button('NEXT', () => {
+                // Poprawna odpowiedz
                 if (currentSelected.text() == controller.correctAnswer[questionIndex].name) {
                     currentSelected.markAsCorrect();
                     pointsController.numofCorrectAns++;
@@ -103,6 +106,7 @@ export class QuizGame {
                     points += 10;
                     pointsWrapper.querySelector('.pointsCounter_points').textContent = points;
                 } else {
+                    // Niepoprawna odpowiedz
                     const correctAnswer = answersArray.filter(
                         (answer) => answer.text() == controller.correctAnswer[questionIndex].name,
                     )[0];
@@ -114,7 +118,20 @@ export class QuizGame {
                 controller.currentQuestionNumber++;
                 console.log(controller.currentQuestionNumber);
                 questionIndex = controller.currentQuestionNumber - 1;
-                questionPicture.src = `/static/assets/img/modes/${controller.category}/${controller.correctAnswer[questionIndex].index}.jpg`;
+                if (controller.currentQuestionNumber > numberOfQuestions) {
+                    console.log('Koniec pytań');
+                    return;
+                }
+
+                setTimeout(() => {
+                    questionPicture.src = `/static/assets/img/modes/${controller.category}/${controller.correctAnswer[questionIndex].index}.jpg`;
+                    answersArray.forEach((but) => {
+                        but.clearClasses();
+                    });
+                    answersArray.forEach((answer, index) => {
+                        answer.setText(controller.answers[questionIndex][index].name);
+                    });
+                }, 2000);
             });
 
             answerDiv.appendChild(answer1.element);
@@ -130,6 +147,8 @@ export class QuizGame {
             mainDiv.appendChild(timerAndDeathStarDiv);
             mainDiv.appendChild(pointsWrapper);
             mainDiv.appendChild(buttonNext.element);
+
+            mainDiv.classList = 'quiz-game-wrapper';
 
             buttonNext.element.onclick;
 

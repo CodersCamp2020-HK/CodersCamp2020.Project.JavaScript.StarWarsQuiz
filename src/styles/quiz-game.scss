@@ -1,0 +1,16 @@
+@use './colors';
+@use './common';
+@use './typography';
+@import './AnswerButton.scss';
+@import './deathStar.scss';
+@import './PointsCounter.scss';
+@import './logo.scss';
+
+.quiz-game-wrapper {
+    display: grid;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    grid-template: 1fr 2fr 1fr / 1fr 2fr 1fr;
+    gap: 5%;
+}
