@@ -1,0 +1,9 @@
+@use './colors';
+@use './typography';
+
+.timer-to-zero {
+    font-family: typography.$family-text;
+    font-size: 1.5rem;
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+}
