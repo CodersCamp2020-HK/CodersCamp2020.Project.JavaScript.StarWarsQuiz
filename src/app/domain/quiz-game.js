@@ -7,6 +7,7 @@ import { generatePictureQuestion } from '../components/pictureComponent';
 import { createController } from '../infrastructure/createController';
 import { QuestionScoreComponent } from '../components/QuestionScoreView';
 import { Button } from '../components/Button';
+import { generateTimer } from '../components/Timer';
 
 export class QuizGame {
     async main() {
@@ -15,6 +16,7 @@ export class QuizGame {
             let questionIndex = controller.currentQuestionNumber - 1;
             const pointsDiv = pointsController.generateViewDiv();
             const mainDiv = document.createElement('div');
+            const timeInSeconds = 10;
             const logo = logoPicture();
             const question = new DisplayQuestion(controller.category);
             let pointsWrapper = pointsCounter(0);
@@ -80,8 +82,18 @@ export class QuizGame {
 
             const answersArray = [answer1, answer2, answer3, answer4];
 
+            const timerAndDeathStarDiv = document.createElement('div');
             const answerDiv = document.createElement('div');
-            const deathStarDiv = deathStar({ sec: 10 });
+            const deathStarDiv = deathStar({ sec: timeInSeconds });
+            const timer = generateTimer({
+                timeleftInSeconds: timeInSeconds,
+                onTimerEnd: () => {
+                    console.log('Koniec');
+                },
+            });
+            timerAndDeathStarDiv.appendChild(deathStarDiv.element);
+            timerAndDeathStarDiv.appendChild(timer);
+
             const buttonNext = new Button('NEXT', () => {
                 if (currentSelected.text() == controller.correctAnswer[questionIndex].name) {
                     currentSelected.markAsCorrect();
@@ -115,7 +127,7 @@ export class QuizGame {
             mainDiv.appendChild(pointsDiv);
             mainDiv.appendChild(questionPicture);
             mainDiv.appendChild(answerDiv);
-            mainDiv.appendChild(deathStarDiv.element);
+            mainDiv.appendChild(timerAndDeathStarDiv);
             mainDiv.appendChild(pointsWrapper);
             mainDiv.appendChild(buttonNext.element);
 
