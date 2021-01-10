@@ -9,11 +9,11 @@ const advanceTime = (seconds) => {
     });
 };
 
-const setuptSut = (timeleft) => {
+const setuptSut = (timeleftInSeconds) => {
     const sut = { timer: null, onTimerEndMock: null };
     beforeAll(() => {
         sut.onTimerEndMock = jest.fn(() => {});
-        sut.timer = generateTimer({ timeleft, onTimerEnd: sut.onTimerEndMock });
+        sut.timer = generateTimer({ timeleftInSeconds: timeleftInSeconds, onTimerEnd: sut.onTimerEndMock });
     });
     afterAll(() => {
         jest.clearAllTimers();
@@ -87,15 +87,19 @@ describe('Test generateTimer', () => {
     describe(`When: call generateTimer with (negative time = ${anyNegativeTime})`, () => {
         const errorMessage = 'Time can not be negative!';
         test(`Then: generateTimer should throw Error with message '${errorMessage}'`, () => {
-            expect(() => generateTimer({ timeleft: anyNegativeTime })).toThrow(errorMessage);
+            expect(() => generateTimer({ timeleftInSeconds: anyNegativeTime })).toThrow(errorMessage);
         });
     });
 
     const zeroTimeleft = 0;
     describe(`Given: timer generated with parameters (timeleft = ${zeroTimeleft}s)`, () => {
         const sut = setuptSut(zeroTimeleft);
-        test('Then: timer should not be created', () => {
-            expect(sut.timer).toBeUndefined();
+        const expectedText = '00:00';
+        test('Then: timer should be a div element', () => {
+            expect(sut.timer.tagName).toEqual('DIV');
+        });
+        test(`Then: timer should display '${expectedText}'`, async () => {
+            await queries.findByText(sut.timer, expectedText);
         });
         test(`Then: timer should not start interval`, () => {
             expect(setInterval).not.toBeCalled();

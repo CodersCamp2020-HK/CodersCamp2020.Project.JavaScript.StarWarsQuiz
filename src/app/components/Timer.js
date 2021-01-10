@@ -6,19 +6,23 @@ export const convertSeconds = (sec) => {
     return { minutes, seconds };
 };
 
-export const generateTimer = ({ timeleft, onTimerEnd }) => {
-    if (timeleft < 0) throw new Error('Time can not be negative!');
-    if (timeleft == 0) return onTimerEnd();
+export const generateTimer = ({ timeleftInSeconds, onTimerEnd }) => {
+    if (timeleftInSeconds < 0) throw new Error('Time can not be negative!');
     const timerDiv = document.createElement('div');
     timerDiv.classList.add('timer-to-zero');
-    const { minutes, seconds } = convertSeconds(timeleft);
+    const { minutes, seconds } = convertSeconds(timeleftInSeconds);
     timerDiv.appendChild(document.createTextNode(`${minutes}:${seconds}`));
 
+    if (timeleftInSeconds == 0) {
+        onTimerEnd();
+        return timerDiv;
+    }
+
     const interval = setInterval(() => {
-        timeleft--;
-        const { minutes, seconds } = convertSeconds(timeleft);
+        timeleftInSeconds--;
+        const { minutes, seconds } = convertSeconds(timeleftInSeconds);
         timerDiv.textContent = `${minutes}:${seconds}`;
-        if (timeleft == 0) {
+        if (timeleftInSeconds == 0) {
             clearInterval(interval);
             return onTimerEnd();
         }
