@@ -1,5 +1,7 @@
-import { logoPicture } from './components/logo';
+import { pointsCounter } from './components/PointsCounter';
 
 export const App = () => {
-    const logo = logoPicture();
+    const pointsCounterDiv = pointsCounter(10);
+    const container = document.querySelector('#swquiz-app');
+    container.appendChild(pointsCounterDiv);
 };

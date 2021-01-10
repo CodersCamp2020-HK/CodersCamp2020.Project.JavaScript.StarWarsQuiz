@@ -1,3 +1,5 @@
+import '../../styles/PointsCounter.scss';
+
 export function pointsCounter(pkt) {
     if (pkt) {
         const wrapper = document.createElement('div');
