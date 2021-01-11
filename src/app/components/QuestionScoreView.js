@@ -21,7 +21,6 @@ export class QuestionScoreComponent {
         this.view.appendChild(this.numofIncorrectAnsView);
 
         this.view.appendChild(document.createTextNode('/'));
-
         this.numOfAllAnsView = document.createElement('span');
         this.numOfAllAnsView.className = 'display-num-of-all';
 
