@@ -13,6 +13,9 @@ export class QuizGame {
     constructor() {
         this.questionIndex = 0;
         this.points = 0;
+        this.currentSelectedAnswer = null;
+        this.numOfCorrectAnswers = 0;
+        this.numofIncorrectAns = 0;
     }
 
     updateElement(CSSselector, updatedText) {
@@ -32,63 +35,61 @@ export class QuizGame {
                 const mainDiv = document.createElement('div');
                 const logo = logoPicture();
                 const questionText = new DisplayQuestion(controller.category);
-                let pointsWrapper = pointsCounter(0);
-                // let points = pointsWrapper.querySelector('.pointsCounter_points').textContent;
+                const pointsWrapper = pointsCounter(0);
                 const questionPicture = generatePictureQuestion(
                     controller.category,
                     controller.correctAnswer[this.questionIndex].index,
                 );
-                let currentSelected = null;
 
                 const answer1 = generateAnswerButton({
                     text: controller.answers[this.questionIndex][0].name,
                     onClick: () => {
-                        if (currentSelected) {
-                            currentSelected.unselect();
-                            currentSelected = answer1;
-                            currentSelected.select();
+                        if (this.currentSelectedAnswer) {
+                            this.currentSelectedAnswer.unselect();
+                            this.currentSelectedAnswer = answer1;
+                            this.currentSelectedAnswer.select();
                         } else {
-                            currentSelected = answer1;
-                            currentSelected.select();
+                            this.currentSelectedAnswer = answer1;
+                            this.currentSelectedAnswer.select();
                         }
                     },
                 });
                 const answer2 = generateAnswerButton({
                     text: controller.answers[this.questionIndex][1].name,
                     onClick: () => {
-                        if (currentSelected) {
-                            currentSelected.unselect();
-                            currentSelected = answer2;
-                            currentSelected.select();
+                        if (this.currentSelectedAnswer) {
+                            this.currentSelectedAnswer.unselect();
+                            this.currentSelectedAnswer = answer2;
+                            this.currentSelectedAnswer.select();
                         } else {
-                            currentSelected = answer2;
-                            currentSelected.select();
+                            this.currentSelectedAnswer = answer2;
+                            this.currentSelectedAnswer.select();
                         }
                     },
                 });
                 const answer3 = generateAnswerButton({
                     text: controller.answers[this.questionIndex][2].name,
                     onClick: () => {
-                        if (currentSelected) {
-                            currentSelected.unselect();
-                            currentSelected = answer3;
-                            currentSelected.select();
+                        if (this.currentSelectedAnswer) {
+                            this.currentSelectedAnswer.unselect();
+                            this.currentSelectedAnswer = answer3;
+                            this.currentSelectedAnswer.select();
                         } else {
-                            currentSelected = answer3;
-                            currentSelected.select();
+                            this.currentSelectedAnswer = answer3;
+                            this.currentSelectedAnswer.select();
                         }
                     },
                 });
                 const answer4 = generateAnswerButton({
                     text: controller.answers[this.questionIndex][3].name,
                     onClick: () => {
-                        if (currentSelected) {
-                            currentSelected.unselect();
-                            currentSelected = answer4;
-                            currentSelected.select();
+                        if (this.currentSelectedAnswer) {
+                            this.currentSelectedAnswer.unselect();
+                            this.currentSelectedAnswer = answer4;
+                            this.currentSelectedAnswer.select();
                         } else {
-                            currentSelected = answer4;
-                            currentSelected.select();
+                            this.currentSelectedAnswer = answer4;
+                            this.currentSelectedAnswer.select();
                         }
                     },
                 });
@@ -111,10 +112,10 @@ export class QuizGame {
 
                 const buttonNext = new Button('NEXT', () => {
                     // Poprawna odpowiedz
-                    if (currentSelected.text() == controller.correctAnswer[this.questionIndex].name) {
-                        currentSelected.markAsCorrect();
-                        pointsController.numofCorrectAns++;
-                        pointsController.setCorrectAns(pointsController.numofCorrectAns);
+                    if (this.currentSelectedAnswer.text() == controller.correctAnswer[this.questionIndex].name) {
+                        this.currentSelectedAnswer.markAsCorrect();
+                        this.numOfCorrectAnswers++;
+                        pointsController.setCorrectAns(this.numOfCorrectAnswers);
                         this.points += 10;
                         this.updateElement('.pointsCounter_points', this.points);
                     } else {
@@ -123,9 +124,9 @@ export class QuizGame {
                             (answer) => answer.text() == controller.correctAnswer[this.questionIndex].name,
                         )[0];
                         correctAnswer.markAsCorrect();
-                        currentSelected.markAsWrong();
-                        pointsController.numofIncorrectAns++;
-                        pointsController.setIncorrectAns(pointsController.numofIncorrectAns);
+                        this.currentSelectedAnswer.markAsWrong();
+                        this.numofIncorrectAns++;
+                        pointsController.setIncorrectAns(this.numofIncorrectAns);
                     }
                     controller.currentQuestionNumber++;
                     this.questionIndex++;
