@@ -74,7 +74,6 @@ export class QuizGame {
                 const { element: answerDiv, views: answersArray } = this.createAnswersArray({
                     answerObjects: quizController.answers[this.questionIndex],
                     onClick: (answer) => {
-                        console.log(answer.element);
                         if (this.currentSelectedAnswer) {
                             this.currentSelectedAnswer.unselect();
                             this.currentSelectedAnswer = answer;
