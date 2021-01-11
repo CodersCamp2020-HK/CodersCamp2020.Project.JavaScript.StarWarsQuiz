@@ -12,8 +12,7 @@ import { generateTimer } from '../components/Timer';
 export class QuizGame {
     async main() {
         const mainDiv = await createController({ category: 'people', numberOfQuestions: 10 }).then((controller) => {
-            const numberOfQuestions = controller.answers.length;
-            const pointsController = new QuestionScoreComponent(numberOfQuestions);
+            const pointsController = new QuestionScoreComponent(controller.numberOfQuestions);
             let questionIndex = controller.currentQuestionNumber - 1;
             const pointsDiv = pointsController.generateViewDiv();
             const mainDiv = document.createElement('div');
@@ -117,9 +116,8 @@ export class QuizGame {
                     pointsController.setIncorrectAns(pointsController.numofIncorrectAns);
                 }
                 controller.currentQuestionNumber++;
-                console.log(controller.currentQuestionNumber);
                 questionIndex = controller.currentQuestionNumber - 1;
-                if (controller.currentQuestionNumber > numberOfQuestions) {
+                if (controller.currentQuestionNumber > controller.numberOfQuestions) {
                     console.log('Koniec pytań');
                     return;
                 }

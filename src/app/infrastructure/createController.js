@@ -31,5 +31,5 @@ export const createController = async ({ category, numberOfQuestions }) => {
 
     const answers = await randData.randData(data, numberOfQuestions);
 
-    return new QuizDataController({ category, answers });
+    return new QuizDataController({ category, answers, numberOfQuestions });
 };

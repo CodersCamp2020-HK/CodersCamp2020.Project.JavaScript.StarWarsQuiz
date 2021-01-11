@@ -1,8 +1,9 @@
 export class QuizDataController {
-    constructor({ category, answers }) {
+    constructor({ category, answers, numberOfQuestions }) {
         this.__category = category;
         this.__answers = answers;
         this.__currentQuestionNumber = 1;
+        this.__numberOfQuestions = numberOfQuestions;
     }
 
     get category() {
@@ -19,6 +20,10 @@ export class QuizDataController {
 
     get correctAnswer() {
         return this.__answers['questionsArr'];
+    }
+
+    get numberOfQuestions() {
+        return this.__numberOfQuestions;
     }
 
     set currentQuestionNumber(val) {

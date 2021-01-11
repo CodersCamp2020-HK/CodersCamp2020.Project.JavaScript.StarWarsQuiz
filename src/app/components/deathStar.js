@@ -1,7 +1,6 @@
 export const deathStar = ({ sec }) => {
     const deathStarDiv = document.createElement('div');
     const image = document.createElement('img');
-    console.log(sec);
 
     deathStarDiv.className = 'deathStarDiv';
     image.className = 'deathStar';
