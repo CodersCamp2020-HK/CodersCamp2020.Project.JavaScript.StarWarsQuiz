@@ -38,11 +38,13 @@ export class QuizGame {
     }
 
     async main({ category, numberOfQuestions, timeInSeconds }) {
-        const mainDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
+        const quizGameDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
             (quizController) => {
+                const mainDiv = document.createElement('div');
+                mainDiv.classList = 'quiz-game-wrapper';
+
                 const pointsController = new QuestionScoreComponent(numberOfQuestions);
                 const pointsDiv = pointsController.generateViewDiv();
-                const mainDiv = document.createElement('div');
                 const logo = logoPicture();
                 const questionText = new DisplayQuestion(quizController.category);
                 const pointsWrapper = pointsCounter(0);
@@ -131,11 +133,9 @@ export class QuizGame {
                 mainDiv.appendChild(pointsWrapper);
                 mainDiv.appendChild(buttonNext.element);
 
-                mainDiv.classList = 'quiz-game-wrapper';
-
                 return mainDiv;
             },
         );
-        return mainDiv;
+        return quizGameDiv;
     }
 }
