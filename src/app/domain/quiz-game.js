@@ -133,8 +133,6 @@ export class QuizGame {
 
                 mainDiv.classList = 'quiz-game-wrapper';
 
-                buttonNext.element.onclick;
-
                 return mainDiv;
             },
         );
