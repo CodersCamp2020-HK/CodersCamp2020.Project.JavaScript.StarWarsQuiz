@@ -12,6 +12,16 @@ import { generateTimer } from '../components/Timer';
 export class QuizGame {
     constructor() {
         this.questionIndex = 0;
+        this.points = 0;
+    }
+
+    updateElement(CSSselector, updatedText) {
+        const element = document.querySelector(CSSselector);
+        if (element) {
+            element.textContent = updatedText;
+        } else {
+            throw new Error(`Element with selector ${CSSselector} does not exist (is undefined).`);
+        }
     }
 
     async main({ category, numberOfQuestions, timeInSeconds }) {
@@ -21,9 +31,9 @@ export class QuizGame {
                 const pointsDiv = pointsController.generateViewDiv();
                 const mainDiv = document.createElement('div');
                 const logo = logoPicture();
-                const question = new DisplayQuestion(controller.category);
+                const questionText = new DisplayQuestion(controller.category);
                 let pointsWrapper = pointsCounter(0);
-                let points = pointsWrapper.querySelector('.pointsCounter_points').textContent;
+                // let points = pointsWrapper.querySelector('.pointsCounter_points').textContent;
                 const questionPicture = generatePictureQuestion(
                     controller.category,
                     controller.correctAnswer[this.questionIndex].index,
@@ -105,9 +115,8 @@ export class QuizGame {
                         currentSelected.markAsCorrect();
                         pointsController.numofCorrectAns++;
                         pointsController.setCorrectAns(pointsController.numofCorrectAns);
-                        points = parseInt(points);
-                        points += 10;
-                        pointsWrapper.querySelector('.pointsCounter_points').textContent = points;
+                        this.points += 10;
+                        this.updateElement('.pointsCounter_points', this.points);
                     } else {
                         // Niepoprawna odpowiedz
                         const correctAnswer = answersArray.filter(
@@ -146,7 +155,9 @@ export class QuizGame {
                 answerDiv.appendChild(answer4.element);
 
                 mainDiv.appendChild(logo);
-                mainDiv.appendChild(question.generateQuestion({ questionNumber: controller.currentQuestionNumber }));
+                mainDiv.appendChild(
+                    questionText.generateQuestion({ questionNumber: controller.currentQuestionNumber }),
+                );
                 mainDiv.appendChild(pointsDiv);
                 mainDiv.appendChild(questionPicture);
                 mainDiv.appendChild(answerDiv);
