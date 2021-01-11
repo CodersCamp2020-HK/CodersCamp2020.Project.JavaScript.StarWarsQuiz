@@ -10,10 +10,13 @@ import { Button } from '../components/Button';
 import { generateTimer } from '../components/Timer';
 
 export class QuizGame {
+    constructor() {
+        this.questionIndex = 0;
+    }
+
     async main() {
         const mainDiv = await createController({ category: 'people', numberOfQuestions: 10 }).then((controller) => {
             const pointsController = new QuestionScoreComponent(controller.numberOfQuestions);
-            let questionIndex = controller.currentQuestionNumber - 1;
             const pointsDiv = pointsController.generateViewDiv();
             const mainDiv = document.createElement('div');
             const timeInSeconds = 10;
@@ -23,12 +26,12 @@ export class QuizGame {
             let points = pointsWrapper.querySelector('.pointsCounter_points').textContent;
             const questionPicture = generatePictureQuestion(
                 controller.category,
-                controller.correctAnswer[questionIndex].index,
+                controller.correctAnswer[this.questionIndex].index,
             );
             let currentSelected = null;
 
             const answer1 = generateAnswerButton({
-                text: controller.answers[questionIndex][0].name,
+                text: controller.answers[this.questionIndex][0].name,
                 onClick: () => {
                     if (currentSelected) {
                         currentSelected.unselect();
@@ -41,7 +44,7 @@ export class QuizGame {
                 },
             });
             const answer2 = generateAnswerButton({
-                text: controller.answers[questionIndex][1].name,
+                text: controller.answers[this.questionIndex][1].name,
                 onClick: () => {
                     if (currentSelected) {
                         currentSelected.unselect();
@@ -54,7 +57,7 @@ export class QuizGame {
                 },
             });
             const answer3 = generateAnswerButton({
-                text: controller.answers[questionIndex][2].name,
+                text: controller.answers[this.questionIndex][2].name,
                 onClick: () => {
                     if (currentSelected) {
                         currentSelected.unselect();
@@ -67,7 +70,7 @@ export class QuizGame {
                 },
             });
             const answer4 = generateAnswerButton({
-                text: controller.answers[questionIndex][3].name,
+                text: controller.answers[this.questionIndex][3].name,
                 onClick: () => {
                     if (currentSelected) {
                         currentSelected.unselect();
@@ -98,7 +101,7 @@ export class QuizGame {
 
             const buttonNext = new Button('NEXT', () => {
                 // Poprawna odpowiedz
-                if (currentSelected.text() == controller.correctAnswer[questionIndex].name) {
+                if (currentSelected.text() == controller.correctAnswer[this.questionIndex].name) {
                     currentSelected.markAsCorrect();
                     pointsController.numofCorrectAns++;
                     pointsController.setCorrectAns(pointsController.numofCorrectAns);
@@ -108,7 +111,7 @@ export class QuizGame {
                 } else {
                     // Niepoprawna odpowiedz
                     const correctAnswer = answersArray.filter(
-                        (answer) => answer.text() == controller.correctAnswer[questionIndex].name,
+                        (answer) => answer.text() == controller.correctAnswer[this.questionIndex].name,
                     )[0];
                     correctAnswer.markAsCorrect();
                     currentSelected.markAsWrong();
@@ -116,19 +119,21 @@ export class QuizGame {
                     pointsController.setIncorrectAns(pointsController.numofIncorrectAns);
                 }
                 controller.currentQuestionNumber++;
-                questionIndex = controller.currentQuestionNumber - 1;
+                this.questionIndex++;
                 if (controller.currentQuestionNumber > controller.numberOfQuestions) {
                     console.log('Koniec pytań');
                     return;
                 }
 
                 setTimeout(() => {
-                    questionPicture.src = `/static/assets/img/modes/${controller.category}/${controller.correctAnswer[questionIndex].index}.jpg`;
+                    questionPicture.src = `/static/assets/img/modes/${controller.category}/${
+                        controller.correctAnswer[this.questionIndex].index
+                    }.jpg`;
                     answersArray.forEach((but) => {
                         but.clearClasses();
                     });
                     answersArray.forEach((answer, index) => {
-                        answer.setText(controller.answers[questionIndex][index].name);
+                        answer.setText(controller.answers[this.questionIndex][index].name);
                     });
                 }, 2000);
             });
