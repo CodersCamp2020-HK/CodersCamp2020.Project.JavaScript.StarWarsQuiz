@@ -37,6 +37,24 @@ export class QuizGame {
         return showAnswers(views);
     }
 
+    updateCorrectAnswer({ pointsController }) {
+        this.currentSelectedAnswer.markAsCorrect();
+        this.numOfCorrectAnswers++;
+        this.points += 10;
+        this.updateElement('.pointsCounter_points', this.points);
+        pointsController.setCorrectAns(this.numOfCorrectAnswers);
+    }
+
+    updateWrongAnswer({ answersArray, quizController, pointsController }) {
+        this.currentSelectedAnswer.markAsWrong();
+        this.numofIncorrectAns++;
+        const correctAnswer = answersArray.filter(
+            (answer) => answer.text() == quizController.correctAnswer[this.questionIndex].name,
+        )[0];
+        correctAnswer.markAsCorrect();
+        pointsController.setIncorrectAns(this.numofIncorrectAns);
+    }
+
     async main({ category, numberOfQuestions, timeInSeconds }) {
         const quizGameDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
             (quizController) => {
@@ -81,22 +99,14 @@ export class QuizGame {
                 timerAndDeathStarDiv.appendChild(timer);
 
                 const buttonNext = new Button('NEXT', () => {
-                    // Poprawna odpowiedz
                     if (this.currentSelectedAnswer.text() == quizController.correctAnswer[this.questionIndex].name) {
-                        this.currentSelectedAnswer.markAsCorrect();
-                        this.numOfCorrectAnswers++;
-                        pointsController.setCorrectAns(this.numOfCorrectAnswers);
-                        this.points += 10;
-                        this.updateElement('.pointsCounter_points', this.points);
+                        this.updateCorrectAnswer({ pointsController: pointsController });
                     } else {
-                        // Niepoprawna odpowiedz
-                        const correctAnswer = answersArray.filter(
-                            (answer) => answer.text() == quizController.correctAnswer[this.questionIndex].name,
-                        )[0];
-                        correctAnswer.markAsCorrect();
-                        this.currentSelectedAnswer.markAsWrong();
-                        this.numofIncorrectAns++;
-                        pointsController.setIncorrectAns(this.numofIncorrectAns);
+                        this.updateWrongAnswer({
+                            answersArray: answersArray,
+                            quizController: quizController,
+                            pointsController: pointsController,
+                        });
                     }
                     this.currentQuestionNumber++;
                     this.questionIndex++;
