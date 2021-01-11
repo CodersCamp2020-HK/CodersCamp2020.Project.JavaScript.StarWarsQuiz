@@ -16,6 +16,7 @@ export class QuizGame {
         this.currentSelectedAnswer = null;
         this.numOfCorrectAnswers = 0;
         this.numofIncorrectAns = 0;
+        this.currentQuestionNumber = 1;
     }
 
     updateElement(CSSselector, updatedText) {
@@ -29,20 +30,20 @@ export class QuizGame {
 
     async main({ category, numberOfQuestions, timeInSeconds }) {
         const mainDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
-            (controller) => {
-                const pointsController = new QuestionScoreComponent(controller.numberOfQuestions);
+            (quizController) => {
+                const pointsController = new QuestionScoreComponent(numberOfQuestions);
                 const pointsDiv = pointsController.generateViewDiv();
                 const mainDiv = document.createElement('div');
                 const logo = logoPicture();
-                const questionText = new DisplayQuestion(controller.category);
+                const questionText = new DisplayQuestion(quizController.category);
                 const pointsWrapper = pointsCounter(0);
                 const questionPicture = generatePictureQuestion(
-                    controller.category,
-                    controller.correctAnswer[this.questionIndex].index,
+                    quizController.category,
+                    quizController.correctAnswer[this.questionIndex].index,
                 );
 
                 const answer1 = generateAnswerButton({
-                    text: controller.answers[this.questionIndex][0].name,
+                    text: quizController.answers[this.questionIndex][0].name,
                     onClick: () => {
                         if (this.currentSelectedAnswer) {
                             this.currentSelectedAnswer.unselect();
@@ -55,7 +56,7 @@ export class QuizGame {
                     },
                 });
                 const answer2 = generateAnswerButton({
-                    text: controller.answers[this.questionIndex][1].name,
+                    text: quizController.answers[this.questionIndex][1].name,
                     onClick: () => {
                         if (this.currentSelectedAnswer) {
                             this.currentSelectedAnswer.unselect();
@@ -68,7 +69,7 @@ export class QuizGame {
                     },
                 });
                 const answer3 = generateAnswerButton({
-                    text: controller.answers[this.questionIndex][2].name,
+                    text: quizController.answers[this.questionIndex][2].name,
                     onClick: () => {
                         if (this.currentSelectedAnswer) {
                             this.currentSelectedAnswer.unselect();
@@ -81,7 +82,7 @@ export class QuizGame {
                     },
                 });
                 const answer4 = generateAnswerButton({
-                    text: controller.answers[this.questionIndex][3].name,
+                    text: quizController.answers[this.questionIndex][3].name,
                     onClick: () => {
                         if (this.currentSelectedAnswer) {
                             this.currentSelectedAnswer.unselect();
@@ -112,7 +113,7 @@ export class QuizGame {
 
                 const buttonNext = new Button('NEXT', () => {
                     // Poprawna odpowiedz
-                    if (this.currentSelectedAnswer.text() == controller.correctAnswer[this.questionIndex].name) {
+                    if (this.currentSelectedAnswer.text() == quizController.correctAnswer[this.questionIndex].name) {
                         this.currentSelectedAnswer.markAsCorrect();
                         this.numOfCorrectAnswers++;
                         pointsController.setCorrectAns(this.numOfCorrectAnswers);
@@ -121,30 +122,34 @@ export class QuizGame {
                     } else {
                         // Niepoprawna odpowiedz
                         const correctAnswer = answersArray.filter(
-                            (answer) => answer.text() == controller.correctAnswer[this.questionIndex].name,
+                            (answer) => answer.text() == quizController.correctAnswer[this.questionIndex].name,
                         )[0];
                         correctAnswer.markAsCorrect();
                         this.currentSelectedAnswer.markAsWrong();
                         this.numofIncorrectAns++;
                         pointsController.setIncorrectAns(this.numofIncorrectAns);
                     }
-                    controller.currentQuestionNumber++;
+                    this.currentQuestionNumber++;
                     this.questionIndex++;
-                    if (controller.currentQuestionNumber > controller.numberOfQuestions) {
+                    if (this.currentQuestionNumber > numberOfQuestions) {
                         console.log('Koniec pytań');
                         return;
                     }
 
                     setTimeout(() => {
-                        questionPicture.src = `/static/assets/img/modes/${controller.category}/${
-                            controller.correctAnswer[this.questionIndex].index
+                        questionPicture.src = `/static/assets/img/modes/${quizController.category}/${
+                            quizController.correctAnswer[this.questionIndex].index
                         }.jpg`;
                         answersArray.forEach((but) => {
                             but.clearClasses();
                         });
                         answersArray.forEach((answer, index) => {
-                            answer.setText(controller.answers[this.questionIndex][index].name);
+                            answer.setText(quizController.answers[this.questionIndex][index].name);
                         });
+                        this.updateElement(
+                            '.display-question-text',
+                            `${this.currentQuestionNumber}. ${questionText.questionText}`,
+                        );
                     }, 2000);
                 });
 
@@ -156,9 +161,7 @@ export class QuizGame {
                 answerDiv.appendChild(answer4.element);
 
                 mainDiv.appendChild(logo);
-                mainDiv.appendChild(
-                    questionText.generateQuestion({ questionNumber: controller.currentQuestionNumber }),
-                );
+                mainDiv.appendChild(questionText.generateQuestion({ questionNumber: this.currentQuestionNumber }));
                 mainDiv.appendChild(pointsDiv);
                 mainDiv.appendChild(questionPicture);
                 mainDiv.appendChild(answerDiv);
