@@ -8,6 +8,7 @@ import { createController } from '../infrastructure/createController';
 import { QuestionScoreComponent } from '../components/QuestionScoreView';
 import { Button } from '../components/Button';
 import { generateTimer } from '../components/Timer';
+import { showAnswers } from '../components/ShowAnswers';
 
 export class QuizGame {
     constructor() {
@@ -28,6 +29,14 @@ export class QuizGame {
         }
     }
 
+    createAnswersArray({ answerObjects, onClick }) {
+        const views = [];
+        for (let i = 0; i < 4; i++) {
+            views.push(generateAnswerButton({ text: answerObjects[i].name, onClick: onClick }));
+        }
+        return showAnswers(views);
+    }
+
     async main({ category, numberOfQuestions, timeInSeconds }) {
         const mainDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
             (quizController) => {
@@ -42,64 +51,22 @@ export class QuizGame {
                     quizController.correctAnswer[this.questionIndex].index,
                 );
 
-                const answer1 = generateAnswerButton({
-                    text: quizController.answers[this.questionIndex][0].name,
-                    onClick: () => {
+                const { element: answerDiv, views: answersArray } = this.createAnswersArray({
+                    answerObjects: quizController.answers[this.questionIndex],
+                    onClick: (answer) => {
+                        console.log(answer.element);
                         if (this.currentSelectedAnswer) {
                             this.currentSelectedAnswer.unselect();
-                            this.currentSelectedAnswer = answer1;
+                            this.currentSelectedAnswer = answer;
                             this.currentSelectedAnswer.select();
                         } else {
-                            this.currentSelectedAnswer = answer1;
+                            this.currentSelectedAnswer = answer;
                             this.currentSelectedAnswer.select();
                         }
                     },
                 });
-                const answer2 = generateAnswerButton({
-                    text: quizController.answers[this.questionIndex][1].name,
-                    onClick: () => {
-                        if (this.currentSelectedAnswer) {
-                            this.currentSelectedAnswer.unselect();
-                            this.currentSelectedAnswer = answer2;
-                            this.currentSelectedAnswer.select();
-                        } else {
-                            this.currentSelectedAnswer = answer2;
-                            this.currentSelectedAnswer.select();
-                        }
-                    },
-                });
-                const answer3 = generateAnswerButton({
-                    text: quizController.answers[this.questionIndex][2].name,
-                    onClick: () => {
-                        if (this.currentSelectedAnswer) {
-                            this.currentSelectedAnswer.unselect();
-                            this.currentSelectedAnswer = answer3;
-                            this.currentSelectedAnswer.select();
-                        } else {
-                            this.currentSelectedAnswer = answer3;
-                            this.currentSelectedAnswer.select();
-                        }
-                    },
-                });
-                const answer4 = generateAnswerButton({
-                    text: quizController.answers[this.questionIndex][3].name,
-                    onClick: () => {
-                        if (this.currentSelectedAnswer) {
-                            this.currentSelectedAnswer.unselect();
-                            this.currentSelectedAnswer = answer4;
-                            this.currentSelectedAnswer.select();
-                        } else {
-                            this.currentSelectedAnswer = answer4;
-                            this.currentSelectedAnswer.select();
-                        }
-                    },
-                });
-
-                const answersArray = [answer1, answer2, answer3, answer4];
 
                 const timerAndDeathStarDiv = document.createElement('div');
-                const answerDiv = document.createElement('div');
-                answerDiv.className = 'answers-wrapper';
                 const deathStarDiv = deathStar({ sec: timeInSeconds });
                 const timer = generateTimer({
                     timeleftInSeconds: timeInSeconds,
@@ -154,11 +121,6 @@ export class QuizGame {
                 });
 
                 buttonNext.element.classList.add('button-next');
-
-                answerDiv.appendChild(answer1.element);
-                answerDiv.appendChild(answer2.element);
-                answerDiv.appendChild(answer3.element);
-                answerDiv.appendChild(answer4.element);
 
                 mainDiv.appendChild(logo);
                 mainDiv.appendChild(questionText.generateQuestion({ questionNumber: this.currentQuestionNumber }));
