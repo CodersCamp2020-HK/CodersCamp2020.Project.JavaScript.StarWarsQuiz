@@ -1,5 +1,5 @@
 export function pointsCounter(pkt) {
-    if (pkt) {
+    if (pkt >= 0) {
         const wrapper = document.createElement('div');
         const desc = document.createElement('div');
         const points = document.createElement('div');
