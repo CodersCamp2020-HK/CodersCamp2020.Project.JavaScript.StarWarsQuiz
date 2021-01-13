@@ -1,4 +1,4 @@
-import { Button } from './Button.js ';
+import { Button } from './Button.js';
 
-const buttonNextQuestion = new Button('NEXT');
+export const buttonNextQuestion = new Button('NEXT');
 buttonNextQuestion.element.classList.add('button-next');

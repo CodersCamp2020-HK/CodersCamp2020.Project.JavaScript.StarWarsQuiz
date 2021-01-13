@@ -1,0 +1,19 @@
+.display-num-of-good {
+    @extend %typography-h5;
+    color: colors.$secondary-green;
+}
+
+.display-num-of-wrong {
+    @extend %typography-h5;
+    color: colors.$secondary-red;
+}
+
+.display-num-of-all {
+    @extend %typography-h5;
+    color: colors.$primary-text;
+}
+
+.QuestionScoreComponent {
+    @extend %typography-h5;
+    color: colors.$primary-text;
+}

@@ -1,0 +1,19 @@
+@use './colors';
+@use './common';
+
+.viewScoreDiv {
+  text-align: center;
+  text-transform: uppercase;
+  @extend %common-shadow;
+  background-color: colors.$primary-background;
+  color: colors.$primary-text;
+}
+
+.greenHighlight {
+  color: colors.$secondary-green;
+  font-weight: 800;
+}
+
+.fontHightlight {
+  font-size: 2rem;
+}
