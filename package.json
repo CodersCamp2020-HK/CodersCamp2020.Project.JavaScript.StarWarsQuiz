@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/htk4/CodersCamp2020.Project.JavaScript.StarWarsQuiz#readme",
   "dependencies": {
-    "axios": "^0.21.1",
     "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"
   },
@@ -35,7 +34,6 @@
     "@babel/preset-env": "^7.11.5",
     "@testing-library/dom": "^7.26.6",
     "@types/jest": "^26.0.19",
-    "autoprefixer": "^9.0.0",
     "babel-jest": "^26.5.0",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.0.0",
