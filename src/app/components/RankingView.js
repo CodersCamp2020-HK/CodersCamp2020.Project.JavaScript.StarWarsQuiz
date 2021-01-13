@@ -1,4 +1,4 @@
-export function generateRanking(rankingObject, rankingName, currentPlayerName) {
+export function generateRanking({ rankingObject, rankingName, currentPlayerName }) {
     let rankingDiv = document.createElement('div');
     rankingDiv.className = 'ranking-container';
 

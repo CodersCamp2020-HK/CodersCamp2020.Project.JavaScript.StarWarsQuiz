@@ -35,6 +35,5 @@ export function updateRanking({ name, points, difficultyLevel }) {
 
     localStorage.setItem(difficultyLevel, JSON.stringify(rankingData));
 
-    console.log(rankingData.scores);
     return rankingData;
 }

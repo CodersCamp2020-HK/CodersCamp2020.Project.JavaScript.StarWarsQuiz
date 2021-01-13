@@ -1,0 +1,40 @@
+
+.ranking-container {
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+    @extend %common-shadow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @extend %common-border;
+    padding: 20px;
+}
+
+.ranking-current-player {
+    color: colors.$secondary-green;
+}
+
+.ranking-list {
+    list-style-position: inside;
+    padding-left: 0;
+    width: 100%;
+    font-family: typography.$family-text;
+
+    span:first-child {
+        margin-left: 20px;
+        font-family: typography.$family-el;
+    }
+
+    span:last-child {
+       float: right;
+       font-family: typography.$family-text;
+    }
+}
+
+
+
+.ranking-name {
+    color: colors.$primary-main;
+    @extend %typography-h6;
+    font-family: typography.$family-el;
+}
