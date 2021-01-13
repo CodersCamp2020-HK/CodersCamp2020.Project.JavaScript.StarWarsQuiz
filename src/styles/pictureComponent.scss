@@ -2,4 +2,6 @@
     display: flex;
     max-width: 100%;
     min-width: 300px;
+    @extend %common-border;
+    @extend %common-shadow;
 }

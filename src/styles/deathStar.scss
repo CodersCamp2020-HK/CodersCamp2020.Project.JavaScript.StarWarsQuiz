@@ -1,3 +1,10 @@
+.timerAndDeathStarDiv{
+  @extend %common-border;
+  @extend %common-shadow;
+  background-color:colors.$primary-background;
+  padding: 25px;
+}
+
 .deathStarDiv {
   display: flex;
   align-items: center;
@@ -5,7 +12,6 @@
   min-width: 300px;
   max-height: 100%;
   overflow: hidden;
-  
 }
 
 .deathStar {

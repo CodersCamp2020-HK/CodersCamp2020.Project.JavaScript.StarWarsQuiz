@@ -2,8 +2,8 @@
 @use './typography';
 
 .timer-to-zero {
-    font-family: typography.$family-text;
-    font-size: 1.5rem;
+    @extend %typography-h5 ;
     background-color: colors.$primary-background;
     color: colors.$primary-text;
-}
+};
+
