@@ -1,0 +1,18 @@
+.display-question-wrapper {
+    background-color: black;
+    @extend %common-shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @extend %common-shadow;
+    @extend %common-border;
+    padding: 20px;
+
+
+}
+
+.display-question-text {
+    font-size: 2rem;
+    color: white;
+    @extend %typography-h5;
+}

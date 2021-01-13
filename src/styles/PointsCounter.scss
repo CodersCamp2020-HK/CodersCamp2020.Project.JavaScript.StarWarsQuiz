@@ -1,0 +1,18 @@
+.pointsCounter_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+    @extend %common-shadow;
+    @extend %common-border;
+}
+
+.pointsCounter_desc {
+    @extend %typography-h6;
+}
+
+.pointsCounter_points {
+    @extend %typography-h5;
+}
