@@ -1,0 +1,17 @@
+.button-return {
+    @extend %common-shadow;
+    @extend %common-border;
+    @extend %typography-button;
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+}
+
+.button-return:hover {
+    @extend %common-shadow-onhover;
+}
+
+.button-return:disabled {
+    cursor: not-allowed;
+    color: colors.$secondary-inactive;
+    border-color: rgba(255, 197, 0, 0.3);
+}
