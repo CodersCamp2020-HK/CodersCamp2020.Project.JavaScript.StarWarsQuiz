@@ -2,7 +2,7 @@ import { Button } from './Button';
 
 export const generateRulesButton = ({ text, modalDiv }) => {
     const button = new Button(text);
-    button.className = 'mainpage-button-rules';
+    button.element.className = 'mainpage-button-rules';
     button.element.onclick = () => {
         modalDiv.showModal();
     };
@@ -11,8 +11,8 @@ export const generateRulesButton = ({ text, modalDiv }) => {
 };
 
 const generateCloseRulesButton = ({ modalDiv }) => {
-    const button = new Button('x');
-    button.element.classList = 'rules-modal-close';
+    const button = new Button('Close');
+    button.element.className = 'rules-modal-close';
     button.element.onclick = () => {
         modalDiv.close();
     };
@@ -21,7 +21,7 @@ const generateCloseRulesButton = ({ modalDiv }) => {
 };
 
 export const generateRulesModal = () => {
-    const rulesText = `You have one minute (1m) to answer 10 questions. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options, or select that the character is none of above.`;
+    const rulesText = `You have one minute (1m) to answer 10 questions. During the game on each question you need to select who or what from Star Wars is showed on the left from available options.`;
 
     const dialog = document.createElement('dialog');
     dialog.className = 'rules-modal';
@@ -36,9 +36,13 @@ export const generateRulesModal = () => {
     p.className = 'rules-modal-text';
     p.textContent = rulesText;
 
-    dialog.appendChild(header);
-    dialog.appendChild(closeButton);
-    dialog.appendChild(p);
+    const div = document.createElement('div');
+    div.className = 'rules-modal-wrapper';
+
+    dialog.appendChild(div);
+    div.appendChild(header);
+    div.appendChild(p);
+    div.appendChild(closeButton);
 
     return dialog;
 };
