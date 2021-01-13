@@ -1,4 +1,4 @@
-export function generateRanking(rankingObject, rankingName) {
+export function generateRanking(rankingObject, rankingName, currentPlayerName) {
     let rankingDiv = document.createElement('div');
     rankingDiv.className = 'ranking-container';
 
@@ -13,6 +13,9 @@ export function generateRanking(rankingObject, rankingName) {
 
         let playerNameSpan = document.createElement('span');
         playerNameSpan.textContent = player.name;
+        if (player.name == currentPlayerName) {
+            playerNameSpan.dataset.currentPlayer = player.name;
+        }
 
         let playerScoreSpan = document.createElement('span');
         playerScoreSpan.textContent = player.score;
@@ -29,7 +32,8 @@ export function generateRanking(rankingObject, rankingName) {
     let view = {
         element: rankingDiv,
         markCurrentPlayer: () => {
-            console.log(view.element);
+            let currentPlayerSpan = view.element.querySelector('span[data-current-player]');
+            currentPlayerSpan.parentElement.classList.add('ranking-current-player');
         },
     };
     return view;
