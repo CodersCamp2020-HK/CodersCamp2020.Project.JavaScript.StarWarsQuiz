@@ -1,0 +1,13 @@
+.computerScore_wrapper {
+    color: colors.$primary-text;
+    @extend %common-shadow;
+    @extend %common-border;
+    @extend %common-center;
+    @extend %typography-h6;
+    background-color: colors.$primary-background;
+    min-height: 195px;
+}
+
+.computerScore_score {
+    @extend %typography-h5;
+}
