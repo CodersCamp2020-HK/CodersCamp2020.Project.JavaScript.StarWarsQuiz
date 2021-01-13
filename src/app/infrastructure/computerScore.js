@@ -1,5 +1,5 @@
 export const computerScore = (level, numberOfQuestions) => {
-    if ((level === 1 || level === 2 || level === 3) && numberOfQuestions > 0) {
+    if (numberOfQuestions > 0) {
         let score;
         let randomNumber;
         switch (level) {
@@ -16,12 +16,10 @@ export const computerScore = (level, numberOfQuestions) => {
                 score = Math.floor(numberOfQuestions * (randomNumber / 100)) * 5;
                 break;
             default:
-                break;
+                throw new Error('Argument level should to be a number 1,2 or 3');
         }
         return score;
     } else {
-        throw new Error(
-            'Argument level should to be a number 1,2 or 3 and numberOfQuestions should to be greater than 0',
-        );
+        throw new Error('NumberOfQuestions should to be greater than 0');
     }
 };
