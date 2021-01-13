@@ -1,7 +1,8 @@
-import { pointsCounter } from './components/PointsCounter';
+import { QuizGame } from './domain/quiz-game';
 
 export const App = () => {
-    const pointsCounterDiv = pointsCounter(10);
-    const container = document.querySelector('#swquiz-app');
-    container.appendChild(pointsCounterDiv);
+    const obj = new QuizGame();
+    obj.main({ numberOfQuestions: 5, category: 'people', timeInSeconds: 20 }).then((div) => {
+        document.querySelector('#swquiz-app').appendChild(div);
+    });
 };

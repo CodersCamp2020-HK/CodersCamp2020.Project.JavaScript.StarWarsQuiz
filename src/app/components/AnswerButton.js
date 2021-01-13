@@ -1,6 +1,6 @@
 //import '../styles/AnswerButton.scss';
 export const generateAnswerButton = ({ text, onClick }) => {
-    const state = { isSelectedAnswer: false, text: text, isCorrectAnswer: null };
+    const state = { isSelectedAnswer: false, isCorrectAnswer: null };
 
     const button = document.createElement('button');
     button.classList.add('answer-button');
@@ -28,7 +28,13 @@ export const generateAnswerButton = ({ text, onClick }) => {
         },
         isSelectedAnswer: () => state.isSelectedAnswer,
         isCorrectAnswer: () => state.isCorrectAnswer,
-        text: () => state.text,
+        text: () => button.textContent,
+        clearClasses: () => {
+            button.className = 'answer-button';
+            state.isSelectedAnswer = false;
+            state.isCorrectAnswer = null;
+        },
+        setText: (newText) => (button.textContent = newText),
     };
 
     if (onClick) {

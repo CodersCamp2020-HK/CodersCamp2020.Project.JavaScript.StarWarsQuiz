@@ -8,6 +8,6 @@ describe('generateLogo', () => {
     });
 
     it('should assign correct class name', () => {
-        expect(element.className).toEqual('Logo');
+        expect(element.className).toEqual('logo');
     });
 });

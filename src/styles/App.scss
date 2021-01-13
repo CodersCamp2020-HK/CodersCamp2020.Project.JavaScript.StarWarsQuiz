@@ -1,4 +1,19 @@
+@use './colors';
+@use './common';
+@use './typography';
+@import './quiz-game.scss';
+
 $font: 'Montserrat', sans-serif;
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
 
 body {
     font-family: $font;

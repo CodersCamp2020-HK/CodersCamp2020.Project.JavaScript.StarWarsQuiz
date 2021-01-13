@@ -1,10 +1,4 @@
-@use './colors';
-@use './common';
-@use './typography';
-
 .pointsCounter_wrapper {
-    width: 375px;
-    height: 110px;
     display: flex;
     align-items: center;
     justify-content: center;
