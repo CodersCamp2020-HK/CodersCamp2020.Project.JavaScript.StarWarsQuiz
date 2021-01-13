@@ -7,7 +7,7 @@ export const generateRulesButton = ({ text, modalDiv }) => {
         modalDiv.showModal();
     };
 
-    return button;
+    return button.element;
 };
 
 const generateCloseRulesButton = ({ modalDiv }) => {
@@ -17,7 +17,7 @@ const generateCloseRulesButton = ({ modalDiv }) => {
         modalDiv.close();
     };
 
-    return button;
+    return button.element;
 };
 
 export const generateRulesModal = () => {
@@ -28,6 +28,7 @@ export const generateRulesModal = () => {
 
     const header = document.createElement('h5');
     header.className = 'rules-modal-header';
+    header.textContent = 'MODE RULES';
 
     const closeButton = generateCloseRulesButton({ modalDiv: dialog });
 
