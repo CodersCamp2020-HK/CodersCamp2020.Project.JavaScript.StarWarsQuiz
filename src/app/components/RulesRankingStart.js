@@ -2,7 +2,7 @@ import { Button } from './Button';
 
 const generateRulesButton = ({ modalDiv }) => {
     const button = new Button('Rules');
-    button.element.className = 'mainpage-button-rules';
+    button.element.className = 'mainpage-button mainpage-button-rules';
     button.element.onclick = () => {
         modalDiv.showModal();
     };
@@ -12,14 +12,14 @@ const generateRulesButton = ({ modalDiv }) => {
 
 const generateRankingButton = ({ onClick }) => {
     const button = new Button('Ranking', onClick);
-    button.element.className = 'mainpage-button-ranking';
+    button.element.className = 'mainpage-button mainpage-button-ranking';
 
     return button.element;
 };
 
 const generateStartButton = ({ onClick }) => {
     const button = new Button('Play', onClick);
-    button.element.className = 'mainpage-button-start';
+    button.element.className = 'mainpage-button mainpage-button-start';
 
     return button.element;
 };
