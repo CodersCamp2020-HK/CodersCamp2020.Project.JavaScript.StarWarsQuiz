@@ -2,7 +2,7 @@
 @use './common';
 @use './typography';
 
-.rules-modal {
+.modal {
     background-color: rgba($color: colors.$primary-background, $alpha: 0.8);
     width: 100vw;
     height: 100vh;
@@ -13,7 +13,7 @@
     align-items: center;
 }
 
-.rules-modal-wrapper {
+.modal__wrapper {
     max-width: 50vw;
     max-height: 50vh;
     margin: auto;
@@ -24,21 +24,21 @@
     align-items: center;
 }
 
-.rules-modal-header {
+.modal__header {
     @extend %typography-h5;
     font-family: typography.$family-el;
     color: colors.$primary-text;
     margin-bottom: 30px;
 }
 
-.rules-modal-text {
+.modal__text {
     @extend %typography-body;
     color: colors.$primary-text;
     text-align: center;
     margin-bottom: 50px;
 }
 
-.rules-modal-close {
+.modal__button--close {
     @extend %common-shadow;
     @extend %common-border;
     @extend %typography-button;
