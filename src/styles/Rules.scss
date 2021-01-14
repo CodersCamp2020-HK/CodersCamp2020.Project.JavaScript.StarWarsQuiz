@@ -46,11 +46,3 @@
     color: colors.$primary-text;
 
 }
-
-.mainpage-button-rules {
-    @extend %common-shadow;
-    @extend %common-border;
-    @extend %typography-button;
-    background-color: colors.$primary-background;
-    color: colors.$primary-text;
-}

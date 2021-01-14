@@ -1,15 +1,5 @@
 import { Button } from './Button';
 
-export const generateRulesButton = ({ text, modalDiv }) => {
-    const button = new Button(text);
-    button.element.className = 'mainpage-button-rules';
-    button.element.onclick = () => {
-        modalDiv.showModal();
-    };
-
-    return button.element;
-};
-
 const generateCloseRulesButton = ({ modalDiv }) => {
     const button = new Button('Close');
     button.element.className = 'rules-modal-close';
