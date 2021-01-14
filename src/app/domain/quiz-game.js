@@ -88,7 +88,7 @@ export class QuizGame {
                 const timerAndDeathStarDiv = document.createElement('div');
                 timerAndDeathStarDiv.className = 'timerAndDeathStarDiv';
                 const deathStarDiv = deathStar({ sec: timeInSeconds });
-                
+
                 const timer = generateTimer({
                     timeleftInSeconds: timeInSeconds,
                     onTimerEnd: () => {
