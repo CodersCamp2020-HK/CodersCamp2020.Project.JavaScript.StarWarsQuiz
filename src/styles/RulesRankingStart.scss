@@ -2,18 +2,11 @@
 @use './common';
 @use './typography';
 
-
-.mainpage-wrapper-rules-ranking-start {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.mainpage-button:hover {
+.mainpage__button:hover {
     @extend %common-shadow-onhover;
 }
 
-.mainpage-button {
+.mainpage__button {
     @extend %typography-button;
     color: colors.$primary-text;
     background-color: colors.$primary-background;
