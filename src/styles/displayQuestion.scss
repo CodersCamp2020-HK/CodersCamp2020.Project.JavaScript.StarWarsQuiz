@@ -1,13 +1,15 @@
 .display-question-wrapper {
     background-color: black;
-    box-shadow: 0px 0 10px rgba(255, 255, 0.3);
-    border-radius: 5px;
+    @extend %common-shadow;
     display: flex;
     justify-content: center;
-    margin: 1rem 25%;
+    align-items: center;
+    @extend %common-shadow;
+    @extend %common-border;
+    padding: 20px;
 }
 
 .display-question-text {
-    font-size: 2rem;
-    color: white;
+    color: colors.$primary-text;
+    @extend %typography-h5;
 }

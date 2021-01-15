@@ -7,23 +7,23 @@ export class QuestionScoreComponent {
 
     generateViewDiv() {
         this.view = document.createElement('div');
+        this.view.className = 'QuestionScoreComponent';
         this.numofCorrectAnsView = document.createElement('span');
         this.numofCorrectAnsView.className = 'display-num-of-good';
-        this.numofCorrectAnsView.style.color = 'green';
         this.numofCorrectAnsView.textContent = this.numofCorrectAns.toString();
         this.view.appendChild(this.numofCorrectAnsView);
 
-        this.view.appendChild(document.createTextNode('/'));
+        this.view.appendChild(document.createTextNode('\xA0' + '/' + '\xA0'));
 
         this.numofIncorrectAnsView = document.createElement('span');
-        this.numofIncorrectAnsView.style.color = 'red';
+        this.numofIncorrectAnsView.className = 'display-num-of-wrong';
         this.numofIncorrectAnsView.textContent = this.numofIncorrectAns.toString();
         this.view.appendChild(this.numofIncorrectAnsView);
 
-        this.view.appendChild(document.createTextNode('/'));
-
+        this.view.appendChild(document.createTextNode('\xA0' + '/' + '\xA0'));
         this.numOfAllAnsView = document.createElement('span');
-        this.numOfAllAnsView.style.color = 'white';
+        this.numOfAllAnsView.className = 'display-num-of-all';
+
         this.numOfAllAnsView.textContent = this.numOfAllAns.toString();
         this.view.appendChild(this.numOfAllAnsView);
 
@@ -37,6 +37,6 @@ export class QuestionScoreComponent {
 
     setIncorrectAns(value) {
         this.numofIncorrectAns = value;
-        this.numofIncorrectAnsView.textContent = this.numofCorrectAns.toString();
+        this.numofIncorrectAnsView.textContent = this.numofIncorrectAns.toString();
     }
 }

@@ -1,0 +1,70 @@
+@use './colors';
+@use './common';
+@use './typography';
+@import './AnswerButton.scss';
+@import './deathStar.scss';
+@import './PointsCounter.scss';
+@import './logo.scss';
+@import './AnswerButton.scss';
+@import './displayQuestion.scss';
+@import './ButtonNext.scss';
+@import './QuestionScoreView.scss';
+@import './pictureComponent.scss';
+@import './Timer.scss';
+
+body {
+    @extend %background-image;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.quiz-game-wrapper {
+    text-align: center;
+    display: grid;
+    max-width: 100vw;
+    height: 100vh;
+    padding: 5vh 5vw;
+    margin-right: auto;
+    margin-left: auto;
+    grid-template-columns: 1fr 2.5fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas: 
+    "logo question score"
+    "picture answers timer"
+    "points . next";
+    gap: 5vh 5vw; 
+}
+
+.answers-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    button {
+        font-family: typography.$family-el;
+        padding-top: 20px;
+        padding-bottom: 15px;
+        @extend %common-center;
+    }
+}
+
+.timerAndDeathStarDiv {
+    @extend %common-border;
+    @extend %common-shadow;
+    background-color:colors.$primary-background;
+    padding: 25px;
+    min-width: 100%;
+  }
+
+.timerAndDeathStarDiv {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+ }
+ 
+ .timerAndDeathStarDiv > p {
+    @extend  %typography-h6;
+    color: colors.$primary-text;
+ };
+ 
