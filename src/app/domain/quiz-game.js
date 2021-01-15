@@ -120,7 +120,7 @@ export class QuizGame {
                     }
 
                     setTimeout(() => {
-                        questionPicture.src = `/static/assets/img/modes/${quizController.category}/${
+                        questionPicture.src = `./static/assets/img/modes/${quizController.category}/${
                             quizController.correctAnswer[this.questionIndex].index
                         }.jpg`;
                         answersArray.forEach((but) => {
