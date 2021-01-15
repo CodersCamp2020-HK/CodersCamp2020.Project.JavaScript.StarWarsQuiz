@@ -19,6 +19,7 @@
     padding-left: 0;
     width: 100%;
     font-family: typography.$family-text;
+    overflow: auto;
 
     span:first-child {
         margin-left: 20px;
@@ -28,6 +29,7 @@
     span:last-child {
        float: right;
        font-family: typography.$family-text;
+       margin-right: 5px;
     }
 }
 
