@@ -18,7 +18,6 @@ export class QuizGame {
         this.numOfCorrectAnswers = 0;
         this.numofIncorrectAns = 0;
         this.currentQuestionNumber = 1;
-        this.isNextClicked = false;
     }
 
     updateElement(CSSselector, updatedText) {
@@ -104,43 +103,39 @@ export class QuizGame {
                 timerAndDeathStarDiv.appendChild(timer);
 
                 const buttonNext = new Button('NEXT', () => {
-                    if (!this.isNextClicked) {
-                        this.isNextClicked = true;
-                        if (
-                            this.currentSelectedAnswer.text() == quizController.correctAnswer[this.questionIndex].name
-                        ) {
-                            this.updateCorrectAnswer({ pointsController: pointsController });
-                        } else {
-                            this.updateWrongAnswer({
-                                answersArray: answersArray,
-                                quizController: quizController,
-                                pointsController: pointsController,
-                            });
-                        }
-                        this.currentQuestionNumber++;
-                        this.questionIndex++;
-                        if (this.currentQuestionNumber > numberOfQuestions) {
-                            console.log('Koniec pytań');
-                            return;
-                        }
-
-                        setTimeout(() => {
-                            questionPicture.src = `/static/assets/img/modes/${quizController.category}/${
-                                quizController.correctAnswer[this.questionIndex].index
-                            }.jpg`;
-                            answersArray.forEach((but) => {
-                                but.clearClasses();
-                            });
-                            answersArray.forEach((answer, index) => {
-                                answer.setText(quizController.answers[this.questionIndex][index].name);
-                            });
-                            this.updateElement(
-                                '.display-question-text',
-                                `${this.currentQuestionNumber}. ${questionText.questionText}`,
-                            );
-                            this.isNextClicked = false;
-                        }, 2000);
+                    buttonNext.element.disabled = true;
+                    if (this.currentSelectedAnswer.text() == quizController.correctAnswer[this.questionIndex].name) {
+                        this.updateCorrectAnswer({ pointsController: pointsController });
+                    } else {
+                        this.updateWrongAnswer({
+                            answersArray: answersArray,
+                            quizController: quizController,
+                            pointsController: pointsController,
+                        });
                     }
+                    this.currentQuestionNumber++;
+                    this.questionIndex++;
+                    if (this.currentQuestionNumber > numberOfQuestions) {
+                        console.log('Koniec pytań');
+                        return;
+                    }
+
+                    setTimeout(() => {
+                        questionPicture.src = `/static/assets/img/modes/${quizController.category}/${
+                            quizController.correctAnswer[this.questionIndex].index
+                        }.jpg`;
+                        answersArray.forEach((but) => {
+                            but.clearClasses();
+                        });
+                        answersArray.forEach((answer, index) => {
+                            answer.setText(quizController.answers[this.questionIndex][index].name);
+                        });
+                        this.updateElement(
+                            '.display-question-text',
+                            `${this.currentQuestionNumber}. ${questionText.questionText}`,
+                        );
+                        buttonNext.element.disabled = false;
+                    }, 2000);
                 });
 
                 buttonNext.element.classList.add('button-next');
