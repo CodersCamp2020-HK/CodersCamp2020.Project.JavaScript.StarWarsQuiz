@@ -1,10 +1,11 @@
+let imageFile = require('../../static/assets/img/modes/deathStar/deathstar.png');
 export const deathStar = ({ sec }) => {
     const deathStarDiv = document.createElement('div');
     const image = document.createElement('img');
 
     deathStarDiv.className = 'deathStarDiv';
     image.className = 'deathStar';
-    image.src = '../static/assets/img/modes/deathStar/deathstar.png';
+    image.src = imageFile;
     deathStarDiv.appendChild(image);
     const animation = image.animate(
         [

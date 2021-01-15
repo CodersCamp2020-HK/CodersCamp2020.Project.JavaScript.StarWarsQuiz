@@ -1,5 +1,4 @@
 // import {} from '';
-
 const pictureClassName = 'picture-question';
 
 const generatePictureQuestion = (questionCategory = 'people', pictureNumber = 1) => {
