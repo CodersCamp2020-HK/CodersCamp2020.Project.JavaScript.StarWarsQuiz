@@ -13,14 +13,14 @@ export class QuestionScoreComponent {
         this.numofCorrectAnsView.textContent = this.numofCorrectAns.toString();
         this.view.appendChild(this.numofCorrectAnsView);
 
-        this.view.appendChild(document.createTextNode('/'));
+        this.view.appendChild(document.createTextNode('\xA0' + '/' + '\xA0'));
 
         this.numofIncorrectAnsView = document.createElement('span');
         this.numofIncorrectAnsView.className = 'display-num-of-wrong';
         this.numofIncorrectAnsView.textContent = this.numofIncorrectAns.toString();
         this.view.appendChild(this.numofIncorrectAnsView);
 
-        this.view.appendChild(document.createTextNode('/'));
+        this.view.appendChild(document.createTextNode('\xA0' + '/' + '\xA0'));
         this.numOfAllAnsView = document.createElement('span');
         this.numOfAllAnsView.className = 'display-num-of-all';
 
