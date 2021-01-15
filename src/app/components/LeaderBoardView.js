@@ -1,6 +1,3 @@
-import { Button } from './Button';
-import { generateRanking } from './RankingView';
-
 export function generateLeaderBoard() {
     let leaderBoardDiv = document.createElement('div');
     leaderBoardDiv.classList.add('leaderboard-container');
