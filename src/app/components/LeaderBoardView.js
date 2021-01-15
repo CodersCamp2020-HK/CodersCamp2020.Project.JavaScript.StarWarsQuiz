@@ -3,6 +3,7 @@ import { generateRanking } from './RankingView';
 
 export function generateLeaderBoard() {
     let leaderBoardDiv = document.createElement('div');
+    leaderBoardDiv.classList.add('leaderboard-container');
     let rankingDiv = document.createElement('div');
 
     leaderBoardDiv.appendChild(rankingDiv);
@@ -12,16 +13,15 @@ export function generateLeaderBoard() {
         buttons: null,
         selectedRanking: rankingDiv,
         selectRanking: (rankingView) => {
-            // view.selectedRanking.innerHTML = rankingView.element.innerHTML;
-            // view.selectedRanking.classList = rankingView.element.classList;
-
             let rankingClone = rankingView.element.cloneNode(true);
             view.selectedRanking.replaceWith(rankingClone);
             view.selectedRanking = rankingClone;
         },
         addLevelsButtons: (buttonsViews) => {
             let categoriesDiv = document.createElement('div');
+            categoriesDiv.classList.add('categories-container');
             let categoriesName = document.createElement('span');
+            categoriesName.classList.add('categories-name');
             categoriesName.textContent = 'CATEGORIES';
             categoriesDiv.appendChild(categoriesName);
 
@@ -33,9 +33,6 @@ export function generateLeaderBoard() {
 
             leaderBoardDiv.insertBefore(categoriesDiv, rankingDiv);
         },
-        // displaySelectedRanking: () => {
-        //     view.selectedRanking.innerHTML = rankingDiv.innerHTML;
-        // },
     };
     return view;
 }
