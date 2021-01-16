@@ -25,8 +25,7 @@ $family-el: 'AnakinMono', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-display: swap;
-    font-size: 40px;
-    line-height: 140%;
+    font-size: 35px;
 }
 
 %typography-h6 {
@@ -34,8 +33,7 @@ $family-el: 'AnakinMono', Helvetica, Arial, sans-serif;
    font-style: normal;
    font-weight: normal;
    font-display: swap;
-   font-size: 25px;
-   line-height: 140%;
+   font-size: 20px;
 }
 
 %typography-body {
@@ -43,8 +41,7 @@ $family-el: 'AnakinMono', Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-display: swap;
-    font-size: 30px;
-    line-height: 150%;
+    font-size: 25px;
 }
 
 %typography-button {
@@ -52,6 +49,39 @@ $family-el: 'AnakinMono', Helvetica, Arial, sans-serif;
    font-style: normal;
    font-weight: normal;
    font-display: swap;
-   font-size: 40px;
-   line-height: 150%;
+   font-size: 35px;
+}
+
+// Responsive- mobile
+
+%typography-h5-res{
+    font-family: $family-text;
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    font-size: 18px;
+}
+
+%typography-h6-res {
+    font-family: $family-text;
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    font-size: 12px;
+ }
+
+ %typography-body-res {
+    font-family: $family-el;
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    font-size: 15px;
+}
+
+%typography-button-res {
+   font-family: $family-el;
+   font-style: normal;
+   font-weight: normal;
+   font-display: swap;
+   font-size: 20px;
 }

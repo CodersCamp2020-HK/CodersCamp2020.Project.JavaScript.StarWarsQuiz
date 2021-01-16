@@ -1,5 +1,6 @@
 @use './colors';
 
+
 %common-border {
     border-radius: 16px;
 }
@@ -15,11 +16,24 @@
 }
 
 %common-shadow{
-   box-shadow: 0px 0px 20px rgba(255, 197, 0, 0.5);
+   box-shadow: 0px 0px 15px rgba(255, 197, 0, 0.5);
 }
 
 %common-shadow-onhover{
-   box-shadow: 0px 0px 30px rgba(255, 197, 0, 0.7);
+   box-shadow: 0px 0px 25px rgba(255, 197, 0, 0.7);
+}
+
+%common-border-button-green {
+   border: 3px solid colors.$secondary-green;
+   border-radius: 16px;
+}
+
+%common-shadow-green{
+   box-shadow: 0px 0px 15px #3E8118;
+}
+
+%common-shadow-green-onhover{
+   box-shadow: 0px 0px 25px #3E8118;
 }
 
 %background-image{

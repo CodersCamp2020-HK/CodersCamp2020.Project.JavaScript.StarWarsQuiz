@@ -15,3 +15,8 @@
     color: colors.$secondary-inactive;
     border-color: rgba(255, 197, 0, 0.3);
 }
+
+.play-again-button:focus{
+    @extend %common-shadow-onhover;
+    outline:none;
+}
