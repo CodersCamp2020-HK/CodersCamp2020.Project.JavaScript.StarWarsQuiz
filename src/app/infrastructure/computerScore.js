@@ -1,7 +1,7 @@
 const getRandomNumberGeneratorByLevel = {
-    1: () => Math.floor(Math.random() * 34), //0-33
-    2: () => 34 + Math.floor(Math.random() * 33), //34-66
-    3: () => 67 + Math.floor(Math.random() * 34), //67-100
+    padawan: () => Math.floor(Math.random() * 34), //0-33
+    'jedi knight': () => 34 + Math.floor(Math.random() * 33), //34-66
+    'jedi master': () => 67 + Math.floor(Math.random() * 34), //67-100
 };
 
 export const computerScore = (level, numberOfQuestions) => {

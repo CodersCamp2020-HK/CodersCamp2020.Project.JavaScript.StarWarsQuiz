@@ -18,6 +18,7 @@ export class QuizGame {
         this.numOfCorrectAnswers = 0;
         this.numofIncorrectAns = 0;
         this.currentQuestionNumber = 1;
+        this.isCbCalled = false;
     }
 
     updateElement(CSSselector, updatedText) {
@@ -55,10 +56,17 @@ export class QuizGame {
         pointsController.setIncorrectAns(this.numofIncorrectAns);
     }
 
-    async main({ category, numberOfQuestions, timeInSeconds }) {
+    async main({ category, numberOfQuestions, timeInSeconds, onEnd }) {
         const quizGameDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
             (quizController) => {
                 const mainDiv = document.createElement('div');
+                this.questionIndex = 0;
+                this.points = 0;
+                this.currentSelectedAnswer = null;
+                this.numOfCorrectAnswers = 0;
+                this.numofIncorrectAns = 0;
+                this.currentQuestionNumber = 1;
+                this.isCbCalled = false;
                 mainDiv.classList = 'quiz-game-wrapper';
 
                 const pointsController = new QuestionScoreComponent(numberOfQuestions);
@@ -76,12 +84,10 @@ export class QuizGame {
                     onClick: (answer) => {
                         if (this.currentSelectedAnswer) {
                             this.currentSelectedAnswer.unselect();
-                            this.currentSelectedAnswer = answer;
-                            this.currentSelectedAnswer.select();
-                        } else {
-                            this.currentSelectedAnswer = answer;
-                            this.currentSelectedAnswer.select();
                         }
+
+                        this.currentSelectedAnswer = answer;
+                        this.currentSelectedAnswer.select();
                     },
                 });
 
@@ -92,8 +98,10 @@ export class QuizGame {
                 const timer = generateTimer({
                     timeleftInSeconds: timeInSeconds,
                     onTimerEnd: () => {
-                        console.log('Koniec czasu');
-                        return;
+                        if (!this.isCbCalled) {
+                            this.isCbCalled = true;
+                            onEnd(this.points, this.numOfCorrectAnswers);
+                        }
                     },
                 });
                 timerAndDeathStarDiv.appendChild(deathStarDiv.element);
@@ -115,26 +123,28 @@ export class QuizGame {
                     }
                     this.currentQuestionNumber++;
                     this.questionIndex++;
-                    if (this.currentQuestionNumber > numberOfQuestions) {
-                        console.log('Koniec pytań');
-                        return;
+                    if (this.currentQuestionNumber > numberOfQuestions && !this.isCbCalled) {
+                        this.isCbCalled = true;
+                        return onEnd(this.points, this.numOfCorrectAnswers);
                     }
 
                     setTimeout(() => {
-                        questionPicture.src = `/static/assets/img/modes/${quizController.category}/${
-                            quizController.correctAnswer[this.questionIndex].index
-                        }.jpg`;
-                        answersArray.forEach((but) => {
-                            but.clearClasses();
-                        });
-                        answersArray.forEach((answer, index) => {
-                            answer.setText(quizController.answers[this.questionIndex][index].name);
-                        });
-                        this.updateElement(
-                            '.display-question-text',
-                            `${this.currentQuestionNumber}. ${questionText.questionText}`,
-                        );
-                        buttonNext.element.disabled = false;
+                        if (!this.isCbCalled) {
+                            questionPicture.src = `/static/assets/img/modes/${quizController.category}/${
+                                quizController.correctAnswer[this.questionIndex].index
+                            }.jpg`;
+                            answersArray.forEach((but) => {
+                                but.clearClasses();
+                            });
+                            answersArray.forEach((answer, index) => {
+                                answer.setText(quizController.answers[this.questionIndex][index].name);
+                            });
+                            this.updateElement(
+                                '.display-question-text',
+                                `${this.currentQuestionNumber}. ${questionText.questionText}`,
+                            );
+                            buttonNext.element.disabled = false;
+                        }
                     }, 2000);
                 });
 

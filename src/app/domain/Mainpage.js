@@ -100,6 +100,7 @@ export class Mainpage {
     }
 
     main({ onClickStart }) {
+        this.mainpageDiv = document.createElement('div');
         this.menuBtn = generateMenuButton({
             onClick: () => {
                 this.rankingDiv.style.display = 'none';
