@@ -1,3 +1,13 @@
+.QuestionScoreComponent {
+    @extend %common-border;
+    @extend %common-shadow;
+    background-color: colors.$primary-background;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+}
+
 .display-num-of-good {
     @extend %typography-h5;
     color: colors.$secondary-green;
