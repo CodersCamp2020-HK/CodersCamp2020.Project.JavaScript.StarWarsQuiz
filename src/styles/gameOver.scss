@@ -1,0 +1,12 @@
+@use './typography';
+@use './colors';
+
+
+.gameOverDiv{
+    display: flex;
+    width: 100%;
+    @extend %typography-h5;
+    @extend %typography-h5-res;
+    background-color: colors.$primary-background;
+    color: colors.$primary-main;
+}
