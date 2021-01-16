@@ -1,5 +1,5 @@
 .answer-button {
-    @extend %typography-button;
+    @extend %typography-body;
     color: colors.$primary-text;
     background-color: colors.$primary-background;
     width: 100%;
@@ -14,28 +14,37 @@
 
 .answer-button-correct {
     border: 3px solid colors.$secondary-green;
-    box-shadow: 0px 0px 20px colors.$secondary-green;
+    box-shadow: 0px 0px 15px colors.$secondary-green;
 }
 
 .answer-button-correct:hover {
-    box-shadow: 0px 0px 20px colors.$secondary-green;
+    box-shadow: 0px 0px 15px colors.$secondary-green;
 }
 
 .answer-button-wrong {
     border: 3px solid colors.$secondary-red;
-    box-shadow: 0px 0px 20px colors.$secondary-red;
+    box-shadow: 0px 0px 15px colors.$secondary-red;
 }
 
 .answer-button-wrong:hover {
-    box-shadow: 0px 0px 20px colors.$secondary-red;
+    box-shadow: 0px 0px 15px colors.$secondary-red;
 }
 
 .answer-button-selected {
     border: 3px solid colors.$secondary-blue;
-    box-shadow: 0px 0px 20px colors.$secondary-blue;
+    box-shadow: 0px 0px 15px colors.$secondary-blue;
+}
+
+.answer-button-selected:focus {
+    box-shadow: 0px 0px 25px colors.$secondary-blue;
 }
 
 .answer-button-selected:hover {
     border: 3px solid colors.$secondary-blue;
-    box-shadow: 0px 0px 20px colors.$secondary-blue;
+    box-shadow: 0px 0px 25px colors.$secondary-blue;
 } 
+
+.answer-button:focus {
+    @extend %common-shadow-onhover;
+    outline:none;
+}

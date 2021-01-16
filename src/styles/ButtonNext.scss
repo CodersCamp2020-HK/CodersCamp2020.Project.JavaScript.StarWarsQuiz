@@ -1,10 +1,28 @@
 .button-next {
     grid-area: next;
+    @extend %common-border-button;
+    @extend %typography-button;
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+    width:100%; 
+}
+
+.button-next:disabled {
+    grid-area: next;
     @extend %common-shadow;
     @extend %common-border;
     @extend %typography-button;
     background-color: colors.$primary-background;
-    color: colors.$primary-text;
-   
-
+    color: colors.$secondary-inactive;
+    width:100%;  
 }
+
+.button-next:focus {
+    @extend %common-shadow-onhover;
+    outline:none;
+}
+
+.button-next:hover{
+    @extend %common-shadow-onhover;
+}
+
