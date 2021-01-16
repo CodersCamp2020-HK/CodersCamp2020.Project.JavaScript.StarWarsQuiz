@@ -12,23 +12,22 @@ const selectedButton = (button, ...buttons) => {
 export const buttonCreated = (tablica) => {
     let buttonsText;
 
-    if (tablica == 'categories'){
-        buttonsText = ['Vehicles', 'People', 'Starships']
-    }
-    else if( tablica == 'levels'){
-        buttonsText = ['Padawan', 'Jedi Knight', 'Jedi Master']
+    if (tablica == 'categories') {
+        buttonsText = ['Vehicles', 'People', 'Starships'];
+    } else if (tablica == 'levels') {
+        buttonsText = ['Padawan', 'Jedi Knight', 'Jedi Master'];
     }
 
     const view = {
         level: buttonsText[0],
     };
-    
+
     const buttonsDiv = document.createElement('div');
     buttonsDiv.className = `${buttonsText}Div`;
 
     const button1 = new Button(buttonsText[0]);
     const button2 = new Button(buttonsText[1]);
-    const button3 = new Button(buttonsText[2];
+    const button3 = new Button(buttonsText[2]);
     button1.element.className = 'button1 active';
     button2.element.className = 'button2 deactive';
     button3.element.className = 'button3 deactive';
