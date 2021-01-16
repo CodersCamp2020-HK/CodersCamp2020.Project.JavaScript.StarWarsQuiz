@@ -1,0 +1,48 @@
+@use './colors';
+@use './common';
+@use './typography';
+
+.modal {
+    background-color: rgba($color: colors.$primary-background, $alpha: 0.8);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__wrapper {
+    max-width: 50vw;
+    max-height: 50vh;
+    margin: auto;
+    margin-top: 40vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__header {
+    @extend %typography-h5;
+    font-family: typography.$family-el;
+    color: colors.$primary-text;
+    margin-bottom: 30px;
+}
+
+.modal__text {
+    @extend %typography-body;
+    color: colors.$primary-text;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.modal__button--close {
+    @extend %common-shadow;
+    @extend %common-border;
+    @extend %typography-button;
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+
+}
