@@ -17,7 +17,7 @@ export const buttonCreated = (tablica) => {
         p.textContent = 'Categories';
         buttonsText = ['Vehicles', 'People', 'Starships'];
     } else if (tablica == 'levels') {
-        p.textContent = 'Level of the oponnent';
+        p.textContent = 'Level of the opponent';
         buttonsText = ['Padawan', 'Jedi Knight', 'Jedi Master'];
     }
 
@@ -33,20 +33,17 @@ export const buttonCreated = (tablica) => {
 
     button1.element.addEventListener('click', () => {
         selectedButton(button1, button2, button3);
-        level = buttonsText[0];
-        console.log(level);
+        view.level = buttonsText[0].toLowerCase();
     });
 
     button2.element.addEventListener('click', () => {
         selectedButton(button2, button1, button3);
-        level = buttonsText[1];
-        console.log(level);
+        view.level = buttonsText[1].toLowerCase();
     });
 
     button3.element.addEventListener('click', () => {
         selectedButton(button3, button2, button1);
-        level = buttonsText[2];
-        console.log(level);
+        view.level = buttonsText[2].toLowerCase();
     });
 
     console.log(button1.element);

@@ -4,10 +4,33 @@ import { buttonCreated } from '../components/CategoriesButtons';
 import { InputName } from '../components/UserName';
 import { generateRanking } from '../components/RankingView';
 import { generateLeaderBoard } from '../components/LeaderBoardView';
-import { generateRankingButton, generateRulesButton, generateStartButton } from '../components/RulesRankingStart';
+import {
+    generateRankingButton,
+    generateRulesButton,
+    generateStartButton,
+    generateMenuButton,
+} from '../components/RulesRankingStart';
 import { generateRulesModal } from '../components/Rules';
 
 export class Mainpage {
+    constructor() {
+        this.logo = logoPicture();
+        this.userInput = InputName();
+        this.categoriesBtns = buttonCreated('categories');
+        this.levelsBtns = buttonCreated('levels');
+        this.categoryLevelWrapper = document.createElement('div');
+        for (const element of this.categoriesBtns.elements) {
+            this.categoryLevelWrapper.appendChild(element);
+        }
+        for (const element of this.levelsBtns.elements) {
+            this.categoryLevelWrapper.appendChild(element);
+        }
+        this.rulesModal = generateRulesModal();
+        this.rankingDiv = this.ranking();
+        this.rankingDiv.style.display = 'none';
+        this.mainpageDiv = document.createElement('div');
+    }
+
     ranking() {
         let leaderBoard = generateLeaderBoard();
         let currentSelected = null;
@@ -75,36 +98,36 @@ export class Mainpage {
         leaderBoard.addLevelsButtons(categoriesButtons);
         return leaderBoard.element;
     }
-    main() {
-        const logo = logoPicture();
-        const userInput = InputName();
-        const categoriesBtns = buttonCreated('categories');
-        const levelsBtns = buttonCreated('levels');
-        const categoryLevelWrapper = document.createElement('div');
-        for (const element of categoriesBtns.elements) {
-            categoryLevelWrapper.appendChild(element);
-        }
-        for (const element of levelsBtns.elements) {
-            categoryLevelWrapper.appendChild(element);
-        }
-        const rulesModal = generateRulesModal();
-        const rankingBtn = generateRankingButton({ onClick: () => console.log('Ranking click') });
-        const rulesBtn = generateRulesButton({ modalDiv: rulesModal });
-        const startBtn = generateStartButton({ onClick: () => console.log('Start click') });
-        const mainpageDiv = document.createElement('div');
-        const rankingDiv = this.ranking();
 
-        mainpageDiv.append(
-            logo,
-            userInput,
-            categoryLevelWrapper,
-            rankingBtn,
-            rulesBtn,
-            startBtn,
-            rulesModal,
-            rankingDiv,
+    main({ onClickStart }) {
+        this.menuBtn = generateMenuButton({
+            onClick: () => {
+                this.rankingDiv.style.display = 'none';
+                this.menuBtn.replaceWith(this.rankingBtn);
+            },
+        });
+        this.rankingBtn = generateRankingButton({
+            onClick: () => {
+                this.rankingDiv.style.display = 'block';
+                this.rankingBtn.replaceWith(this.menuBtn);
+            },
+        });
+        this.rulesBtn = generateRulesButton({ modalDiv: this.rulesModal });
+        this.startBtn = generateStartButton({
+            onClick: onClickStart,
+        });
+
+        this.mainpageDiv.append(
+            this.logo,
+            this.userInput,
+            this.categoryLevelWrapper,
+            this.rankingBtn,
+            this.rulesBtn,
+            this.startBtn,
+            this.rulesModal,
+            this.rankingDiv,
         );
 
-        return mainpageDiv;
+        return this.mainpageDiv;
     }
 }
