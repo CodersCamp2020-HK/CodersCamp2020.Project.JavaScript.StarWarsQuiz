@@ -5,15 +5,15 @@ export const computerScore = (level, numberOfQuestions) => {
         switch (level) {
             case 1:
                 randomNumber = Math.floor(Math.random() * 34); //0-33
-                score = Math.floor(numberOfQuestions * (randomNumber / 100)) * 5;
+                score = Math.floor(numberOfQuestions * (randomNumber / 100)) * 10;
                 break;
             case 2:
                 randomNumber = 34 + Math.floor(Math.random() * 33); //34-66
-                score = Math.floor(numberOfQuestions * (randomNumber / 100)) * 5;
+                score = Math.floor(numberOfQuestions * (randomNumber / 100)) * 10;
                 break;
             case 3:
                 randomNumber = 67 + Math.floor(Math.random() * 34); //67-100
-                score = Math.floor(numberOfQuestions * (randomNumber / 100)) * 5;
+                score = Math.floor(numberOfQuestions * (randomNumber / 100)) * 10;
                 break;
             default:
                 throw new Error('Argument level should to be a number 1,2 or 3');
