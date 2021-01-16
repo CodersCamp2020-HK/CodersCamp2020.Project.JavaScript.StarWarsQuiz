@@ -1,0 +1,45 @@
+.leaderboard-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+    @extend %common-shadow;
+    @extend %common-border;
+}
+
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.categories-name {
+    flex-basis: 100%;
+    text-align: center;
+    @extend %typography-h6;
+    font-family: typography.$family-el;
+}
+
+.category-button {
+    @extend %common-border-button;
+    @extend %common-shadow;
+    background-color: colors.$primary-background;
+    color: colors.$secondary-inactive;
+    border-color: rgba(255, 197, 0, 0.5);
+}
+
+.category-button:hover{
+    @extend %common-shadow-onhover;
+}
+
+.category-button-selected {
+    @extend %common-shadow;
+    color: colors.$primary-text;
+    border-color: colors.$primary-main;
+}
+
+.category-button-selected:hover{
+    @extend %common-shadow;
+}
