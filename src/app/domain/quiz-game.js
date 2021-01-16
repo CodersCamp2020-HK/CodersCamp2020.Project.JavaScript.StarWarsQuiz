@@ -103,6 +103,7 @@ export class QuizGame {
                 timerAndDeathStarDiv.appendChild(timer);
 
                 const buttonNext = new Button('NEXT', () => {
+                    buttonNext.element.disabled = true;
                     if (this.currentSelectedAnswer.text() == quizController.correctAnswer[this.questionIndex].name) {
                         this.updateCorrectAnswer({ pointsController: pointsController });
                     } else {
@@ -133,6 +134,7 @@ export class QuizGame {
                             '.display-question-text',
                             `${this.currentQuestionNumber}. ${questionText.questionText}`,
                         );
+                        buttonNext.element.disabled = false;
                     }, 2000);
                 });
 

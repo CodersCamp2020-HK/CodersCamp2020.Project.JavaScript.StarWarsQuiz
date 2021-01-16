@@ -1,5 +1,5 @@
 .answer-button {
-    @extend %typography-button;
+    @extend %typography-body;
     color: colors.$primary-text;
     background-color: colors.$primary-background;
     width: 100%;
