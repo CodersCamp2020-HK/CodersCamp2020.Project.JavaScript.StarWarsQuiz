@@ -37,7 +37,6 @@ export const opponentLevel = () => {
         view.level = 'jedi master';
     });
 
-    console.log(button1);
     console.log(button1.element);
     opponentLevelDiv.append(button1.element, button2.element, button3.element);
     view.element = opponentLevelDiv;

@@ -2,6 +2,25 @@
 @use './common';
 @use './typography';
 
+.opponentLevelDiv {
+  @extend %typography-h5;
+}
 
+.button1, .button2, .button3 {
+  background-color: colors.$primary-background;
+  color: colors.$primary-text;
+  @extend %typography-button-res;
+  outline: none;
+}
 
+.deactive:hover{
+  @extend %common-shadow-green-onhover;
+}
 
+.active {
+  @extend %common-border-button-green;
+}
+
+.deactive {
+  @extend %common-shadow-green;
+}
