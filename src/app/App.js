@@ -13,6 +13,7 @@ export const App = () => {
                 if (input.value.trim().length <= 0) {
                     input.classList.add('inputName_input-empty');
                     input.value = '';
+                    return;
                 }
                 if (!['people', 'vehicles', 'starships'].includes(category)) {
                     throw new Error('Category must be people, vehicles or starships');
