@@ -7,8 +7,6 @@
     background-color: colors.$primary-background;
     min-height: 195px;
 
-}
-
 .computerScore_score {
     @extend %typography-h5;
 }
