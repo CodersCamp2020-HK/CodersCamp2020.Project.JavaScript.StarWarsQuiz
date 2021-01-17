@@ -1,4 +1,3 @@
-
 .ranking-container {
     background-color: colors.$primary-background;
     color: colors.$primary-text;
@@ -27,9 +26,9 @@
     }
 
     span:last-child {
-       float: right;
-       font-family: typography.$family-text;
-       margin-right: 5px;
+        float: right;
+        font-family: typography.$family-text;
+        margin-right: 5px;
     }
 }
 
@@ -39,4 +38,5 @@
     color: colors.$primary-main;
     @extend %typography-h6;
     font-family: typography.$family-el;
+    text-transform: uppercase;
 }

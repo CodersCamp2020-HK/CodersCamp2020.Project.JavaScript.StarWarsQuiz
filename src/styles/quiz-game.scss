@@ -14,12 +14,7 @@
 @import './Leaderboard.scss';
 @import './Ranking.scss';
 
-body {
-    @extend %background-image;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+
 
 .quiz-game-wrapper {
     text-align: center;
@@ -31,11 +26,11 @@ body {
     margin-left: auto;
     grid-template-columns: 1fr 2.5fr 1fr;
     grid-template-rows: 1fr 4fr 1fr;
-    grid-template-areas: 
-    "logo question score"
-    "picture answers timer"
-    "points . next";
-    gap: 5vh 5vw; 
+    grid-template-areas:
+        "logo question score"
+        "picture answers timer"
+        "points . next";
+    gap: 5vh 5vw;
 }
 
 .answers-wrapper {
@@ -43,6 +38,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+
     button {
         font-family: typography.$family-el;
         padding-top: 20px;
@@ -54,19 +50,20 @@ body {
 .timerAndDeathStarDiv {
     @extend %common-border;
     @extend %common-shadow;
-    background-color:colors.$primary-background;
+    background-color: colors.$primary-background;
     padding: 25px;
     min-width: 100%;
-  }
+}
 
 .timerAndDeathStarDiv {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
- }
- 
- .timerAndDeathStarDiv > p {
-    @extend  %typography-h6;
+}
+
+.timerAndDeathStarDiv>p {
+    @extend %typography-h6;
     color: colors.$primary-text;
- };
- 
+}
+
+;

@@ -1,27 +1,24 @@
-// import { Data } from './fetchApi';
+import { Data } from './fetchApi';
 import { PrepareData } from './processData';
 import { RandData } from './RandData';
 import { QuizDataController } from '../domain/QuizDataController';
-const peopleData = require('./peopleData.json');
-const vehiclesData = require('./vehiclesData.json');
-const starshipsData = require('./starshipsData.json');
 
 export const createController = async ({ category, numberOfQuestions }) => {
-    // const jsonData = new Data();
     const processedData = new PrepareData();
     const randData = new RandData();
+    const jsonData = new Data();
 
     let data;
 
     switch (category) {
         case 'people':
-            data = peopleData;
+            data = await jsonData.getPeopleJsonData();
             break;
         case 'vehicles':
-            data = vehiclesData;
+            data = await jsonData.getStarshipsJsonData();
             break;
         case 'starships':
-            data = starshipsData;
+            data = await jsonData.getStarshipsJsonData();
             break;
         default:
             throw new Error('Category should be people, vehicles or starships');

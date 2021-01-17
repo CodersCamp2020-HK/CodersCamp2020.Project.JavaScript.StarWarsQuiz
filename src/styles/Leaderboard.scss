@@ -7,13 +7,35 @@
     color: colors.$primary-text;
     @extend %common-shadow;
     @extend %common-border;
+    padding: 20px;
 }
 
 .categories-container {
     display: flex;
     flex-wrap: wrap;
-   justify-content: space-between;
+    justify-content: center;
+
+    span {
+        @extend %typography-h5;
+    }
+
+    button {
+        margin: 10px;
+        min-width: 280px;
+        background-color: colors.$primary-background;
+        color: colors.$secondary-inactive;
+        @extend %common-shadow-green;
+        border: 3px solid colors.$primary-background;
+        @extend %typography-button-res;
+        @extend %common-border;
+    }
+
+    .button-selected {
+        border: 3px solid colors.$secondary-green;
+        @extend %common-shadow-green-onhover;
+    }
 }
+
 
 .categories-name {
     flex-basis: 100%;
@@ -30,7 +52,7 @@
     border-color: rgba(255, 197, 0, 0.5);
 }
 
-.category-button:hover{
+.category-button:hover {
     @extend %common-shadow-onhover;
 }
 
@@ -40,6 +62,6 @@
     border-color: colors.$primary-main;
 }
 
-.category-button-selected:hover{
+.category-button-selected:hover {
     @extend %common-shadow;
 }

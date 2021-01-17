@@ -4,7 +4,8 @@
 @import './quiz-game.scss';
 @import './mainpage.scss';
 
-$font: 'Montserrat', sans-serif;
+$font: 'Montserrat',
+sans-serif;
 
 * {
     margin: 0;
@@ -14,8 +15,12 @@ $font: 'Montserrat', sans-serif;
 
 button {
     cursor: pointer;
+    outline: none;
+    height: 90px;
 }
 
 body {
     font-family: $font;
+    @extend %background-image;
+    background-position: center
 }

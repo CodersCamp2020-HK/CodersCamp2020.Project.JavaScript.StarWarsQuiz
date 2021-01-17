@@ -35,63 +35,45 @@ export class Mainpage {
     ranking() {
         let leaderBoard = generateLeaderBoard();
         let currentSelected = null;
-        let button1 = new Button('easy', () => {
+        let button1 = new Button('Padawan', () => {
             if (currentSelected) {
                 currentSelected.element.classList.remove('button-selected');
             }
             currentSelected = button1;
             currentSelected.element.classList.add('button-selected');
-            let rankingObject = {
-                name: 'easy',
-                scores: [
-                    { name: 'asd', score: 12 },
-                    { name: 'zxc', score: 10 },
-                ],
-            };
+            let rankingObject = JSON.parse(localStorage.getItem('padawan'));
             let generatedRanking = generateRanking({
-                rankingObject: rankingObject,
-                rankingName: 'easy',
-                currentPlayerName: 'asd',
+                rankingObject,
+                rankingName: 'padawan',
+                currentPlayerName: undefined,
             });
             leaderBoard.selectRanking(generatedRanking);
         });
-        let button2 = new Button('normal', () => {
+        let button2 = new Button('Jedi Knight', () => {
             if (currentSelected) {
                 currentSelected.element.classList.remove('button-selected');
             }
             currentSelected = button2;
             currentSelected.element.classList.add('button-selected');
-            let rankingObject = {
-                name: 'normal',
-                scores: [
-                    { name: 'bcc', score: 35 },
-                    { name: 'nbn', score: 9 },
-                ],
-            };
+            let rankingObject = JSON.parse(localStorage.getItem('jedi knight'));
             let generatedRanking = generateRanking({
-                rankingObject: rankingObject,
-                rankingName: 'normal',
-                currentPlayerName: 'bcc',
+                rankingObject,
+                rankingName: 'jedi knight',
+                currentPlayerName: undefined,
             });
             leaderBoard.selectRanking(generatedRanking);
         });
-        let button3 = new Button('hard', () => {
+        let button3 = new Button('Jedi Master', () => {
             if (currentSelected) {
                 currentSelected.element.classList.remove('button-selected');
             }
             currentSelected = button3;
             currentSelected.element.classList.add('button-selected');
-            let rankingObject = {
-                name: 'hard',
-                scores: [
-                    { name: 'nbb', score: 6 },
-                    { name: 'uio', score: 2 },
-                ],
-            };
+            let rankingObject = JSON.parse(localStorage.getItem('jedi master'));
             let generatedRanking = generateRanking({
-                rankingObject: rankingObject,
-                rankingName: 'hard',
-                currentPlayerName: 'nbb',
+                rankingObject,
+                rankingName: 'jedi master',
+                currentPlayerName: undefined,
             });
             leaderBoard.selectRanking(generatedRanking);
         });
@@ -105,23 +87,23 @@ export class Mainpage {
         this.mainpageDiv.className = 'mainpage-wrapper';
         this.menuBtn = generateMenuButton({
             onClick: () => {
-                this.mainpageDiv.style.gridTemplateAreas =
-                    '"logo user user" ". categories categories" "rules ranking start"';
+                // this.mainpageDiv.style.gridTemplateAreas =
+                //     '"logo user user" ". categories categories" "rules ranking start"';
                 this.rankingDiv.style.display = 'none';
                 this.categoryLevelWrapper.style.display = 'flex';
-                this.userInput.style.display = 'flex';
+                // this.userInput.style.display = 'flex';
                 this.menuBtn.replaceWith(this.rankingBtn);
             },
         });
         this.rankingBtn = generateRankingButton({
             onClick: () => {
-                this.mainpageDiv.style.gridTemplateAreas =
-                    '"logo categories categories" ". categories categories" "rules ranking start"';
+                // this.mainpageDiv.style.gridTemplateAreas =
+                //     '"logo categories categories" ". categories categories" "rules ranking start"';
                 this.rankingDiv.style.gridArea = 'categories';
                 this.rankingDiv.style.display = 'block';
                 this.menuBtn.style.gridArea = 'ranking';
                 this.categoryLevelWrapper.style.display = 'none';
-                this.userInput.style.display = 'none';
+                // this.userInput.style.display = 'none';
                 this.rankingBtn.replaceWith(this.menuBtn);
             },
         });
