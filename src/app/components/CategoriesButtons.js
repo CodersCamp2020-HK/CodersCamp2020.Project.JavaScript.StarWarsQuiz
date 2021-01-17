@@ -14,7 +14,7 @@ export const buttonCreated = (tablica) => {
     const p = document.createElement('p');
 
     if (tablica == 'categories') {
-        p.textContent = 'Categories';
+        p.textContent = 'categories';
         buttonsText = ['Vehicles', 'People', 'Starships'];
     } else if (tablica == 'levels') {
         p.textContent = 'Level of the opponent';

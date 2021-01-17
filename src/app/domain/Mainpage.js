@@ -29,6 +29,7 @@ export class Mainpage {
         this.rulesModal = generateRulesModal();
         this.rankingDiv = this.ranking();
         this.mainpageDiv = document.createElement('div');
+        this.rankingDiv.style.display = 'none';
     }
 
     ranking() {
@@ -86,8 +87,8 @@ export class Mainpage {
         this.mainpageDiv.className = 'mainpage-wrapper';
         this.menuBtn = generateMenuButton({
             onClick: () => {
-                // this.rankingDiv.style.display = 'none';
-                // this.categoryLevelWrapper.style.display = 'flex';
+                this.rankingDiv.style.display = 'none';
+                this.categoryLevelWrapper.style.display = 'flex';
                 this.categoryLevelWrapper.innerHTML = '';
                 for (const element of this.categoriesBtns.elements) {
                     this.categoryLevelWrapper.appendChild(element);
@@ -100,11 +101,10 @@ export class Mainpage {
         });
         this.rankingBtn = generateRankingButton({
             onClick: () => {
-                // this.rankingDiv.style.gridArea = 'categories';
-                // this.rankingDiv.style.display = 'flex';
-                // this.categoryLevelWrapper.style.display = 'none';
+                this.rankingDiv.style.gridArea = 'categories';
+                this.rankingDiv.style.display = 'flex';
+                this.categoryLevelWrapper.style.display = 'none';
                 this.categoryLevelWrapper.innerHTML = '';
-                this.categoryLevelWrapper.appendChild(this.rankingDiv);
                 this.rankingBtn.replaceWith(this.menuBtn);
             },
         });
@@ -121,6 +121,7 @@ export class Mainpage {
             this.rulesBtn,
             this.startBtn,
             this.rulesModal,
+            this.rankingDiv,
         );
 
         return this.mainpageDiv;
