@@ -1,4 +1,4 @@
-.play-again-button {
+.button-return {
     @extend %common-shadow;
     @extend %common-border-button;
     @extend %typography-button;
@@ -6,17 +6,17 @@
     color: colors.$primary-text;
 }
 
-.play-again-button:hover {
+.button-return:hover {
     @extend %common-shadow-onhover;
 }
 
-.play-again-button:disabled {
+.button-return:disabled {
     cursor: not-allowed;
     color: colors.$secondary-inactive;
     border-color: rgba(255, 197, 0, 0.3);
 }
 
-.play-again-button:focus{
+.button-return:focus{
     @extend %common-shadow-onhover;
     outline:none;
 }
