@@ -19,6 +19,7 @@ export class Mainpage {
         this.categoriesBtns = buttonCreated('categories');
         this.levelsBtns = buttonCreated('levels');
         this.categoryLevelWrapper = document.createElement('div');
+        this.categoryLevelWrapper.className = 'category-level-wrapper';
         for (const element of this.categoriesBtns.elements) {
             this.categoryLevelWrapper.appendChild(element);
         }
@@ -99,8 +100,9 @@ export class Mainpage {
         return leaderBoard.element;
     }
 
-    main({ onClickStart }) {
+    generateMainpage({ onClickStart }) {
         this.mainpageDiv = document.createElement('div');
+        this.mainpageDiv.className = 'mainpage-wrapper';
         this.menuBtn = generateMenuButton({
             onClick: () => {
                 this.rankingDiv.style.display = 'none';

@@ -25,7 +25,7 @@ export class Summary {
         this.score = viewScore({ correctAnswers: correctAnswers, points: points });
     }
 
-    main(seconds) {
+    generateSummary(seconds) {
         this.p = document.createElement('p');
         this.p.className = 'padawan-text';
         this.p.textContent = `The force is strong in you young Padawan! During ${seconds} seconds :`;
