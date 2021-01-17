@@ -19,21 +19,21 @@
         @extend %typography-h5;
     }
 
-    button {
-        margin: 10px;
-        min-width: 280px;
-        background-color: colors.$primary-background;
-        color: colors.$secondary-inactive;
-        @extend %common-shadow-green;
-        border: 3px solid colors.$primary-background;
-        @extend %typography-button-res;
-        @extend %common-border;
-    }
+    // button {
+    //     margin: 10px;
+    //     min-width: 240px;
+    //     background-color: colors.$primary-background;
+    //     color: colors.$secondary-inactive;
+    //     @extend %common-shadow-green;
+    //     border: 3px solid colors.$primary-background;
+    //     @extend %typography-button-res;
+    //     @extend %common-border;
+    // }
 
-    .button-selected {
-        border: 3px solid colors.$secondary-green;
-        @extend %common-shadow-green-onhover;
-    }
+    // .button-selected {
+    //     border: 3px solid colors.$secondary-green;
+    //     @extend %common-shadow-green-onhover;
+    // }
 }
 
 

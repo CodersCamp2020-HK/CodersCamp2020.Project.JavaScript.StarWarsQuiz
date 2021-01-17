@@ -28,7 +28,6 @@ export class Mainpage {
         }
         this.rulesModal = generateRulesModal();
         this.rankingDiv = this.ranking();
-        this.rankingDiv.style.display = 'none';
         this.mainpageDiv = document.createElement('div');
     }
 
@@ -87,23 +86,25 @@ export class Mainpage {
         this.mainpageDiv.className = 'mainpage-wrapper';
         this.menuBtn = generateMenuButton({
             onClick: () => {
-                // this.mainpageDiv.style.gridTemplateAreas =
-                //     '"logo user user" ". categories categories" "rules ranking start"';
-                this.rankingDiv.style.display = 'none';
-                this.categoryLevelWrapper.style.display = 'flex';
-                // this.userInput.style.display = 'flex';
+                // this.rankingDiv.style.display = 'none';
+                // this.categoryLevelWrapper.style.display = 'flex';
+                this.categoryLevelWrapper.innerHTML = '';
+                for (const element of this.categoriesBtns.elements) {
+                    this.categoryLevelWrapper.appendChild(element);
+                }
+                for (const element of this.levelsBtns.elements) {
+                    this.categoryLevelWrapper.appendChild(element);
+                }
                 this.menuBtn.replaceWith(this.rankingBtn);
             },
         });
         this.rankingBtn = generateRankingButton({
             onClick: () => {
-                // this.mainpageDiv.style.gridTemplateAreas =
-                //     '"logo categories categories" ". categories categories" "rules ranking start"';
-                this.rankingDiv.style.gridArea = 'categories';
-                this.rankingDiv.style.display = 'block';
-                this.menuBtn.style.gridArea = 'ranking';
-                this.categoryLevelWrapper.style.display = 'none';
-                // this.userInput.style.display = 'none';
+                // this.rankingDiv.style.gridArea = 'categories';
+                // this.rankingDiv.style.display = 'flex';
+                // this.categoryLevelWrapper.style.display = 'none';
+                this.categoryLevelWrapper.innerHTML = '';
+                this.categoryLevelWrapper.appendChild(this.rankingDiv);
                 this.rankingBtn.replaceWith(this.menuBtn);
             },
         });
@@ -120,7 +121,6 @@ export class Mainpage {
             this.rulesBtn,
             this.startBtn,
             this.rulesModal,
-            this.rankingDiv,
         );
 
         return this.mainpageDiv;

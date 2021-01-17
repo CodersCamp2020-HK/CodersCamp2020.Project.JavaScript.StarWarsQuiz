@@ -21,37 +21,72 @@
     "categories categories categories"
     "rules ranking start";
   gap: 5vh 5vw;
+
+  // KAŻDY BUTTON NA STRONIE
+  button {
+    height: 90px;
+    min-width: 200px;
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+    border: 3px solid colors.$primary-background;
+  }
+
+  .deactive:hover {
+    @extend %common-shadow-green-onhover;
+  }
+
+  .active,
+
+  .button-selected {
+    @extend %common-border-button-green;
+  }
+
+  .deactive {
+    @extend %common-shadow-green;
+  }
 }
 
 .category-level-wrapper {
   grid-area: categories;
   // height: 100%;
-  background-color: colors.$primary-background;
+
   @extend %common-shadow;
   @extend %common-border;
   display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: colors.$primary-background;
 
 
   .category-level-paragraph {
     width: 100%;
   }
 
-  .button1,
-  .button2,
-  .button3 {
-    width: 280px;
-    margin: 20px 10px;
+  // BUTTON CATEGORIES I LEVEL OF THE OPPONENT
+  button {
+    @extend %common-border;
+    @extend %common-shadow-green-onhover;
+
+  }
+
+}
+
+.categories-container {
+  display: flex;
+  justify-content: space-evenly;
+
+  // BUTTON LEADERBOARD
+  button {
     @extend %common-border;
     @extend %common-shadow-green-onhover;
   }
 }
 
-// .category-level-wrapper>p:nth-child(5) {
-//   padding-top: 3%;
-// }
+// BUTTON RULES RANKING START
+.mainpage__button {
+  @extend %common-shadow;
+  @extend %common-border;
+}
 
 @media only screen and (max-width: 800px) {
 
@@ -86,11 +121,5 @@
     max-height: 100px;
     width: auto;
 
-  }
-
-  .inputName_input {
-    .inputName_input {
-      text-align: center;
-    }
   }
 }

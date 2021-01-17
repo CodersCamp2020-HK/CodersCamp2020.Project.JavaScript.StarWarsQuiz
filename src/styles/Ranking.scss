@@ -7,6 +7,7 @@
     align-items: center;
     @extend %common-border;
     padding: 20px;
+    margin-top: 20px;
 }
 
 .ranking-current-player {
@@ -32,11 +33,8 @@
     }
 }
 
-
-
 .ranking-name {
     color: colors.$primary-main;
     @extend %typography-h6;
     font-family: typography.$family-el;
-    text-transform: uppercase;
 }

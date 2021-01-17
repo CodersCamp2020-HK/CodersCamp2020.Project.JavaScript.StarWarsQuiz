@@ -19,7 +19,7 @@ export function generateLeaderBoard() {
             categoriesDiv.classList.add('categories-container');
             let categoriesName = document.createElement('span');
             categoriesName.classList.add('categories-name');
-            categoriesName.textContent = 'CATEGORIES';
+            categoriesName.textContent = 'categories';
             categoriesDiv.appendChild(categoriesName);
 
             buttonsViews.forEach((difficultLevelButton) => {

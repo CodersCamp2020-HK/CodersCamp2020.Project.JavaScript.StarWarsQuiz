@@ -2,15 +2,15 @@
     @extend %common-shadow-onhover;
 }
 
-.mainpage__button {
-    @extend %typography-button;
-    color: colors.$primary-text;
-    background-color: colors.$primary-background;
-    width: 100%;
-    @extend %common-border-button;
-    @extend %common-shadow;
-    text-align: center;
-}
+// .mainpage__button {
+//     @extend %typography-button;
+//     color: colors.$primary-text;
+//     background-color: colors.$primary-background;
+//     width: 100%;
+//     @extend %common-border-button;
+//     @extend %common-shadow;
+//     text-align: center;
+// }
 
 .mainpage__button--rules {
     grid-area: rules;
