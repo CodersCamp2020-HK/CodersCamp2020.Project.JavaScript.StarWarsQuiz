@@ -15,6 +15,7 @@ export class Summary {
         this.returnBtn = generateReturnButton({ text: 'Return', onClick: onReturn });
         this.gameOver = new GameOver('game over');
         this.summaryDiv = document.createElement('div');
+        this.summaryDiv.classList.add('summary-container');
         this.rankingData = updateRanking({ name, points, difficultyLevel: level });
         this.ranking = generateRanking({
             rankingObject: this.rankingData,
