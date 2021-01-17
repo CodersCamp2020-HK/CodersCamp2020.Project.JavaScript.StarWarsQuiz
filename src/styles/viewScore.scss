@@ -6,13 +6,14 @@
   @extend %typography-h6; 
   @extend %common-shadow;
   @extend %common-border;
-  padding:2vh 2vw;
+  padding:1vh 2vw;
   margin-bottom: 3vh;
   // letter-spacing: 
 }
 
 .fontscore{
   @extend %typography-h6; 
+  line-height: 0.8;
 }
 
 .greenHighlight {
