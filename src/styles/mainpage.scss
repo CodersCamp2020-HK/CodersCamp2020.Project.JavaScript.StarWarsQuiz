@@ -49,15 +49,22 @@
   }
 }
 
-.category-level-wrapper>p:nth-child(5) {
-  padding-top: 3%;
-}
+// .category-level-wrapper>p:nth-child(5) {
+//   padding-top: 3%;
+// }
 
 @media only screen and (max-width: 800px) {
 
   .mainpage-wrapper {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    // grid-template-rows: 1fr fr 1fr;
+    grid-template-areas:
+      "logo"
+      "user"
+      "categories"
+      "ranking"
+      "start"
+      "rules";
   }
 
   .inputName_wrapper {
@@ -67,10 +74,23 @@
 
   .inputName_user {
     width: 100%;
-    margin: 20px;
+    margin-right: 0;
+
   }
 
   .mainpage__button {
     order: 1;
+  }
+
+  .logo {
+    max-height: 100px;
+    width: auto;
+
+  }
+
+  .inputName_input {
+    .inputName_input {
+      text-align: center;
+    }
   }
 }

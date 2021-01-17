@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 3rem;
+    padding: 20px;
     grid-area: user;
     text-align: center;
 }
@@ -28,6 +28,7 @@
     color: colors.$primary-text;
     transition: all 0.2s ease-in-out;
     width: 100%;
+    margin: 20px 10px;
 }
 
 .inputName_input-empty {
