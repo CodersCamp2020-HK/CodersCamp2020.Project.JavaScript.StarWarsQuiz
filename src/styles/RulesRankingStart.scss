@@ -6,8 +6,21 @@
     @extend %typography-button;
     color: colors.$primary-text;
     background-color: colors.$primary-background;
-    width: 20%;
+    width: 100%;
     @extend %common-border-button;
     @extend %common-shadow;
     text-align: center;
-} 
+}
+
+.mainpage__button--rules {
+    grid-area: rules;
+}
+
+.mainpage__button--ranking {
+    grid-area: ranking;
+}
+
+
+.mainpage__button--start {
+    grid-area: start;
+}

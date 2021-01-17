@@ -105,13 +105,23 @@ export class Mainpage {
         this.mainpageDiv.className = 'mainpage-wrapper';
         this.menuBtn = generateMenuButton({
             onClick: () => {
+                this.mainpageDiv.style.gridTemplateAreas =
+                    '"logo user user" ". categories categories" "rules ranking start"';
                 this.rankingDiv.style.display = 'none';
+                this.categoryLevelWrapper.style.display = 'flex';
+                this.userInput.style.display = 'flex';
                 this.menuBtn.replaceWith(this.rankingBtn);
             },
         });
         this.rankingBtn = generateRankingButton({
             onClick: () => {
+                this.mainpageDiv.style.gridTemplateAreas =
+                    '"logo categories categories" ". categories categories" "rules ranking start"';
+                this.rankingDiv.style.gridArea = 'categories';
                 this.rankingDiv.style.display = 'block';
+                this.menuBtn.style.gridArea = 'ranking';
+                this.categoryLevelWrapper.style.display = 'none';
+                this.userInput.style.display = 'none';
                 this.rankingBtn.replaceWith(this.menuBtn);
             },
         });
