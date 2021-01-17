@@ -1,0 +1,53 @@
+@import './logo.scss';
+@import './gameOver.scss';
+@import './PlayAgainButton.scss';
+@import './returnButton.scss';
+@import './Ranking.scss';
+@import './viewScore.scss';
+
+.summary-container {
+    text-align: center;
+    display: grid;
+    max-width: 100vw;
+    height: 100vh;
+    padding: 5vh 5vw;
+    margin-right: auto;
+    margin-left: auto;
+    grid-template-columns: 1fr 2.5fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas: 
+    "logo wrapper gameover"
+    ". wrapper ."
+    "return wrapper again";
+    gap: 5vh 5vw; 
+}
+
+.result-wrapper {
+    @extend %common-border;
+    @extend %common-shadow;
+    @extend %common-center;
+    display: flex;
+    flex-direction: column;
+    grid-area: wrapper;
+}
+
+.logo {
+    grid-area: logo;
+}
+
+.play-again-button {
+    grid-area: again;
+}
+
+.button-return {
+    grid-area: return;
+}
+
+.gameOverDiv {
+    grid-area: gameover;
+    @extend %common-center;
+    text-align: center;
+    word-spacing: 999rem;
+    line-height: 0.8;
+    font-size: calc(3vw + 3vh);
+}
