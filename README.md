@@ -36,6 +36,8 @@ pojazdach oraz statkach kosmicznych występujących w Gwiezdnych Wojnach.
 Dodatkowo gracz rywalizował z komputerem w trakcie grania w quiz.
 Komputer — zależnie od ustawień — odpowiada losowo lub inteligentnie — próbując rozpoznać przedstawiany obraz za pomocą Google Vision API.
 -->
+Celem projektu było napisanie aplikacji wykorzystującej dotychczas nabytą podczas trwania kursu wiedzę z następujących technologi: html, css, javascript.
+Zespół projektowy zdecydował się na aplikacje - quiz związaną z tematyką uniwersum Gwiezdnych Wojen. Aplikacja w formie testu jednokrotnego wyboru sprawdza czy użytkownik  rozpoznaję, w zależności od wyboru kategorii, postać pojazd lub statek kosmiczny.
 
 Aplikacja została wykonana wg dostarczonych przez organizatorów CodersCamp wymagań.
 Szablon projektu dostępny jest [TUTAJ](https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz/).
@@ -44,29 +46,43 @@ Szablon projektu dostępny jest [TUTAJ](https://github.com/CodersCamp2020/Coders
 
 #### Menu Główne
 
-W menu głównym należy wybrać tryb gry (domyślnie jest to People):
+W menu głównym należy wpisać imię gracza. Następnie wybrać kategorię rozgrywki (domyślnie jest to People). Możliwe Kategorie do wyboru:
 
 -   People — rozpoznawanie jaka postać z uniwersum Star Wars została wyświetlona
 -   Vehicles — rozpoznawanie jaki pojazd z uniwersum Star Wars został wyświetlony
 -   Starships — rozpoznawanie jaki statek kosmiczny z uniwersum Star Wars został wyświetlony
 
-#### Rozgrywka — Quiz
+Ostatni wybór dotyczy poziomu trudności przeciwnika. Możliwe kategorie do wyboru:
 
+-   Padawan - poziom trudności określony jako łatwy
+-   Jedi Knight - poziom trudności określony jako średni
+-   Jedi Master - poziom trudności określony jaki trudny
+
+W zależności od poziomu trudności przeciwnik będzie uzyskiwał odpowiednią ilość punktów.
+
+##### Zasady gry
+
+Zasady gry wyświetlane sa w formie modalu po naciśnięciu przycisku RULES w menu głównym gry.
+
+##### Sala Chwały / Ranking
+<!--Po przejściu do Hall of Fame pokazywane są 3 najlepsze wyniki graczy, grających na danym komputerze.
+Wyniki są pokazywane osobno, dla każdego z trybów.
+-->
+
+Rankin graczy wyświetlany jest po naciśnięciu przycisku RANKING w menu głównym gry.
+Istnieją trzy osobne rankingi dla każdej z kategori gry.
+
+#### Rozgrywka — Quiz
 <!--- TODO: dodać opis
 Przykład:
 Rozgrywka polega na odpowiadaniu na rozpoznawaniu co lub kto wyświetla się na obrazie po lewej stronie. Do wyboru są 4 opcje, z czego zawsze tylko jedna jest prawidłowa. W tym samym czasie obraz rozpoznaje także komputer, który rywalizuje z graczem (wyniki komputera nie zapisują się w rankingu). Wynik gracza z jednej gry to ilość dobrych odpowiedzi.
-
 Czas pozostały do końca rozgrywki odlicza miecz świetlny na dole ekranu.
 -->
+Rozgrywka polega na rozpoznawaniu przez użytkownika postaci, pojazdów lub statków kosmicznych (w zależności od wyboru opcji w menu głównym). Pytanie reprezentowane jest przez obrazek oraz zapytanie kto lub co znajduję się na obrazku. W środkowej części ekranu wyświetlane są 4 możliwe odpowiedzi z czego tylko jedna jest poprawna. Po zaznaczeniu (kliknięciu myszką) wybaranej odpowiedzi należy kliknąc przysisk NEXT w celu przejścia od kolejnego pytania. W momencie klikniącia przycisku NEXT aplikacja sprawdzi poprawność zaznaczonej odpowiedzi i poinformuję użytkownika poprzez podświetlenie wybranej odpowiedzi kolorem zielonym w przypadku gdy zaznaczono poprawną odpowiedź. W przypadku niepoprawnego wyboru odpowiedź zaznaczona przez użytkownika zostanie podświetlona na czerwono a prawidłowa odpowiedź na zielono. W każdym quizie losowanycj jest 10 pytań.
 
-#### Zasady gry
 
-Po wyborze trybu aplikacji pokazuje zasady gry dla tego trybu.
 
-### Sala Chwały / Ranking
 
-Po przejściu do Hall of Fame pokazywane są 3 najlepsze wyniki graczy, grających na danym komputerze.
-Wyniki są pokazywane osobno, dla każdego z trybów.
 
 #### Ustawienia
 
