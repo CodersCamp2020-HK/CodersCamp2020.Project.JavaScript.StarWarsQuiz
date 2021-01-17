@@ -16,11 +16,11 @@
     margin-left: auto;
     grid-template-columns: 1fr 2.5fr 1fr;
     grid-template-rows: 1fr 4fr 1fr;
-    grid-template-areas: 
-    "logo wrapper gameover"
-    ". wrapper ."
-    "return wrapper again";
-    gap: 5vh 5vw; 
+    grid-template-areas:
+        'logo wrapper gameover'
+        '. wrapper .'
+        'return wrapper again';
+    gap: 5vh 5vw;
 }
 
 .result-wrapper {
@@ -31,7 +31,7 @@
     flex-direction: column;
     grid-area: wrapper;
     background-color: colors.$primary-background;
-    padding: 2vh 2vw;;
+    padding: 2vh 2vw;
 }
 
 .logo {
@@ -63,28 +63,38 @@
     margin-bottom: 0.8vh;
 }
 
-@media (max-width: 800px){
+@media (max-width: 800px) {
     .summary-container {
         display: flex;
         flex-direction: column;
+        height: 100%;
     }
 
     .summary-container * {
         order: 2;
     }
 
-    .summary-container .logo{
+    .summary-container .logo {
         order: 0;
         max-width: 250px;
     }
 
-    .gameOverDiv{
+    .gameOverDiv {
         order: 1;
         word-spacing: normal;
     }
 
-    .computerScore-wrapper{
+    .computerScore_wrapper {
         height: auto;
     }
 
+    .summary-container .ranking-container {
+        height: 200px;
+    }
+
+    .button-return,
+    .play-again-button {
+        padding: 15px 0px 10px 0px;
+        font-size: 20px;
+    }
 }
