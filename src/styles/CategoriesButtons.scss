@@ -1,24 +1,24 @@
 .category-level-paragraph {
-  @extend %typography-h5;
-  color: colors.$primary-text;
+    @extend %typography-h5;
+    color: colors.$primary-text;
 }
- 
-.button1, .button2, .button3 {
-  background-color: colors.$primary-background;
-  color: colors.$primary-text;
-  @extend %typography-button-res;
-  outline: none;
+
+.button1,
+.button2,
+.button3 {
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+    outline: none;
 }
- 
-.deactive:hover{
-  @extend %common-shadow-green-onhover;
+
+.deactive:hover {
+    @extend %common-shadow-green-onhover;
 }
- 
+
 .active {
-  @extend %common-border-button-green;
+    @extend %common-border-button-green;
 }
- 
+
 .deactive {
-  @extend %common-shadow-green;
+    @extend %common-shadow-green;
 }
- 
