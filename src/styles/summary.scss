@@ -4,6 +4,7 @@
 @import './returnButton.scss';
 @import './Ranking.scss';
 @import './viewScore.scss';
+@import './ComputerScore.scss';
 
 .summary-container {
     text-align: center;
@@ -29,6 +30,8 @@
     display: flex;
     flex-direction: column;
     grid-area: wrapper;
+    background-color: colors.$primary-background;
+    padding: 2vh 2vw;;
 }
 
 .logo {
@@ -50,4 +53,12 @@
     word-spacing: 999rem;
     line-height: 0.8;
     font-size: calc(3vw + 3vh);
+}
+
+.padawan-text {
+    color: colors.$primary-text;
+    padding: 0 0 1vw 0;
+    font-family: typography.$family-text;
+    letter-spacing: 0.1em;
+    margin-bottom: 1vh;
 }

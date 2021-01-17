@@ -26,6 +26,7 @@ $family-el: 'AnakinMono', Helvetica, Arial, sans-serif;
     font-weight: normal;
     font-display: swap;
     font-size: 35px;
+    text-transform: lowercase;
 }
 
 %typography-h6 {
@@ -34,6 +35,7 @@ $family-el: 'AnakinMono', Helvetica, Arial, sans-serif;
    font-weight: normal;
    font-display: swap;
    font-size: 20px;
+   text-transform: lowercase;
 }
 
 %typography-body {

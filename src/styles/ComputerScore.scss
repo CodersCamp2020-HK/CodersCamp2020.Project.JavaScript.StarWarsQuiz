@@ -1,12 +1,22 @@
 .computerScore_wrapper {
+    display:flex;
+    flex-direction:column;
     color: colors.$primary-text;
     @extend %common-shadow;
     @extend %common-border;
     @extend %common-center;
     @extend %typography-h6;
     background-color: colors.$primary-background;
-    min-height: 195px;
+    height:100%;
+    width: 100%;
+    padding: 2vh 2vw;
+    margin-bottom: 3vh;
+    letter-spacing: 0.1em;
+    justify-content: center;
+    flex-shrink: 3;
+}
 
 .computerScore_score {
     @extend %typography-h5;
 }
+
