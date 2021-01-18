@@ -1,18 +1,18 @@
 import { QuizGame } from './domain/quiz-game';
-import { Mainpage } from './components/Mainpage';
-import { Summary } from './components/Summary';
+import { Mainpage } from './domain/Mainpage';
+import { Summary } from './domain/Summary';
 
 export const App = () => {
     const swquizz = document.querySelector('#swquiz-app');
-    const mainpage = new Mainpage();
+    const objMainpage = new Mainpage();
     const numberOfQuestions = 5;
     const timeInSeconds = 3;
     const onClickStart = () => {
-        const category = mainpage.categoriesBtns.level;
-        const level = mainpage.levelsBtns.level;
-        const input = mainpage.userInput.lastChild;
-        const userName = input.value;
-        if (userName.trim().length <= 0) {
+        const category = objMainpage.categoriesBtns.level;
+        const level = objMainpage.levelsBtns.level;
+        const input = objMainpage.userInput.lastChild;
+        const name = input.value;
+        if (name.trim().length <= 0) {
             input.classList.add('inputName_input-empty');
             input.value = '';
             return;
@@ -23,43 +23,41 @@ export const App = () => {
         if (!['padawan', 'jedi knight', 'jedi master'].includes(level)) {
             throw new Error('Level must be padawan, jedi knight or jedi master');
         }
-        swquizz.removeChild(mainpage.mainpageDiv);
-        const quizGame = new QuizGame();
+        swquizz.removeChild(objMainpage.mainpageDiv);
+        const obj = new QuizGame();
         const onEnd = (points, correctAnswers) => {
             swquizz.removeChild(swquizz.firstChild);
-            const summary = new Summary(
-                userName,
+            const summaryDiv = new Summary(
+                name,
                 points,
                 level,
                 numberOfQuestions,
                 correctAnswers,
                 () => {
-                    swquizz.removeChild(summary.summaryDiv);
-                    swquizz.appendChild(mainpage.generateMainpage({ onClickStart }));
+                    swquizz.removeChild(summaryDiv.summaryDiv);
+                    swquizz.appendChild(objMainpage.main({ onClickStart }));
                 },
                 () => {
-                    swquizz.removeChild(summary.summaryDiv);
-                    quizGame.main({ numberOfQuestions, category, timeInSeconds, onEnd }).then((div) => {
+                    swquizz.removeChild(summaryDiv.summaryDiv);
+                    obj.main({ numberOfQuestions, category, timeInSeconds, onEnd }).then((div) => {
                         swquizz.appendChild(div);
                     });
                 },
             );
-            summary.generateSummary();
-            swquizz.appendChild(summary.summaryDiv);
+            summaryDiv.main();
+            swquizz.appendChild(summaryDiv.summaryDiv);
         };
-        quizGame
-            .main({
-                numberOfQuestions,
-                category,
-                timeInSeconds,
-                onEnd,
-            })
-            .then((div) => {
-                swquizz.appendChild(div);
-            });
+        obj.main({
+            numberOfQuestions: numberOfQuestions,
+            category: category,
+            timeInSeconds: timeInSeconds,
+            onEnd,
+        }).then((div) => {
+            swquizz.appendChild(div);
+        });
     };
     swquizz.appendChild(
-        mainpage.generateMainpage({
+        objMainpage.main({
             onClickStart,
         }),
     );

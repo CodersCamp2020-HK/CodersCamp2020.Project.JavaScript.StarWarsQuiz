@@ -5,19 +5,15 @@
     position: fixed;
     top: 0;
     right: 0;
-
+    justify-content: center;
+    align-items: center;
 }
 
 .modal__wrapper {
-    min-width: 350px;
-    max-width: 800px;
+    max-width: 50vw;
     max-height: 50vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-
+    margin: auto;
+    margin-top: 40vh;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;

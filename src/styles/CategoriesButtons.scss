@@ -1,18 +1,24 @@
-// .button1, .button2, .button3 {
-//   background-color: colors.$primary-background;
-//   color: colors.$primary-text;
-//   @extend %typography-button-res;
-//   outline: none;
-// }
+.category-level-paragraph {
+    @extend %typography-h5;
+    color: colors.$primary-text;
+}
 
-// .deactive:hover {
-//   @extend %common-shadow-green-onhover;
-// }
+.button1,
+.button2,
+.button3 {
+    background-color: colors.$primary-background;
+    color: colors.$primary-text;
+    outline: none;
+}
 
-// .active {
-//   @extend %common-border-button-green;
-// }
+.deactive:hover {
+    @extend %common-shadow-green-onhover;
+}
 
-// .deactive {
-//   @extend %common-shadow-green;
-// }
+.active {
+    @extend %common-border-button-green;
+}
+
+.deactive {
+    @extend %common-shadow-green;
+}

@@ -5,8 +5,7 @@
 @import './mainpage.scss';
 @import './summary.scss';
 
-$font: 'Montserrat',
-sans-serif;
+$font: 'Montserrat', sans-serif;
 
 * {
     margin: 0;
@@ -16,12 +15,13 @@ sans-serif;
 
 button {
     cursor: pointer;
-    outline: none;
-    height: 90px;
 }
 
 body {
     font-family: $font;
     @extend %background-image;
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

@@ -2,7 +2,7 @@
 
 
 %common-border {
-   border-radius: 16px;
+    border-radius: 16px;
 }
 
 %common-border-button {
@@ -11,15 +11,15 @@
 }
 
 %common-center {
-   display: grid;
-   place-items: center;
+    display: grid;
+    place-items: center;
 }
 
-%common-shadow {
+%common-shadow{
    box-shadow: 0px 0px 15px rgba(255, 197, 0, 0.5);
 }
 
-%common-shadow-onhover {
+%common-shadow-onhover{
    box-shadow: 0px 0px 25px rgba(255, 197, 0, 0.7);
 }
 
@@ -28,15 +28,16 @@
    border-radius: 16px;
 }
 
-%common-shadow-green {
-   border: 3px solid colors.$primary-background;
+%common-shadow-green{
    box-shadow: 0px 0px 15px #3E8118;
 }
 
-%common-shadow-green-onhover {
+%common-shadow-green-onhover{
    box-shadow: 0px 0px 25px #3E8118;
 }
 
-%background-image {
+%background-image{
    background-image: url('../static/assets/ui/QuizBackground1.jpg');
 }
+
+
