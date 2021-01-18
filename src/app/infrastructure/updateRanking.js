@@ -1,8 +1,8 @@
-export function updateRanking({ name, points, difficultyLevel }) {
-    let rankingStorage = localStorage.getItem(difficultyLevel);
+export function updateRanking({ name, points, difficultyLevel: category }) {
+    let rankingStorage = localStorage.getItem(category);
     if (!rankingStorage) {
         let rankingObject = {
-            difficultyLevel: difficultyLevel,
+            category: category,
             scores: [
                 {
                     name: name,
@@ -10,7 +10,7 @@ export function updateRanking({ name, points, difficultyLevel }) {
                 },
             ],
         };
-        localStorage.setItem(difficultyLevel, JSON.stringify(rankingObject));
+        localStorage.setItem(category, JSON.stringify(rankingObject));
         return rankingObject;
     }
 
@@ -33,7 +33,7 @@ export function updateRanking({ name, points, difficultyLevel }) {
         return player2.score - player1.score;
     });
 
-    localStorage.setItem(difficultyLevel, JSON.stringify(rankingData));
+    localStorage.setItem(category, JSON.stringify(rankingData));
 
     return rankingData;
 }

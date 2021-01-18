@@ -8,6 +8,7 @@
     padding: 20px;
     grid-area: user;
     text-align: center;
+    height: 100%;
 }
 
 .inputName_user {
@@ -30,6 +31,8 @@
     width: 100%;
     margin: 20px 10px;
 }
+
+
 
 .inputName_input-empty {
     border: 2px solid colors.$secondary-red;

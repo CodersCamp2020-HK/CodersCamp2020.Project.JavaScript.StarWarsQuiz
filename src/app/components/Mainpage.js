@@ -20,6 +20,8 @@ export class Mainpage {
         this.levelsBtns = buttonCreated('levels');
         this.categoryLevelWrapper = document.createElement('div');
         this.categoryLevelWrapper.className = 'category-level-wrapper';
+        this.rankingDiv = this.ranking();
+        this.rankingDiv.style.display = 'none';
         for (const element of this.categoriesBtns.elements) {
             this.categoryLevelWrapper.appendChild(element);
         }
@@ -27,9 +29,7 @@ export class Mainpage {
             this.categoryLevelWrapper.appendChild(element);
         }
         this.rulesModal = generateRulesModal();
-        this.rankingDiv = this.ranking();
         this.mainpageDiv = document.createElement('div');
-        this.rankingDiv.style.display = 'none';
     }
 
     replaceRankingWithCategories() {
@@ -61,13 +61,13 @@ export class Mainpage {
         return str.join(' ');
     }
 
-    generateRankingLevelButton(buttonText, currentSelected, leaderBoard) {
+    generateRankingLevelButton(buttonText, leaderBoard) {
         const button = new Button(this.titleCase(buttonText), () => {
-            if (currentSelected) {
-                currentSelected.element.classList.remove('button-selected');
+            if (this.currentSelected) {
+                this.currentSelected.element.classList.remove('button-selected');
             }
-            currentSelected = button;
-            currentSelected.element.classList.add('button-selected');
+            this.currentSelected = button;
+            this.currentSelected.element.classList.add('button-selected');
             let rankingObject = JSON.parse(localStorage.getItem(buttonText));
             let generatedRanking = generateRanking({
                 rankingObject,
@@ -81,10 +81,10 @@ export class Mainpage {
 
     ranking() {
         let leaderBoard = generateLeaderBoard();
-        let currentSelected = null;
-        let button1 = this.generateRankingLevelButton('padawan', currentSelected, leaderBoard);
-        let button2 = this.generateRankingLevelButton('jedi knight', currentSelected, leaderBoard);
-        let button3 = this.generateRankingLevelButton('jedi master', currentSelected, leaderBoard);
+        this.currentSelected = null;
+        let button1 = this.generateRankingLevelButton('people', leaderBoard);
+        let button2 = this.generateRankingLevelButton('vehicles', leaderBoard);
+        let button3 = this.generateRankingLevelButton('starships', leaderBoard);
         let categoriesButtons = [button1, button2, button3];
         leaderBoard.addLevelsButtons(categoriesButtons);
         return leaderBoard.element;
@@ -93,6 +93,11 @@ export class Mainpage {
     generateMainpage({ onClickStart }) {
         this.mainpageDiv = document.createElement('div');
         this.mainpageDiv.className = 'mainpage-wrapper';
+
+        if (this.currentSelected) {
+            this.rankingDiv.querySelector('.button-selected').click();
+        }
+
         this.menuBtn = generateMenuButton({
             onClick: () => {
                 this.replaceRankingWithCategories();

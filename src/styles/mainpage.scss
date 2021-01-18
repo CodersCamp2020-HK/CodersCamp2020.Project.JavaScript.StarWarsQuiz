@@ -34,12 +34,16 @@
   // KAŻDY BUTTON NA STRONIE
   button {
     height: 90px;
-    min-width: 200px;
+    min-width: 180px;
     background-color: colors.$primary-background;
     color: colors.$primary-text;
     border: 3px solid colors.$primary-background;
     @extend %typography-body;
     margin: 20px;
+  }
+
+  .mainpage__button {
+    @extend %common-border-button;
   }
 
   .category-level-wrapper {
@@ -101,7 +105,6 @@
 
     }
 
-
     .deactive:hover {
       @extend %common-shadow-green-onhover;
     }
@@ -122,6 +125,7 @@
   .mainpage__button {
     @extend %common-shadow;
     @extend %common-border;
+    @extend %common-border-button;
   }
 
   .ranking-list {
@@ -129,7 +133,7 @@
     flex-direction: column;
     padding-left: 0;
     width: 100%;
-    height: 100%;
+    max-height: 200px;
     font-family: typography.$family-text;
     overflow: auto;
     counter-reset: mycounter;
@@ -184,6 +188,7 @@
 
     button {
       max-height: 40px;
+
     }
 
 
