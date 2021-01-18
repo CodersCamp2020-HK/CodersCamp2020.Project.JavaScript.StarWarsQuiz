@@ -23,6 +23,7 @@ export class Summary {
         this.opponent = ComputerScore(computerScore(level, numberOfQuestion), 'The opponent');
         this.score = viewScore({ correctAnswers: correctAnswers, points: points });
         this.summaryDiv = document.createElement('div');
+        this.summaryDiv.classList.add('summary-container');
     }
 
     generateSummary(seconds) {
