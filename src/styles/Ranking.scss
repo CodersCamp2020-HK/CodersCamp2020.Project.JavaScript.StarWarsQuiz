@@ -1,4 +1,3 @@
-
 .summary-container .ranking-container {
     background-color: colors.$primary-background;
     color: colors.$primary-text;
@@ -37,7 +36,7 @@
 }
 
 .summary-container .ranking-list li::before {
-    content:  counter(mycounter)".";
+    content: counter(mycounter)".";
     font-family: typography.$family-text
 }
 
@@ -46,15 +45,15 @@
     font-family: typography.$family-text;
     flex-grow: 2;
     text-align: left;
-    margin-left: 1em; 
+    margin-left: 1em;
 }
 
 li span:last-child {
     display: block;
     justify-self: right;
-   font-family: typography.$family-text;
-   margin-right: 5px;
-   justify-self: flex-end;
+    font-family: typography.$family-text;
+    margin-right: 5px;
+    justify-self: flex-end;
 }
 
 .ranking-name {

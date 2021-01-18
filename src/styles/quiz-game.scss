@@ -36,9 +36,10 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+
     button {
         font-family: typography.$family-el;
-        min-height:15%;
+        min-height: 15%;
         padding-top: 20px;
         padding-bottom: 15px;
         @extend %common-center;
@@ -59,7 +60,7 @@
     justify-content: space-around;
 }
 
-.timerAndDeathStarDiv > p {
+.timerAndDeathStarDiv>p {
     @extend %typography-h6;
     color: colors.$primary-text;
 }
@@ -113,7 +114,7 @@
     }
 
     .display-question-wrapper {
-        background-color:none;
+        background-color: none;
         padding: 0px;
         grid-area: question;
         box-shadow: none;

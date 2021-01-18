@@ -1,18 +1,18 @@
 import { QuizGame } from './domain/quiz-game';
-import { Mainpage } from './domain/Mainpage';
-import { Summary } from './domain/Summary';
+import { Mainpage } from './components/Mainpage';
+import { Summary } from './components/Summary';
 
 export const App = () => {
     const swquizz = document.querySelector('#swquiz-app');
-    const objMainpage = new Mainpage();
+    const mainpage = new Mainpage();
     const numberOfQuestions = 5;
     const timeInSeconds = 3;
     const onClickStart = () => {
-        const category = objMainpage.categoriesBtns.level;
-        const level = objMainpage.levelsBtns.level;
-        const input = objMainpage.userInput.lastChild;
-        const name = input.value;
-        if (name.trim().length <= 0) {
+        const category = mainpage.categoriesBtns.level;
+        const level = mainpage.levelsBtns.level;
+        const input = mainpage.userInput.lastChild;
+        const userName = input.value;
+        if (userName.trim().length <= 0) {
             input.classList.add('inputName_input-empty');
             input.value = '';
             return;
@@ -23,41 +23,43 @@ export const App = () => {
         if (!['padawan', 'jedi knight', 'jedi master'].includes(level)) {
             throw new Error('Level must be padawan, jedi knight or jedi master');
         }
-        swquizz.removeChild(objMainpage.mainpageDiv);
-        const obj = new QuizGame();
+        swquizz.removeChild(mainpage.mainpageDiv);
+        const quizGame = new QuizGame();
         const onEnd = (points, correctAnswers) => {
             swquizz.removeChild(swquizz.firstChild);
-            const summaryDiv = new Summary(
-                name,
+            const summary = new Summary(
+                userName,
                 points,
                 level,
                 numberOfQuestions,
                 correctAnswers,
                 () => {
-                    swquizz.removeChild(summaryDiv.summaryDiv);
-                    swquizz.appendChild(objMainpage.main({ onClickStart }));
+                    swquizz.removeChild(summary.summaryDiv);
+                    swquizz.appendChild(mainpage.generateMainpage({ onClickStart }));
                 },
                 () => {
-                    swquizz.removeChild(summaryDiv.summaryDiv);
-                    obj.main({ numberOfQuestions, category, timeInSeconds, onEnd }).then((div) => {
+                    swquizz.removeChild(summary.summaryDiv);
+                    quizGame.main({ numberOfQuestions, category, timeInSeconds, onEnd }).then((div) => {
                         swquizz.appendChild(div);
                     });
                 },
             );
-            summaryDiv.main();
-            swquizz.appendChild(summaryDiv.summaryDiv);
+            summary.generateSummary();
+            swquizz.appendChild(summary.summaryDiv);
         };
-        obj.main({
-            numberOfQuestions: numberOfQuestions,
-            category: category,
-            timeInSeconds: timeInSeconds,
-            onEnd,
-        }).then((div) => {
-            swquizz.appendChild(div);
-        });
+        quizGame
+            .main({
+                numberOfQuestions,
+                category,
+                timeInSeconds,
+                onEnd,
+            })
+            .then((div) => {
+                swquizz.appendChild(div);
+            });
     };
     swquizz.appendChild(
-        objMainpage.main({
+        mainpage.generateMainpage({
             onClickStart,
         }),
     );
