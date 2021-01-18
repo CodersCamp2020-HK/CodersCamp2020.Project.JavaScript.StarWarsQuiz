@@ -23,7 +23,6 @@
     "rules ranking start";
   gap: 4vh 4vw;
 
-
   .category-level-paragraph,
   .categories-name {
     @extend %typography-h5;
@@ -34,7 +33,7 @@
   // KAŻDY BUTTON NA STRONIE
   button {
     height: 90px;
-    min-width: 180px;
+    min-width: 210px;
     background-color: colors.$primary-background;
     color: colors.$primary-text;
     border: 3px solid colors.$primary-background;
@@ -54,7 +53,7 @@
     height: 100%;
 
     button {
-      margin: 20px 0px;
+      margin-bottom: 20px;
     }
   }
 
@@ -70,13 +69,15 @@
   .mainpage__button--ranking,
   .mainpage__button--menu {
     width: 18vw;
+    justify-self: center;
   }
+
+
 
   .leaderboard-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    // align-items: center;
+    align-items: center;
   }
 
 
@@ -122,7 +123,6 @@
     }
 
     .active,
-
     .button-selected {
       @extend %common-border-button-green;
     }
@@ -223,6 +223,7 @@
 
     .mainpage__button--ranking,
     .mainpage__button--menu {
+      font-size: 20px;
       width: 100%;
     }
 

@@ -9,6 +9,7 @@ import { QuestionScoreComponent } from '../components/QuestionScoreView';
 import { Button } from '../components/Button';
 import { generateTimer } from '../components/Timer';
 import { showAnswers } from '../components/ShowAnswers';
+import tenorGifSrc from '../../static/assets/gif/tenor.gif';
 
 export class QuizGame {
     constructor() {
@@ -57,7 +58,9 @@ export class QuizGame {
     }
 
     async main({ category, numberOfQuestions, timeInSeconds, onEnd }) {
-        // const animatioDiv = document.createElement('div');
+        const animatioDiv = document.createElement('img');
+        animatioDiv.src = tenorGifSrc;
+
         const quizGameDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
             (quizController) => {
                 const mainDiv = document.createElement('div');
