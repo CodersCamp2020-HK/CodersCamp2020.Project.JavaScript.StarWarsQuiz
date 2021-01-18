@@ -40,8 +40,8 @@
     button {
         font-family: typography.$family-el;
         min-height: 15%;
-        padding-top: 20px;
-        padding-bottom: 15px;
+        padding-top: 15px;
+        padding-bottom: 10px;
         @extend %common-center;
     }
 }
