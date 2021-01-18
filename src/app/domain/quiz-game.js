@@ -138,15 +138,17 @@ export class QuizGame {
                         this.buttonNext.element.classList.add('inactive');
                         if (!this.isCbCalled) {
                             this.currentSelectedAnswer = null;
-                            questionPicture.src = `./static/assets/img/modes/${quizController.category}/${
-                                quizController.correctAnswer[this.questionIndex].index
-                            }.jpg`;
-                            answersArray.forEach((but) => {
-                                but.clearClasses();
-                            });
-                            answersArray.forEach((answer, index) => {
-                                answer.setText(quizController.answers[this.questionIndex][index].name);
-                            });
+                            if (this.questionIndex < quizController.correctAnswer.length) {
+                                questionPicture.src = `./static/assets/img/modes/${quizController.category}/${
+                                    quizController.correctAnswer[this.questionIndex].index
+                                }.jpg`;
+                                answersArray.forEach((but) => {
+                                    but.clearClasses();
+                                });
+                                answersArray.forEach((answer, index) => {
+                                    answer.setText(quizController.answers[this.questionIndex][index].name);
+                                });
+                            }
                             this.updateElement(
                                 '.display-question-text',
                                 `${this.currentQuestionNumber}. ${questionText.questionText}`,

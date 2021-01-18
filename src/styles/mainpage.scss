@@ -188,6 +188,7 @@
 
   .mainpage-wrapper {
     height: 100%;
+    gap: 30px 4vw;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, auto);
     grid-template-areas:
@@ -245,5 +246,15 @@
     .logo {
       max-width: 250px;
     }
+
+    .mainpage__button--ranking,
+    .mainpage__button--rules,
+    .mainpage__button--start {
+      min-height: 50px;
+      font-size: 20px;
+      padding: 15px 0px 10px 0px;
+    }
+
+
   }
 }

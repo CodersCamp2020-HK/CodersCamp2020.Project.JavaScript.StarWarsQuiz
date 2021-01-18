@@ -70,10 +70,6 @@
         height: 100%;
     }
 
-    .result-wrapper {
-        margin-bottom: 5px;
-    }
-
     .summary-container * {
         order: 2;
     }
@@ -86,6 +82,7 @@
     .gameOverDiv {
         order: 1;
         word-spacing: normal;
+        font-size: 40px;
     }
 
     .computerScore_wrapper {
@@ -98,6 +95,7 @@
 
     .button-return,
     .play-again-button {
+        height: 100%;
         padding: 15px 0px 10px 0px;
     }
 }

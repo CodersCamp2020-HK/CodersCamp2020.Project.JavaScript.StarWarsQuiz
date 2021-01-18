@@ -1,6 +1,7 @@
 import { QuizGame } from './domain/quiz-game';
 import { Mainpage } from './components/Mainpage';
 import { Summary } from './components/Summary';
+import { convertSeconds } from './components/Timer';
 
 export const App = () => {
     const swquizz = document.querySelector('#swquiz-app');
@@ -45,7 +46,7 @@ export const App = () => {
                     });
                 },
             );
-            summary.generateSummary(timeInSeconds);
+            summary.generateSummary(convertSeconds(timeInSeconds));
             swquizz.appendChild(summary.summaryDiv);
         };
         quizGame
