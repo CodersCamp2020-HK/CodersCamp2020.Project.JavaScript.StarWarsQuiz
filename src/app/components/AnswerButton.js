@@ -1,6 +1,11 @@
 //import '../styles/AnswerButton.scss';
+
+import audioUrl from '../../static/assets/audio/saberdown.wav';
+
 export const generateAnswerButton = ({ text, onClick }) => {
     const state = { isSelectedAnswer: false, isCorrectAnswer: null };
+    const audioPlayer = new Audio(audioUrl);
+    audioPlayer.volume = 0.1;
 
     const button = document.createElement('button');
     button.classList.add('answer-button');
@@ -41,6 +46,8 @@ export const generateAnswerButton = ({ text, onClick }) => {
         view.element.addEventListener(
             'click',
             () => {
+                audioPlayer.pause();
+                audioPlayer.play();
                 onClick(view);
             },
             false,

@@ -1,11 +1,10 @@
 import { Button } from './Button';
 
 export const generateRulesButton = ({ modalDiv }) => {
-    const button = new Button('Rules');
-    button.element.className = 'mainpage__button mainpage__button--rules';
-    button.element.onclick = () => {
+    const button = new Button('Rules', () => {
         modalDiv.showModal();
-    };
+    });
+    button.element.className = 'mainpage__button mainpage__button--rules';
 
     return button.element;
 };
