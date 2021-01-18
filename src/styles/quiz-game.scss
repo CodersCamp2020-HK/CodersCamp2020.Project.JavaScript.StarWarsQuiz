@@ -14,8 +14,6 @@
 @import './Leaderboard.scss';
 @import './Ranking.scss';
 
-
-
 .quiz-game-wrapper {
     text-align: center;
     display: grid;
@@ -27,9 +25,9 @@
     grid-template-columns: 1fr 2.5fr 1fr;
     grid-template-rows: 1fr 4fr 1fr;
     grid-template-areas:
-        "logo question score"
-        "picture answers timer"
-        "points . next";
+        'logo question score'
+        'picture answers timer'
+        'points . next';
     gap: 5vh 5vw;
 }
 
@@ -41,6 +39,7 @@
 
     button {
         font-family: typography.$family-el;
+        min-height: 15%;
         padding-top: 20px;
         padding-bottom: 15px;
         @extend %common-center;
@@ -66,4 +65,73 @@
     color: colors.$primary-text;
 }
 
-;
+@media (max-width: 800px) {
+    .quiz-game-wrapper {
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 1fr 1fr 4fr 4fr 1fr;
+        gap: 1.5vh 2vw;
+        padding: 3vh 3vw;
+        grid-template-areas:
+            'score timer points'
+            'question question question'
+            'picture picture picture'
+            'answers answers answers'
+            'next next next';
+
+        .logo {
+            display: none;
+        }
+    }
+
+    .QuestionScoreComponent {
+        letter-spacing: -1px;
+        padding: 5px;
+        grid-area: score;
+    }
+
+    .deathStarDiv {
+        max-width: calc(4vw + 4vh);
+        max-height: calc(4vw + 4vh);
+        padding-right: 2px;
+    }
+
+    .timerAndDeathStarDiv {
+        flex-direction: row;
+        flex-wrap: wrap;
+        grid-area: timer;
+        align-items: center;
+        padding: 5px;
+        justify-content: center;
+    }
+
+    .timer-to-zero {
+        width: 30%;
+        padding: 0;
+    }
+
+    .pointsCounter_wrapper {
+        grid-area: points;
+    }
+
+    .display-question-wrapper {
+        background-color: none;
+        padding: 0px;
+        grid-area: question;
+        box-shadow: none;
+    }
+
+    .picture-question {
+        grid-area: picture;
+        height: 100%;
+    }
+
+    .answers-wrapper {
+        grid-area: answers;
+    }
+
+    button.answer-button {
+        height: 20%;
+        padding-top: 5px;
+        border-width: 2px;
+    }
+}

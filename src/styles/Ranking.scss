@@ -1,40 +1,66 @@
-.ranking-container {
+.summary-container .ranking-container {
     background-color: colors.$primary-background;
     color: colors.$primary-text;
     @extend %common-shadow;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
     @extend %common-border;
     padding: 20px;
-    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 2vh 2vw;
+    overflow: auto;
 }
 
-.ranking-current-player {
+.summary-container .ranking-current-player {
     color: colors.$secondary-green;
 }
 
-.ranking-list {
-    list-style-position: inside;
+.summary-container .ranking-list {
+    display: flex;
+    flex-direction: column;
     padding-left: 0;
     width: 100%;
+    height: 100%;
     font-family: typography.$family-text;
     overflow: auto;
+    counter-reset: mycounter;
+}
 
-    span:first-child {
-        margin-left: 20px;
-        font-family: typography.$family-el;
-    }
+.summary-container .ranking-list li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    counter-increment: mycounter;
+}
 
-    span:last-child {
-        float: right;
-        font-family: typography.$family-text;
-        margin-right: 5px;
-    }
+.summary-container .ranking-list li::before {
+    content: counter(mycounter)".";
+    font-family: typography.$family-text
+}
+
+.summary-container li span:first-child {
+    display: block;
+    font-family: typography.$family-text;
+    flex-grow: 2;
+    text-align: left;
+    margin-left: 1em;
+}
+
+li span:last-child {
+    display: block;
+    justify-self: right;
+    font-family: typography.$family-text;
+    margin-right: 5px;
+    justify-self: flex-end;
 }
 
 .ranking-name {
     color: colors.$primary-main;
-    @extend %typography-h6;
-    font-family: typography.$family-el;
+    @extend %typography-h5;
+    font-family: typography.$family-text;
+    letter-spacing: 5%;
+    line-height: 0.9;
+    margin-bottom: 0.5em;
 }
