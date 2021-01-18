@@ -10,8 +10,9 @@
   text-align: center;
   display: grid;
   max-width: 100vw;
-  height: 100vh;
-  padding: 5vh 5vw;
+  min-height: 100vh;
+  // padding: 5vh 5vw;
+  padding: 20px;
   margin-right: auto;
   margin-left: auto;
   grid-template-columns: 1fr 2.5fr 1fr;
@@ -38,7 +39,22 @@
     color: colors.$primary-text;
     border: 3px solid colors.$primary-background;
     @extend %typography-body;
-    margin-bottom: 20px;
+    margin: 20px;
+  }
+
+  .category-level-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .categories-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 
   .leaderboard-container {
@@ -47,9 +63,9 @@
     align-items: center;
   }
 
+
   .ranking-container {
-    justify-self: center;
-    align-self: center;
+    width: 30%;
   }
 
   .category-level-wrapper,
@@ -67,10 +83,10 @@
     // height: 100%;
 
 
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    // display: flex;
+    // justify-content: space-evenly;
+    // align-items: flex-start;
+    // flex-wrap: wrap;
     background-color: colors.$primary-background;
 
 
@@ -107,40 +123,92 @@
     @extend %common-shadow;
     @extend %common-border;
   }
+
+  .ranking-list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: typography.$family-text;
+    overflow: auto;
+    counter-reset: mycounter;
+  }
+
+  .ranking-list li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    counter-increment: mycounter;
+  }
+
+  .ranking-list li::before {
+    content: counter(mycounter)".";
+    font-family: typography.$family-text
+  }
+
+  li span:first-child {
+    display: block;
+    font-family: typography.$family-text;
+    flex-grow: 2;
+    text-align: left;
+    margin-left: 1em;
+  }
+
+  li span:last-child {
+    display: block;
+    justify-self: right;
+    font-family: typography.$family-text;
+    margin-right: 5px;
+    justify-self: flex-end;
+  }
 }
 
+
+
+// ------------------MEDIA ----------------------
+// ------------------MEDIA ----------------------
+// ------------------MEDIA ----------------------
 @media only screen and (max-width: 800px) {
 
   .mainpage-wrapper {
     grid-template-columns: 1fr;
-    // grid-template-rows: 1fr fr 1fr;
+    grid-template-rows: repeat(6, auto);
     grid-template-areas:
       "logo"
       "user"
       "categories"
       "ranking"
-      "start"
-      "rules";
-  }
+      "rules"
+      "start";
 
-  .inputName_wrapper {
-    flex-direction: column;
-    padding: 20px;
-  }
+    button {
+      max-height: 40px;
+    }
 
-  .inputName_user {
-    width: 100%;
-    margin-right: 0;
 
-  }
+    .ranking-container {
+      min-width: 90%;
+    }
 
-  .mainpage__button {
-    order: 1;
-  }
+    .inputName_wrapper {
+      flex-direction: column;
+      padding: 20px;
+    }
 
-  .logo {
-    max-height: 100px;
-    width: auto;
+    .inputName_user {
+      width: 100%;
+      margin-right: 0;
 
+    }
+
+    .mainpage__button {
+      order: 1;
+      margin: 0;
+    }
+
+    .logo {
+      max-width: 50%;
+    }
   }
 }

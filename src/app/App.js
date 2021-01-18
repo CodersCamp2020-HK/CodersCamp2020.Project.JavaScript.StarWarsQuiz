@@ -5,8 +5,8 @@ import { Summary } from './components/Summary';
 export const App = () => {
     const swquizz = document.querySelector('#swquiz-app');
     const mainpage = new Mainpage();
-    const numberOfQuestions = 5;
-    const timeInSeconds = 3;
+    const numberOfQuestions = 10;
+    const timeInSeconds = 120;
     const onClickStart = () => {
         const category = mainpage.categoriesBtns.level;
         const level = mainpage.levelsBtns.level;
