@@ -35,6 +35,7 @@ export class Summary {
         this.wrapper.className = 'result-wrapper';
 
         this.wrapper.append(this.p, this.score, this.opponent, this.ranking.element);
+        this.ranking.markCurrentPlayer();
 
         this.summaryDiv.append(
             this.logo,
