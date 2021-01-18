@@ -13,7 +13,7 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 -   [Anna Marszałek](https://github.com/Ania-Em)
 -   [Mateusz Baciak](https://github.com/bat098)
 -   [Mateusz Król](https://github.com/KrolMateusz)
--   [Norbert Lipiński](https://github.com/Baarosh)
+-   [Mateusz Kmieć](https://github.com/Haivex)
 -   [Tomasz Dudek](https://github.com/dudeek)
 -   [Weronika Dziedzic](https://github.com/blackrabbit2)
 
@@ -29,13 +29,8 @@ Powodzenia, niech Moc będzie z Tobą!
 
 ### Cel projektu
 
-<!--- TODO: dodać opis
-Przykład:
-Celem projektu było dostarczenie aplikacji pozwalającej sprawdzić swoją wiedzę o postaciach,
-pojazdach oraz statkach kosmicznych występujących w Gwiezdnych Wojnach.
-Dodatkowo gracz rywalizował z komputerem w trakcie grania w quiz.
-Komputer — zależnie od ustawień — odpowiada losowo lub inteligentnie — próbując rozpoznać przedstawiany obraz za pomocą Google Vision API.
--->
+Celem projektu było napisanie aplikacji wykorzystującej dotychczas nabytą wiedzę z następujących technologi: html, css, javascript.
+Zespół projektowy zdecydował się na aplikacje - quiz związaną z tematyką uniwersum Gwiezdnych Wojen. Aplikacja w formie testu jednokrotnego wyboru sprawdza czy użytkownik  rozpoznaję, w zależności od wyboru kategorii, osoby, pojazdy lub statki kosmiczne.
 
 Aplikacja została wykonana wg dostarczonych przez organizatorów CodersCamp wymagań.
 Szablon projektu dostępny jest [TUTAJ](https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz/).
@@ -44,62 +39,46 @@ Szablon projektu dostępny jest [TUTAJ](https://github.com/CodersCamp2020/Coders
 
 #### Menu Główne
 
-W menu głównym należy wybrać tryb gry (domyślnie jest to People):
+W menu głównym należy wpisać imię gracza. Następnie wybrać kategorię rozgrywki (domyślnie jest to People). Możliwe Kategorie do wyboru:
 
 -   People — rozpoznawanie jaka postać z uniwersum Star Wars została wyświetlona
 -   Vehicles — rozpoznawanie jaki pojazd z uniwersum Star Wars został wyświetlony
 -   Starships — rozpoznawanie jaki statek kosmiczny z uniwersum Star Wars został wyświetlony
 
+Ostatni wybór dotyczy poziomu trudności przeciwnika. Możliwe kategorie do wyboru:
+
+-   Padawan - poziom trudności określony jako łatwy
+-   Jedi Knight - poziom trudności określony jako średni
+-   Jedi Master - poziom trudności określony jaki trudny
+
+W zależności od poziomu trudności przeciwnik będzie uzyskiwał odpowiednią ilość punktów.
+
+##### Zasady gry
+
+Zasady gry wyświetlane sa w formie modalu po naciśnięciu przycisku RULES w menu głównym gry.
+
+##### Sala Chwały / Ranking
+
+Rankin graczy wyświetlany jest po naciśnięciu przycisku RANKING w menu głównym gry.
+Istnieją trzy osobne rankingi dla każdej z kategori gry.
+
 #### Rozgrywka — Quiz
 
-<!--- TODO: dodać opis
-Przykład:
-Rozgrywka polega na odpowiadaniu na rozpoznawaniu co lub kto wyświetla się na obrazie po lewej stronie. Do wyboru są 4 opcje, z czego zawsze tylko jedna jest prawidłowa. W tym samym czasie obraz rozpoznaje także komputer, który rywalizuje z graczem (wyniki komputera nie zapisują się w rankingu). Wynik gracza z jednej gry to ilość dobrych odpowiedzi.
-
-Czas pozostały do końca rozgrywki odlicza miecz świetlny na dole ekranu.
--->
-
-#### Zasady gry
-
-Po wyborze trybu aplikacji pokazuje zasady gry dla tego trybu.
-
-### Sala Chwały / Ranking
-
-Po przejściu do Hall of Fame pokazywane są 3 najlepsze wyniki graczy, grających na danym komputerze.
-Wyniki są pokazywane osobno, dla każdego z trybów.
+Rozgrywka polega na rozpoznawaniu przez użytkownika postaci, pojazdów lub statków kosmicznych (w zależności od wyboru opcji w menu głównym). Pytanie reprezentowane jest przez obrazek oraz zapytanie kto lub co znajduję się na obrazku. W środkowej części ekranu wyświetlane są 4 możliwe odpowiedzi z czego tylko jedna jest poprawna. Po zaznaczeniu (kliknięciu myszką) wybaranej odpowiedzi należy kliknąc przysisk NEXT w celu przejścia od kolejnego pytania. W momencie klikniącia przycisku NEXT aplikacja sprawdzi poprawność zaznaczonej odpowiedzi i poinformuję użytkownika poprzez podświetlenie wybranej odpowiedzi kolorem zielonym w przypadku gdy zaznaczono poprawną odpowiedź. W przypadku niepoprawnego wyboru odpowiedź zaznaczona przez użytkownika zostanie podświetlona na czerwono a prawidłowa odpowiedź na zielono. W każdym quizie losowanycj jest 10 pytań.
 
 #### Ustawienia
 
-<!--- TODO: dodać opis
-Przykład:
-W ustawieniach aplikacji możesz zdecydować, czy będziesz konkurować z komputerem losowym, czy bardziej inteligentym.
-Aby walczyć przeciw komputerowi silnym w mocy, należy w ustawieniach podać ApiKey, który umożliwia wykonywanie zapytań do Google Vision Api.
-Taki API Key można wygenerować w następujący sposób.
-1. Załóż konto w Google Cloud Platform wg [tej instrukcji](https://flyonthecloud.com/pl/blog/konto-gcp-rejestracja-konfiguracja/#Zakladanie_konta_Google_Cloud_Platform).
-2. Załóż projekt, aktywuj dla niego Google Vision Api i wygeneruj swój API Key, jak opisano [TUTAJ](https://support.foxtrotalliance.com/hc/en-us/articles/360024282351-How-To-Use-Google-Cloud-Vision-API-OCR-Image-Analysis-).
-3. Wklej swój API Key w odpowiednim polu w ustawieniach gry. Spokojnie, Twój API Key będzie przetrzymywany jedynie w pamięci programu i wykorzystywany tylko do autoryzacji zapytań do Google Vision API.
-Przy przeładowaniu strony, musisz podać go ponownie.
--->
+Ustawienia aplikacji dostępne są w menu głównym. Uzytkownik może wybrać jedną z trzech kategori rozgrywki (postacie, pojazdy lub statki kosmiczne). Możliwy jest również wyboru poziomu trudności rozgrywki (Padawan - poziom łatwy, Jedi Knight - poziom średni, Jedi Master - poziom trudny). Ponadto w celu rozpoczęcia rozgrywki należy wypełnic pole z imieniem gracza.
 
 ### Zmiany wprowadzone w wymaganiach
 
-<!--- TODO: dodać opis
-Przykład:
-    Nie wprowadzono żadnych zmian w wymaganiach względem projektu pierwotnego.
-    Lekkim uproszeniom uległ interfejs użytkownika.
-    Nie wykonano wersji responsywnej, dostosowanej to telefonów i tabletów.
-    Aplikacja najlepszy efekt sprawia na większych ekranach.
-    Możesz wtedy zagłębić się w świat Gwiezdnych Wojen niczym w samo jądro Galaktyki!
--->
+Lekkim wizualnym zmianą uległ projekt dostarczony przez grafika.
 
 ### Zrealizowane dodatkowe zadania
 
-<!--- TODO: dodać opis
-Przykład:
-    Nasz zespół zrealizował także zadania dodatkowe, wykraczające poza zakres kursu.
+Nasz zespół zrealizował także zadania dodatkowe, wykraczające poza zakres kursu
 
-    1. Zostało wykonane zadanie dodatkowe z Google Vision API.
--->
+1. Utowrzony został szablon graficzny aplikacji w programie Figma.
 
 ## Development aplikacji
 
@@ -114,13 +93,11 @@ W trakcie developmentu wykorzystujemy:
 -   CSS & SCSS, do stylowania aplikacji
 -   HTML, do definiowania struktury aplikacji
 
-<!--- TODO: dodać opis
-Przykład:
+Pozostałe narzędzia wspomagające pracę:
+
+-   Lodash do pracy z tablicami/obiektami
+-   Jest.js do pisania tekstów jednostkowych
 -   LocalStorage, do zapisywania najlepszych wyników graczy
--   Jest.js do pisania testów jednostkowych
--   Fetch, do łączenia z SWApi, Google Vision APi oraz pobierania obrazów z zasobów aplikacji
--   JSON Server — do działania aplikacji lokalnie, jeśli zostanie wykorzystany limit na zapytania do SWApi
--->
 
 ### Uruchomienie projektu
 
