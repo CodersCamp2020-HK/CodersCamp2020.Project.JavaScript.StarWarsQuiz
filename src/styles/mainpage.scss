@@ -67,13 +67,15 @@
     padding-bottom: 20px;
   }
 
-  .mainpage__button--ranking {
+  .mainpage__button--ranking,
+  .mainpage__button--menu {
     width: 18vw;
   }
 
   .leaderboard-container {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     // align-items: center;
   }
 
@@ -219,7 +221,8 @@
       }
     }
 
-    .mainpage__button--ranking {
+    .mainpage__button--ranking,
+    .mainpage__button--menu {
       width: 100%;
     }
 
