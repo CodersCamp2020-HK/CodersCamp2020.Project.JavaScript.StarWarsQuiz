@@ -115,6 +115,7 @@ export class QuizGame {
                 timerAndDeathStarDiv.appendChild(timer);
 
                 this.buttonNext = new Button('NEXT', () => {
+                    answersArray.forEach((answer) => (answer.element.disabled = true));
                     this.buttonNext.element.disabled = true;
                     this.buttonNext.element.classList.remove('active');
                     this.buttonNext.element.classList.add('inactive');
@@ -153,6 +154,7 @@ export class QuizGame {
                             this.buttonNext.element.disabled = true;
                             this.buttonNext.element.classList.remove('active');
                             this.buttonNext.element.classList.add('inactive');
+                            answersArray.forEach((answer) => (answer.element.disabled = false));
                         }
                     }, 2000);
 

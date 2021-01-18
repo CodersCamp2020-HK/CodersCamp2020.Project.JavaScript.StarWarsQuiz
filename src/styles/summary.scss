@@ -20,7 +20,7 @@
         'logo wrapper gameover'
         '. wrapper .'
         'return wrapper again';
-    gap: 5vh 5vw;
+    gap: 4vh 4vw;
 }
 
 .result-wrapper {
@@ -70,6 +70,10 @@
         height: 100%;
     }
 
+    .result-wrapper {
+        margin-bottom: 5px;
+    }
+
     .summary-container * {
         order: 2;
     }
@@ -95,6 +99,5 @@
     .button-return,
     .play-again-button {
         padding: 15px 0px 10px 0px;
-        font-size: 20px;
     }
 }

@@ -5,7 +5,7 @@ class RandData {
         const questionsArr = _.sampleSize(categoryArr, num);
         const answers = [];
         for (let i = 0; i < num; i++) {
-            const diffArr = categoryArr.filter((item) => item.index !== questionsArr[i]);
+            const diffArr = categoryArr.filter((item) => item.index !== questionsArr[i].index);
             const wrongAwnswers = _.sampleSize(diffArr, 3);
             const answer = [
                 { ...questionsArr[i], correct: true },
@@ -19,7 +19,6 @@ class RandData {
             questionsArr,
             answers,
         };
-        console.log(output);
         return output;
     }
 }

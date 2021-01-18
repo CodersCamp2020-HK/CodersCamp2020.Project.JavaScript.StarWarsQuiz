@@ -45,7 +45,7 @@ export const App = () => {
                     });
                 },
             );
-            summary.generateSummary();
+            summary.generateSummary(timeInSeconds);
             swquizz.appendChild(summary.summaryDiv);
         };
         quizGame
