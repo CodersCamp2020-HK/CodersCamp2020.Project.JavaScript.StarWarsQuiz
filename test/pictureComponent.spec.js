@@ -14,7 +14,7 @@ describe('generatePictureQuestion', () => {
     });
 
     it('should set correct src attribute', () => {
-        const expectedSrc = `/static/assets/img/modes/${questionCategory}/${pictureNumber}.jpg`;
+        const expectedSrc = `./static/assets/img/modes/${questionCategory}/${pictureNumber}.jpg`;
         expect(element.getAttribute('src')).toEqual(expectedSrc);
     });
 });
