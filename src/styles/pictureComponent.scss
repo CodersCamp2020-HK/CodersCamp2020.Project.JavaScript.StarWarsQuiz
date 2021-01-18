@@ -1,7 +1,8 @@
 .picture-question {
     height: 100%;
-    width:100%;
+    width: 100%;
     @extend %common-border;
     @extend %common-shadow;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: black;
 }

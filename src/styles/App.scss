@@ -14,6 +14,27 @@ sans-serif;
     border: none;
 }
 
+// spa {
+//     @exd %ypography-h5;
+// }
+
+// button {
+//     margin: 10px;
+//     min-width: 240px;
+//     background-color: colors.$primary-background;
+//     color: colors.$secondary-inactive;
+//     @extend %common-shadow-green;
+//     border3px olid colors.$rimry-bakground;
+//     @extnd %typographyutton-res;
+//     @xend %common-border;
+// }
+
+// .button-selected {
+//     border: 3px solid colors.$secondary-green;
+//     @extend %common-shado-grn-ohover
+// }
+
+
 button {
     cursor: pointer;
     outline: none;
@@ -21,7 +42,7 @@ button {
 }
 
 body {
-    font-family: $font;
+    // font-family: $font;
     @extend %background-image;
     background-position: center;
 }

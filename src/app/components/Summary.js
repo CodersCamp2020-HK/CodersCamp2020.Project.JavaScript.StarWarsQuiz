@@ -9,12 +9,12 @@ import { updateRanking } from '../infrastructure/updateRanking';
 import { viewScore } from './viewScore';
 
 export class Summary {
-    constructor(name, points, level, numberOfQuestion, correctAnswers, onReturn, hereWeGoAgain) {
+    constructor(name, points, level, numberOfQuestion, correctAnswers, category, onReturn, hereWeGoAgain) {
         this.playAgainBtn = generatePlayAgainButton({ text: 'Play again', onClick: hereWeGoAgain });
         this.logo = logoPicture();
         this.returnBtn = generateReturnButton({ text: 'Return', onClick: onReturn });
         this.gameOver = new GameOver('game over');
-        this.rankingData = updateRanking({ name, points, difficultyLevel: level });
+        this.rankingData = updateRanking({ name, points, difficultyLevel: category });
         this.ranking = generateRanking({
             rankingObject: this.rankingData,
             rankingName: 'ranking',
@@ -23,6 +23,7 @@ export class Summary {
         this.opponent = ComputerScore(computerScore(level, numberOfQuestion), 'The opponent');
         this.score = viewScore({ correctAnswers: correctAnswers, points: points });
         this.summaryDiv = document.createElement('div');
+        this.summaryDiv.classList.add('summary-container');
     }
 
     generateSummary(seconds) {

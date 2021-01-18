@@ -3,7 +3,7 @@ export const InputName = () => {
     const wrapperElement = document.createElement('div');
     const userElement = document.createElement('p');
     const inputElement = document.createElement('input');
-    inputElement.placeholder = 'Write your name here';
+    inputElement.placeholder = 'Your name';
     wrapperElement.appendChild(userElement);
     wrapperElement.appendChild(inputElement);
     wrapperElement.className = 'inputName_wrapper';
