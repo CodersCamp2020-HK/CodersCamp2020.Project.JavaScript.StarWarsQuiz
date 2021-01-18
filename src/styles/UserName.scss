@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 15px;
     grid-area: user;
     text-align: center;
     height: 100%;
@@ -21,15 +21,17 @@
     @extend %typography-body;
     @extend %common-border;
     @extend %common-shadow;
-    padding: 2rem;
-    padding-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    padding-bottom: 0.7rem;
     outline: none;
     border: 2px solid colors.$primary-main;
     background-color: colors.$primary-background;
     color: colors.$primary-text;
     transition: all 0.2s ease-in-out;
     width: 100%;
-    margin: 20px 10px;
+    margin: 0px 10px;
 }
 
 

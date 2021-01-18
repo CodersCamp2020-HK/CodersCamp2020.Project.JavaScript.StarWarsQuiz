@@ -57,6 +57,7 @@ export class QuizGame {
     }
 
     async main({ category, numberOfQuestions, timeInSeconds, onEnd }) {
+        // const animatioDiv = document.createElement('div');
         const quizGameDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
             (quizController) => {
                 const mainDiv = document.createElement('div');
@@ -82,6 +83,9 @@ export class QuizGame {
                 const { element: answerDiv, views: answersArray } = this.createAnswersArray({
                     answerObjects: quizController.answers[this.questionIndex],
                     onClick: (answer) => {
+                        this.buttonNext.element.disabled = false;
+                        this.buttonNext.element.classList.remove('inactive');
+                        this.buttonNext.element.classList.add('active');
                         if (this.currentSelectedAnswer) {
                             this.currentSelectedAnswer.unselect();
                         }
@@ -110,8 +114,11 @@ export class QuizGame {
                 timerAndDeathStarDiv.appendChild(deathStarParagraph);
                 timerAndDeathStarDiv.appendChild(timer);
 
-                const buttonNext = new Button('NEXT', () => {
-                    buttonNext.element.disabled = true;
+                this.buttonNext = new Button('NEXT', () => {
+                    answersArray.forEach((answer) => (answer.element.disabled = true));
+                    this.buttonNext.element.disabled = true;
+                    this.buttonNext.element.classList.remove('active');
+                    this.buttonNext.element.classList.add('inactive');
                     if (this.currentSelectedAnswer.text() == quizController.correctAnswer[this.questionIndex].name) {
                         this.updateCorrectAnswer({ pointsController: pointsController });
                     } else {
@@ -121,34 +128,50 @@ export class QuizGame {
                             pointsController: pointsController,
                         });
                     }
+
                     this.currentQuestionNumber++;
                     this.questionIndex++;
-                    if (this.currentQuestionNumber > numberOfQuestions && !this.isCbCalled) {
-                        this.isCbCalled = true;
-                        return onEnd(this.points, this.numOfCorrectAnswers);
-                    }
 
                     setTimeout(() => {
+                        this.buttonNext.element.disabled = true;
+                        this.buttonNext.element.classList.remove('active');
+                        this.buttonNext.element.classList.add('inactive');
                         if (!this.isCbCalled) {
-                            questionPicture.src = `/static/assets/img/modes/${quizController.category}/${
-                                quizController.correctAnswer[this.questionIndex].index
-                            }.jpg`;
-                            answersArray.forEach((but) => {
-                                but.clearClasses();
-                            });
-                            answersArray.forEach((answer, index) => {
-                                answer.setText(quizController.answers[this.questionIndex][index].name);
-                            });
+                            this.currentSelectedAnswer = null;
+                            if (this.questionIndex < quizController.correctAnswer.length) {
+                                questionPicture.src = `./static/assets/img/modes/${quizController.category}/${
+                                    quizController.correctAnswer[this.questionIndex].index
+                                }.jpg`;
+                                answersArray.forEach((but) => {
+                                    but.clearClasses();
+                                });
+                                answersArray.forEach((answer, index) => {
+                                    answer.setText(quizController.answers[this.questionIndex][index].name);
+                                });
+                            }
                             this.updateElement(
                                 '.display-question-text',
                                 `${this.currentQuestionNumber}. ${questionText.questionText}`,
                             );
-                            buttonNext.element.disabled = false;
+                            this.buttonNext.element.disabled = true;
+                            this.buttonNext.element.classList.remove('active');
+                            this.buttonNext.element.classList.add('inactive');
+                            answersArray.forEach((answer) => (answer.element.disabled = false));
+                        }
+                    }, 2000);
+
+                    setTimeout(() => {
+                        if (this.currentQuestionNumber > numberOfQuestions && !this.isCbCalled) {
+                            this.isCbCalled = true;
+                            return onEnd(this.points, this.numOfCorrectAnswers);
                         }
                     }, 2000);
                 });
 
-                buttonNext.element.classList.add('button-next');
+                this.buttonNext.element.classList.add('button-next');
+                this.buttonNext.element.classList.add('inactive');
+                this.buttonNext.element.classList.remove('active');
+                this.buttonNext.element.disabled = true;
 
                 mainDiv.appendChild(logo);
                 mainDiv.appendChild(questionText.generateQuestion({ questionNumber: this.currentQuestionNumber }));
@@ -157,7 +180,7 @@ export class QuizGame {
                 mainDiv.appendChild(answerDiv);
                 mainDiv.appendChild(timerAndDeathStarDiv);
                 mainDiv.appendChild(pointsWrapper);
-                mainDiv.appendChild(buttonNext.element);
+                mainDiv.appendChild(this.buttonNext.element);
 
                 return mainDiv;
             },

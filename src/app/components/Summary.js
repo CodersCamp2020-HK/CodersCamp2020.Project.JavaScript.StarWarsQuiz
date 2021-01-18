@@ -26,15 +26,16 @@ export class Summary {
         this.summaryDiv.classList.add('summary-container');
     }
 
-    generateSummary(seconds) {
+    generateSummary({ minutes, seconds }) {
         this.p = document.createElement('p');
         this.p.className = 'padawan-text';
-        this.p.textContent = `The force is strong in you young Padawan! During ${seconds} seconds :`;
+        this.p.textContent = `The force is strong in you young Padawan! During ${minutes}:${seconds}:`;
 
         this.wrapper = document.createElement('div');
         this.wrapper.className = 'result-wrapper';
 
         this.wrapper.append(this.p, this.score, this.opponent, this.ranking.element);
+        this.ranking.markCurrentPlayer();
 
         this.summaryDiv.append(
             this.logo,

@@ -20,7 +20,7 @@
         'logo wrapper gameover'
         '. wrapper .'
         'return wrapper again';
-    gap: 5vh 5vw;
+    gap: 4vh 4vw;
 }
 
 .result-wrapper {
@@ -82,6 +82,7 @@
     .gameOverDiv {
         order: 1;
         word-spacing: normal;
+        font-size: 40px;
     }
 
     .computerScore_wrapper {
@@ -94,7 +95,7 @@
 
     .button-return,
     .play-again-button {
+        height: 100%;
         padding: 15px 0px 10px 0px;
-        font-size: 20px;
     }
 }

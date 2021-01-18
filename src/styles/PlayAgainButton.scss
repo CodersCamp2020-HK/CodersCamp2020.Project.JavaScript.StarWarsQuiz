@@ -4,6 +4,7 @@
     @extend %typography-button;
     background-color: colors.$primary-background;
     color: colors.$primary-text;
+    height: 100%;
 }
 
 .play-again-button:hover {
@@ -16,7 +17,7 @@
     border-color: rgba(255, 197, 0, 0.3);
 }
 
-.play-again-button:focus{
+.play-again-button:focus {
     @extend %common-shadow-onhover;
-    outline:none;
+    outline: none;
 }
