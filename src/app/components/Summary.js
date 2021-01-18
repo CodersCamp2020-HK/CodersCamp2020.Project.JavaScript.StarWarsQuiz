@@ -14,7 +14,6 @@ export class Summary {
         this.logo = logoPicture();
         this.returnBtn = generateReturnButton({ text: 'Return', onClick: onReturn });
         this.gameOver = new GameOver('game over');
-        this.summaryDiv = document.createElement('div');
         this.rankingData = updateRanking({ name, points, difficultyLevel: level });
         this.ranking = generateRanking({
             rankingObject: this.rankingData,
@@ -23,6 +22,7 @@ export class Summary {
         });
         this.opponent = ComputerScore(computerScore(level, numberOfQuestion), 'The opponent');
         this.score = viewScore({ correctAnswers: correctAnswers, points: points });
+        this.summaryDiv = document.createElement('div');
     }
 
     generateSummary(seconds) {
