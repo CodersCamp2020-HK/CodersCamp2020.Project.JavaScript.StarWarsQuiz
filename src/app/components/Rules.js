@@ -1,15 +1,15 @@
-import { Button } from './Button';
+// imporst { Button } from './Button';
 const fs = require('fs');
 
-const generateCloseRulesButton = ({ modalDiv }) => {
-    const button = new Button('Close');
-    button.element.className = 'modal__button--close';
-    button.element.onclick = () => {
-        modalDiv.close();
-    };
+// const generateCloseRulesButton = ({ modalDiv }) => {
+//     const button = new Button('Close');
+//     button.element.className = 'modal__button--close';
+//     button.element.onclick = () => {
+//         modalDiv.close();
+//     };
 
-    return button.element;
-};
+//     return button.element;
+// };
 
 export const generateRulesModal = () => {
     const rulesText = fs.readFileSync('./src/app/components/Rules.txt', { encoding: 'utf-8' });
@@ -19,9 +19,12 @@ export const generateRulesModal = () => {
 
     const header = document.createElement('h5');
     header.className = 'modal__header';
-    header.textContent = 'MODE RULES';
+    header.textContent = 'mode rules';
 
-    const closeButton = generateCloseRulesButton({ modalDiv: dialog });
+    // const closeButton = generateCloseRulesButton({ modalDiv: dialog });~
+    dialog.onclick = () => {
+        dialog.close();
+    };
 
     const p = document.createElement('p');
     p.className = 'modal__text';
@@ -33,7 +36,7 @@ export const generateRulesModal = () => {
     dialog.appendChild(div);
     div.appendChild(header);
     div.appendChild(p);
-    div.appendChild(closeButton);
+    // div.appendChild(closeButton);
 
     return dialog;
 };

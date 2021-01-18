@@ -11,45 +11,47 @@ const selectedButton = (button, ...buttons) => {
 
 export const buttonCreated = (tablica) => {
     let buttonsText;
+    const p = document.createElement('p');
 
     if (tablica == 'categories') {
+        p.textContent = 'Categories';
         buttonsText = ['Vehicles', 'People', 'Starships'];
     } else if (tablica == 'levels') {
+        p.textContent = 'Level of the opponent';
         buttonsText = ['Padawan', 'Jedi Knight', 'Jedi Master'];
     }
 
-    const view = {
-        level: buttonsText[0],
-    };
-
-    const buttonsDiv = document.createElement('div');
-    buttonsDiv.className = `${buttonsText}Div`;
+    let level = buttonsText[0];
 
     const button1 = new Button(buttonsText[0]);
     const button2 = new Button(buttonsText[1]);
     const button3 = new Button(buttonsText[2]);
+    p.className = 'category-level-paragraph';
     button1.element.className = 'button1 active';
     button2.element.className = 'button2 deactive';
     button3.element.className = 'button3 deactive';
 
     button1.element.addEventListener('click', () => {
         selectedButton(button1, button2, button3);
-        view.level = buttonsText[0];
+        view.level = buttonsText[0].toLowerCase();
     });
 
     button2.element.addEventListener('click', () => {
         selectedButton(button2, button1, button3);
-        view.level = buttonsText[1];
+        view.level = buttonsText[1].toLowerCase();
     });
 
     button3.element.addEventListener('click', () => {
         selectedButton(button3, button2, button1);
-        view.level = buttonsText[2];
+        view.level = buttonsText[2].toLowerCase();
     });
 
     console.log(button1.element);
-    buttonsDiv.append(button1.element, button2.element, button3.element);
-    view.element = buttonsDiv;
+    const elements = [p, button1.element, button2.element, button3.element];
+    const view = {
+        level: level.toLowerCase(),
+        elements: elements,
+    };
     return view;
 };
 

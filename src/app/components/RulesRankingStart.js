@@ -23,3 +23,10 @@ export const generateStartButton = ({ onClick }) => {
 
     return button.element;
 };
+
+export const generateMenuButton = ({ onClick }) => {
+    const button = new Button('Menu', onClick);
+    button.element.className = 'mainpage__button mainpage__button--menu';
+
+    return button.element;
+};

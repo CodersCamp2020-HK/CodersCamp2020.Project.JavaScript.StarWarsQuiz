@@ -1,4 +1,4 @@
-import '../../styles/UserName';
+// import '../../styles/UserName';
 export const InputName = () => {
     const wrapperElement = document.createElement('div');
     const userElement = document.createElement('p');

@@ -1,6 +1,3 @@
-@use './colors';
-@use './typography';
-
 .timer-to-zero {
     @extend %typography-h5 ;
     background-color: colors.$primary-background;

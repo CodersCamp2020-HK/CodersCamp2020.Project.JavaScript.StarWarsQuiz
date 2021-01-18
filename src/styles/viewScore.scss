@@ -1,13 +1,19 @@
-@use './colors';
-@use './common';
-@use './typography'
-
 .viewScoreDiv {
   text-align: center;
-  text-transform: uppercase;
-  @extend %common-shadow;
   background-color: colors.$primary-background;
   color: colors.$primary-text;
+  width: 100%;
+  @extend %typography-h6; 
+  @extend %common-shadow;
+  @extend %common-border;
+  padding:1vh 2vw;
+  margin-bottom: 3vh;
+  // letter-spacing: 
+}
+
+.fontscore{
+  @extend %typography-h6; 
+  line-height: 0.8;
 }
 
 .greenHighlight {
