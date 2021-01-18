@@ -32,87 +32,7 @@ export class Mainpage {
         this.rankingDiv.style.display = 'none';
     }
 
-    ranking() {
-        let leaderBoard = generateLeaderBoard();
-        let currentSelected = null;
-        let button1 = new Button('Padawan', () => {
-            if (currentSelected) {
-                currentSelected.element.classList.remove('button-selected');
-            }
-            currentSelected = button1;
-            currentSelected.element.classList.add('button-selected');
-            let rankingObject = JSON.parse(localStorage.getItem('padawan'));
-            let generatedRanking = generateRanking({
-                rankingObject,
-                rankingName: 'padawan',
-                currentPlayerName: undefined,
-            });
-            leaderBoard.selectRanking(generatedRanking);
-        });
-        let button2 = new Button('Jedi Knight', () => {
-            if (currentSelected) {
-                currentSelected.element.classList.remove('button-selected');
-            }
-            currentSelected = button2;
-            currentSelected.element.classList.add('button-selected');
-            let rankingObject = JSON.parse(localStorage.getItem('jedi knight'));
-            let generatedRanking = generateRanking({
-                rankingObject,
-                rankingName: 'jedi knight',
-                currentPlayerName: undefined,
-            });
-            leaderBoard.selectRanking(generatedRanking);
-        });
-        let button3 = new Button('Jedi Master', () => {
-            if (currentSelected) {
-                currentSelected.element.classList.remove('button-selected');
-            }
-            currentSelected = button3;
-            currentSelected.element.classList.add('button-selected');
-            let rankingObject = JSON.parse(localStorage.getItem('jedi master'));
-            let generatedRanking = generateRanking({
-                rankingObject,
-                rankingName: 'jedi master',
-                currentPlayerName: undefined,
-            });
-            leaderBoard.selectRanking(generatedRanking);
-        });
-        let categoriesButtons = [button1, button2, button3];
-        leaderBoard.addLevelsButtons(categoriesButtons);
-        return leaderBoard.element;
-    }
-
-    generateMainpage({ onClickStart }) {
-        this.mainpageDiv = document.createElement('div');
-        this.mainpageDiv.className = 'mainpage-wrapper';
-        this.menuBtn = generateMenuButton({
-            onClick: () => {
-                this.rankingDiv.style.display = 'none';
-                this.categoryLevelWrapper.style.display = 'flex';
-                this.categoryLevelWrapper.innerHTML = '';
-                for (const element of this.categoriesBtns.elements) {
-                    this.categoryLevelWrapper.appendChild(element);
-                }
-                for (const element of this.levelsBtns.elements) {
-                    this.categoryLevelWrapper.appendChild(element);
-                }
-                this.menuBtn.replaceWith(this.rankingBtn);
-            },
-        });
-        this.rankingBtn = generateRankingButton({
-            onClick: () => {
-                this.rankingDiv.style.gridArea = 'categories';
-                this.rankingDiv.style.display = 'flex';
-                this.categoryLevelWrapper.style.display = 'none';
-                this.categoryLevelWrapper.innerHTML = '';
-                this.rankingBtn.replaceWith(this.menuBtn);
-            },
-        });
-        this.rulesBtn = generateRulesButton({ modalDiv: this.rulesModal });
-        this.startBtn = generateStartButton({
-            onClick: onClickStart,
-        });
-
+    replaceRankingWithCategories() {
         this.rankingDiv.style.display = 'none';
         this.categoryLevelWrapper.style.display = 'flex';
         this.categoryLevelWrapper.innerHTML = '';
@@ -123,6 +43,72 @@ export class Mainpage {
             this.categoryLevelWrapper.appendChild(element);
         }
         this.menuBtn.replaceWith(this.rankingBtn);
+    }
+
+    replaceCategoriesWithRanking() {
+        this.rankingDiv.style.gridArea = 'categories';
+        this.rankingDiv.style.display = 'flex';
+        this.categoryLevelWrapper.style.display = 'none';
+        this.categoryLevelWrapper.innerHTML = '';
+        this.rankingBtn.replaceWith(this.menuBtn);
+    }
+
+    titleCase(str) {
+        str = str.toLowerCase().split(' ');
+        for (var i = 0; i < str.length; i++) {
+            str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+        }
+        return str.join(' ');
+    }
+
+    generateRankingLevelButton(buttonText, currentSelected, leaderBoard) {
+        const button = new Button(this.titleCase(buttonText), () => {
+            if (currentSelected) {
+                currentSelected.element.classList.remove('button-selected');
+            }
+            currentSelected = button;
+            currentSelected.element.classList.add('button-selected');
+            let rankingObject = JSON.parse(localStorage.getItem(buttonText));
+            let generatedRanking = generateRanking({
+                rankingObject,
+                rankingName: buttonText,
+                currentPlayerName: undefined,
+            });
+            leaderBoard.selectRanking(generatedRanking);
+        });
+        return button;
+    }
+
+    ranking() {
+        let leaderBoard = generateLeaderBoard();
+        let currentSelected = null;
+        let button1 = this.generateRankingLevelButton('padawan', currentSelected, leaderBoard);
+        let button2 = this.generateRankingLevelButton('jedi knight', currentSelected, leaderBoard);
+        let button3 = this.generateRankingLevelButton('jedi master', currentSelected, leaderBoard);
+        let categoriesButtons = [button1, button2, button3];
+        leaderBoard.addLevelsButtons(categoriesButtons);
+        return leaderBoard.element;
+    }
+
+    generateMainpage({ onClickStart }) {
+        this.mainpageDiv = document.createElement('div');
+        this.mainpageDiv.className = 'mainpage-wrapper';
+        this.menuBtn = generateMenuButton({
+            onClick: () => {
+                this.replaceRankingWithCategories();
+            },
+        });
+        this.rankingBtn = generateRankingButton({
+            onClick: () => {
+                this.replaceCategoriesWithRanking();
+            },
+        });
+        this.rulesBtn = generateRulesButton({ modalDiv: this.rulesModal });
+        this.startBtn = generateStartButton({
+            onClick: onClickStart,
+        });
+
+        this.replaceRankingWithCategories();
 
         this.mainpageDiv.append(
             this.logo,
