@@ -7,254 +7,250 @@
 @import './CategoriesButtons.scss';
 
 .mainpage-wrapper {
-  text-align: center;
-  display: grid;
-  max-width: 100vw;
-  height: 100vh;
-  // padding: 5vh 5vw;
-  padding: 5vh 5vw;
-  margin-right: auto;
-  margin-left: auto;
-  grid-template-columns: 1fr 2.5fr 1fr;
-  grid-template-rows: 1fr 4fr 1fr;
-  grid-template-areas:
-    "logo user user"
-    "categories categories categories"
-    "rules ranking start";
-  gap: 4vh 4vw;
+    text-align: center;
+    display: grid;
+    max-width: 100vw;
+    height: 100vh;
+    // padding: 5vh 5vw;
+    padding: 5vh 5vw;
+    margin-right: auto;
+    margin-left: auto;
+    grid-template-columns: 1fr 2.5fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas:
+        'logo user user'
+        'categories categories categories'
+        'rules ranking start';
+    gap: 4vh 4vw;
 
+    .category-level-paragraph,
+    .categories-name {
+        @extend %typography-h5;
+        color: colors.$primary-text;
+        margin-bottom: 20px;
+    }
 
-  .category-level-paragraph,
-  .categories-name {
-    @extend %typography-h5;
-    color: colors.$primary-text;
-    margin-bottom: 20px;
-  }
-
-  // KAŻDY BUTTON NA STRONIE
-  button {
-    height: 90px;
-    min-width: 180px;
-    background-color: colors.$primary-background;
-    color: colors.$primary-text;
-    border: 3px solid colors.$primary-background;
-    @extend %typography-body;
-    //margin: 20px;
-  }
-
-  .mainpage__button {
-    @extend %common-border-button;
-  }
-
-  .category-level-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    height: 100%;
-
+    // KAŻDY BUTTON NA STRONIE
     button {
-      margin: 20px 0px;
-    }
-  }
-
-  .categories-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding-bottom: 20px;
-  }
-
-  .mainpage__button--ranking {
-    width: 18vw;
-  }
-
-  .leaderboard-container {
-    display: flex;
-    justify-content: center;
-    // align-items: center;
-  }
-
-
-  .ranking-container {
-    width: 30%;
-  }
-
-  .category-level-wrapper,
-  .leaderboard-container {
-    @extend %common-shadow;
-    @extend %common-border;
-    padding: 20px 5vw;
-    height: 100%;
-  }
-
-  .category-level-wrapper,
-  .leaderboard-container,
-  .categories-container {
-    grid-area: categories;
-    // height: 100%;
-
-
-    // display: flex;
-    // justify-content: space-evenly;
-    // align-items: flex-start;
-    // flex-wrap: wrap;
-    background-color: colors.$primary-background;
-
-
-    .category-level-paragraph {
-      width: 100%;
+        height: 90px;
+        min-width: 210px;
+        background-color: colors.$primary-background;
+        color: colors.$primary-text;
+        border: 3px solid colors.$primary-background;
+        @extend %typography-body;
+        //margin: 20px;
     }
 
-    // BUTTON CATEGORIES I LEVEL OF THE OPPONENT
-    button {
-      @extend %common-border;
-      @extend %common-shadow-green-onhover;
-
+    .mainpage__button {
+        @extend %common-border-button;
     }
 
-    .deactive:hover {
-      @extend %common-shadow-green-onhover;
+    .category-level-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        height: 100%;
+
+        button {
+            margin-bottom: 20px;
+        }
     }
 
-    .active,
-
-    .button-selected {
-      @extend %common-border-button-green;
+    .categories-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
     }
 
-    .deactive {
-      @extend %common-shadow-green;
+    .mainpage__button--ranking,
+    .mainpage__button--menu {
+        width: 18vw;
+        justify-self: center;
     }
 
-  }
+    .leaderboard-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-  // BUTTON RULES RANKING START
-  .mainpage__button {
-    @extend %common-shadow;
-    @extend %common-border;
-    @extend %common-border-button;
-  }
+    .ranking-container {
+        width: 30%;
+    }
 
-  .ranking-list {
-    display: flex;
-    flex-direction: column;
-    padding-left: 0;
-    width: 100%;
-    max-height: 200px;
-    font-family: typography.$family-text;
-    overflow: auto;
-    counter-reset: mycounter;
-  }
+    .category-level-wrapper,
+    .leaderboard-container {
+        @extend %common-shadow;
+        @extend %common-border;
+        padding: 20px 5vw;
+        height: 100%;
+    }
 
-  .ranking-list li {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    counter-increment: mycounter;
-  }
+    .category-level-wrapper,
+    .leaderboard-container,
+    .categories-container {
+        grid-area: categories;
+        // height: 100%;
 
-  .ranking-list li::before {
-    content: counter(mycounter)".";
-    font-family: typography.$family-text
-  }
+        // display: flex;
+        // justify-content: space-evenly;
+        // align-items: flex-start;
+        // flex-wrap: wrap;
+        background-color: colors.$primary-background;
 
-  li span:first-child {
-    display: block;
-    font-family: typography.$family-text;
-    flex-grow: 2;
-    text-align: left;
-    margin-left: 1em;
-  }
+        .category-level-paragraph {
+            width: 100%;
+        }
 
-  li span:last-child {
-    display: block;
-    justify-self: right;
-    font-family: typography.$family-text;
-    margin-right: 5px;
-    justify-self: flex-end;
-  }
+        // BUTTON CATEGORIES I LEVEL OF THE OPPONENT
+        button {
+            @extend %common-border;
+            @extend %common-shadow-green-onhover;
+        }
+
+        .deactive:hover {
+            @extend %common-shadow-green-onhover;
+        }
+
+        .active,
+        .button-selected {
+            @extend %common-border-button-green;
+        }
+
+        .deactive {
+            @extend %common-shadow-green;
+        }
+    }
+
+    // BUTTON RULES RANKING START
+    .mainpage__button {
+        @extend %common-shadow;
+        @extend %common-border;
+        @extend %common-border-button;
+    }
+
+    .ranking-list {
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        width: 100%;
+        max-height: 200px;
+        font-family: typography.$family-text;
+        overflow: auto;
+        counter-reset: mycounter;
+    }
+
+    .ranking-list li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        counter-increment: mycounter;
+    }
+
+    .ranking-list li::before {
+        content: counter(mycounter) '.';
+        font-family: typography.$family-text;
+    }
+
+    li span:first-child {
+        display: block;
+        font-family: typography.$family-text;
+        flex-grow: 2;
+        text-align: left;
+        margin-left: 1em;
+    }
+
+    li span:last-child {
+        display: block;
+        justify-self: right;
+        font-family: typography.$family-text;
+        margin-right: 5px;
+        justify-self: flex-end;
+    }
 }
-
-
-
 
 // ------------------MEDIA ----------------------
 // ------------------MEDIA ----------------------
 // ------------------MEDIA ----------------------
 @media only screen and (max-width: 800px) {
+    .mainpage-wrapper {
+        height: 100%;
+        gap: 30px 4vw;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas:
+            'logo'
+            'user'
+            'categories'
+            'ranking'
+            'rules'
+            'start';
 
-  .mainpage-wrapper {
-    height: 100%;
-    gap: 30px 4vw;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, auto);
-    grid-template-areas:
-      "logo"
-      "user"
-      "categories"
-      "ranking"
-      "rules"
-      "start";
+        button {
+            max-height: 40px;
+        }
 
-    button {
-      max-height: 40px;
+        .category-level-wrapper {
+            justify-content: center;
+
+            button {
+                margin: 20px 10px;
+            }
+        }
+
+        .category-level-wrapper {
+            justify-content: center;
+
+            button {
+                margin: 20px 10px;
+            }
+        }
+
+        .mainpage__button--ranking,
+        .mainpage__button--menu {
+            font-size: 20px;
+            width: 100%;
+        }
+
+        .ranking-container {
+            min-width: 90%;
+        }
+
+        .inputName_wrapper {
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .inputName_user {
+            width: 100%;
+            margin-right: 0;
+        }
+
+        .mainpage__button {
+            order: 1;
+            margin: 0;
+        }
+
+        .logo {
+            max-width: 250px;
+        }
+        .leaderboard-container {
+            button {
+                margin-bottom: 20px;
+            }
+        }
+
+        .mainpage__button--ranking,
+        .mainpage__button--rules,
+        .mainpage__button--start,
+        .mainpage__button--menu {
+            min-height: 50px;
+            font-size: 20px;
+            padding: 15px 0px 10px 0px;
+        }
     }
-
-    .category-level-wrapper {
-      justify-content: center;
-
-      button {
-        margin: 20px 10px;
-      }
-    }
-
-    .category-level-wrapper {
-      justify-content: center;
-
-      button {
-        margin: 20px 10px;
-      }
-    }
-
-    .mainpage__button--ranking {
-      width: 100%;
-    }
-
-    .ranking-container {
-      min-width: 90%;
-    }
-
-    .inputName_wrapper {
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    .inputName_user {
-      width: 100%;
-      margin-right: 0;
-
-    }
-
-    .mainpage__button {
-      order: 1;
-      margin: 0;
-    }
-
-    .logo {
-      max-width: 250px;
-    }
-
-    .mainpage__button--ranking,
-    .mainpage__button--rules,
-    .mainpage__button--start {
-      min-height: 50px;
-      font-size: 20px;
-      padding: 15px 0px 10px 0px;
-    }
-
-
-  }
 }

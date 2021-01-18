@@ -14,6 +14,21 @@
 @import './Leaderboard.scss';
 @import './Ranking.scss';
 
+.quiz-game-gif {
+    >img {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-height: 100%;
+        max-width: 100%;
+        border-radius: 50%;
+        @extend %common-border-button;
+        @extend %common-shadow;
+        background-color: colors.$primary-background;
+    }
+}
+
 .quiz-game-wrapper {
     text-align: center;
     display: grid;
@@ -123,6 +138,15 @@
     .picture-question {
         grid-area: picture;
         height: 100%;
+    }
+
+    .answers-wrapper {
+        grid-area: answers;
+    }
+
+    button.answer-button {
+        height: 20%;
+        border-width: 3px;
     }
 
     .answers-wrapper {

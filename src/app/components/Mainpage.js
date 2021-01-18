@@ -63,13 +63,37 @@ export class Mainpage {
 
     generateRankingLevelButton(buttonText, leaderBoard) {
         const button = new Button(this.titleCase(buttonText), () => {
+            let generatedRanking;
             if (this.currentSelected) {
                 this.currentSelected.element.classList.remove('button-selected');
             }
             this.currentSelected = button;
             this.currentSelected.element.classList.add('button-selected');
             let rankingObject = JSON.parse(localStorage.getItem(buttonText));
-            let generatedRanking = generateRanking({
+            if (!rankingObject) {
+                rankingObject = {
+                    category: buttonText,
+                    scores: [
+                        {
+                            name: 'Darth Vader',
+                            score: 100,
+                        },
+                        {
+                            name: 'Yoda',
+                            score: 90,
+                        },
+                        {
+                            name: 'Anakin Skywalker',
+                            score: 70,
+                        },
+                        {
+                            name: 'Jar Jar Binks',
+                            score: 20,
+                        },
+                    ],
+                };
+            }
+            generatedRanking = generateRanking({
                 rankingObject,
                 rankingName: buttonText,
                 currentPlayerName: undefined,

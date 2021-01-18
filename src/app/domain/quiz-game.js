@@ -9,6 +9,7 @@ import { QuestionScoreComponent } from '../components/QuestionScoreView';
 import { Button } from '../components/Button';
 import { generateTimer } from '../components/Timer';
 import { showAnswers } from '../components/ShowAnswers';
+import tenorGifSrc from '../../static/assets/gif/fy90.gif';
 
 export class QuizGame {
     constructor() {
@@ -56,135 +57,145 @@ export class QuizGame {
         pointsController.setIncorrectAns(this.numofIncorrectAns);
     }
 
-    async main({ category, numberOfQuestions, timeInSeconds, onEnd }) {
-        // const animatioDiv = document.createElement('div');
-        const quizGameDiv = await createController({ category: category, numberOfQuestions: numberOfQuestions }).then(
-            (quizController) => {
-                const mainDiv = document.createElement('div');
-                this.questionIndex = 0;
-                this.points = 0;
-                this.currentSelectedAnswer = null;
-                this.numOfCorrectAnswers = 0;
-                this.numofIncorrectAns = 0;
-                this.currentQuestionNumber = 1;
-                this.isCbCalled = false;
-                mainDiv.classList = 'quiz-game-wrapper';
+    main({ category, numberOfQuestions, timeInSeconds, onEnd }) {
+        const mainDiv = document.createElement('div');
+        mainDiv.classList.add('quiz-game-wrapper', 'quiz-game-gif');
+        const animatioDiv = document.createElement('img');
+        animatioDiv.src = tenorGifSrc;
+        mainDiv.appendChild(animatioDiv);
+        const timeBefore = new Date();
+        const animationTimeMs = 1.5 * 1000;
 
-                const pointsController = new QuestionScoreComponent(numberOfQuestions);
-                const pointsDiv = pointsController.generateViewDiv();
-                const logo = logoPicture();
-                const questionText = new DisplayQuestion(quizController.category);
-                const pointsWrapper = pointsCounter(0);
-                const questionPicture = generatePictureQuestion(
-                    quizController.category,
-                    quizController.correctAnswer[this.questionIndex].index,
-                );
+        createController({ category: category, numberOfQuestions: numberOfQuestions }).then(async (quizController) => {
+            const leftMs = new Date() - timeBefore;
+            if (leftMs < animationTimeMs) {
+                await new Promise((resolve) => setTimeout(resolve, animationTimeMs - leftMs));
+            }
 
-                const { element: answerDiv, views: answersArray } = this.createAnswersArray({
-                    answerObjects: quizController.answers[this.questionIndex],
-                    onClick: (answer) => {
-                        this.buttonNext.element.disabled = false;
-                        this.buttonNext.element.classList.remove('inactive');
-                        this.buttonNext.element.classList.add('active');
-                        if (this.currentSelectedAnswer) {
-                            this.currentSelectedAnswer.unselect();
-                        }
+            mainDiv.removeChild(animatioDiv);
+            mainDiv.classList.remove('quiz-game-gif');
 
-                        this.currentSelectedAnswer = answer;
-                        this.currentSelectedAnswer.select();
-                    },
-                });
+            this.questionIndex = 0;
+            this.points = 0;
+            this.currentSelectedAnswer = null;
+            this.numOfCorrectAnswers = 0;
+            this.numofIncorrectAns = 0;
+            this.currentQuestionNumber = 1;
+            this.isCbCalled = false;
 
-                const timerAndDeathStarDiv = document.createElement('div');
-                timerAndDeathStarDiv.className = 'timerAndDeathStarDiv';
-                const deathStarDiv = deathStar({ sec: timeInSeconds });
+            const pointsController = new QuestionScoreComponent(numberOfQuestions);
+            const pointsDiv = pointsController.generateViewDiv();
+            const logo = logoPicture();
+            const questionText = new DisplayQuestion(quizController.category);
+            const pointsWrapper = pointsCounter(0);
+            const questionPicture = generatePictureQuestion(
+                quizController.category,
+                quizController.correctAnswer[this.questionIndex].index,
+            );
 
-                const timer = generateTimer({
-                    timeleftInSeconds: timeInSeconds,
-                    onTimerEnd: () => {
-                        if (!this.isCbCalled) {
-                            this.isCbCalled = true;
-                            onEnd(this.points, this.numOfCorrectAnswers);
-                        }
-                    },
-                });
-                timerAndDeathStarDiv.appendChild(deathStarDiv.element);
-                const deathStarParagraph = document.createElement('p');
-                deathStarParagraph.textContent = `Time left`;
-                timerAndDeathStarDiv.appendChild(deathStarParagraph);
-                timerAndDeathStarDiv.appendChild(timer);
+            const { element: answerDiv, views: answersArray } = this.createAnswersArray({
+                answerObjects: quizController.answers[this.questionIndex],
+                onClick: (answer) => {
+                    this.buttonNext.element.disabled = false;
+                    this.buttonNext.element.classList.remove('inactive');
+                    this.buttonNext.element.classList.add('active');
+                    if (this.currentSelectedAnswer) {
+                        this.currentSelectedAnswer.unselect();
+                    }
 
-                this.buttonNext = new Button('NEXT', () => {
-                    answersArray.forEach((answer) => (answer.element.disabled = true));
+                    this.currentSelectedAnswer = answer;
+                    this.currentSelectedAnswer.select();
+                },
+            });
+
+            const timerAndDeathStarDiv = document.createElement('div');
+            timerAndDeathStarDiv.className = 'timerAndDeathStarDiv';
+            const deathStarDiv = deathStar({ sec: timeInSeconds });
+
+            const timer = generateTimer({
+                timeleftInSeconds: timeInSeconds,
+                onTimerEnd: () => {
+                    if (!this.isCbCalled) {
+                        this.isCbCalled = true;
+                        onEnd(this.points, this.numOfCorrectAnswers);
+                    }
+                },
+            });
+            timerAndDeathStarDiv.appendChild(deathStarDiv.element);
+            const deathStarParagraph = document.createElement('p');
+            deathStarParagraph.textContent = `Time left`;
+            timerAndDeathStarDiv.appendChild(deathStarParagraph);
+            timerAndDeathStarDiv.appendChild(timer);
+
+            this.buttonNext = new Button('NEXT', () => {
+                answersArray.forEach((answer) => (answer.element.disabled = true));
+                this.buttonNext.element.disabled = true;
+                this.buttonNext.element.classList.remove('active');
+                this.buttonNext.element.classList.add('inactive');
+                if (this.currentSelectedAnswer.text() == quizController.correctAnswer[this.questionIndex].name) {
+                    this.updateCorrectAnswer({ pointsController: pointsController });
+                } else {
+                    this.updateWrongAnswer({
+                        answersArray: answersArray,
+                        quizController: quizController,
+                        pointsController: pointsController,
+                    });
+                }
+
+                this.currentQuestionNumber++;
+                this.questionIndex++;
+
+                setTimeout(() => {
                     this.buttonNext.element.disabled = true;
                     this.buttonNext.element.classList.remove('active');
                     this.buttonNext.element.classList.add('inactive');
-                    if (this.currentSelectedAnswer.text() == quizController.correctAnswer[this.questionIndex].name) {
-                        this.updateCorrectAnswer({ pointsController: pointsController });
-                    } else {
-                        this.updateWrongAnswer({
-                            answersArray: answersArray,
-                            quizController: quizController,
-                            pointsController: pointsController,
-                        });
-                    }
-
-                    this.currentQuestionNumber++;
-                    this.questionIndex++;
-
-                    setTimeout(() => {
+                    if (!this.isCbCalled) {
+                        this.currentSelectedAnswer = null;
+                        if (this.questionIndex < quizController.correctAnswer.length) {
+                            questionPicture.src = `./static/assets/img/modes/${quizController.category}/${
+                                quizController.correctAnswer[this.questionIndex].index
+                            }.jpg`;
+                            answersArray.forEach((but) => {
+                                but.clearClasses();
+                            });
+                            answersArray.forEach((answer, index) => {
+                                answer.setText(quizController.answers[this.questionIndex][index].name);
+                            });
+                        }
+                        this.updateElement(
+                            '.display-question-text',
+                            `${this.currentQuestionNumber}. ${questionText.questionText}`,
+                        );
                         this.buttonNext.element.disabled = true;
                         this.buttonNext.element.classList.remove('active');
                         this.buttonNext.element.classList.add('inactive');
-                        if (!this.isCbCalled) {
-                            this.currentSelectedAnswer = null;
-                            if (this.questionIndex < quizController.correctAnswer.length) {
-                                questionPicture.src = `./static/assets/img/modes/${quizController.category}/${
-                                    quizController.correctAnswer[this.questionIndex].index
-                                }.jpg`;
-                                answersArray.forEach((but) => {
-                                    but.clearClasses();
-                                });
-                                answersArray.forEach((answer, index) => {
-                                    answer.setText(quizController.answers[this.questionIndex][index].name);
-                                });
-                            }
-                            this.updateElement(
-                                '.display-question-text',
-                                `${this.currentQuestionNumber}. ${questionText.questionText}`,
-                            );
-                            this.buttonNext.element.disabled = true;
-                            this.buttonNext.element.classList.remove('active');
-                            this.buttonNext.element.classList.add('inactive');
-                            answersArray.forEach((answer) => (answer.element.disabled = false));
-                        }
-                    }, 2000);
+                        answersArray.forEach((answer) => (answer.element.disabled = false));
+                    }
+                }, 2000);
 
-                    setTimeout(() => {
-                        if (this.currentQuestionNumber > numberOfQuestions && !this.isCbCalled) {
-                            this.isCbCalled = true;
-                            return onEnd(this.points, this.numOfCorrectAnswers);
-                        }
-                    }, 2000);
-                });
+                setTimeout(() => {
+                    if (this.currentQuestionNumber > numberOfQuestions && !this.isCbCalled) {
+                        this.isCbCalled = true;
+                        return onEnd(this.points, this.numOfCorrectAnswers);
+                    }
+                }, 2000);
+            });
 
-                this.buttonNext.element.classList.add('button-next');
-                this.buttonNext.element.classList.add('inactive');
-                this.buttonNext.element.classList.remove('active');
-                this.buttonNext.element.disabled = true;
+            this.buttonNext.element.classList.add('button-next');
+            this.buttonNext.element.classList.add('inactive');
+            this.buttonNext.element.classList.remove('active');
+            this.buttonNext.element.disabled = true;
 
-                mainDiv.appendChild(logo);
-                mainDiv.appendChild(questionText.generateQuestion({ questionNumber: this.currentQuestionNumber }));
-                mainDiv.appendChild(pointsDiv);
-                mainDiv.appendChild(questionPicture);
-                mainDiv.appendChild(answerDiv);
-                mainDiv.appendChild(timerAndDeathStarDiv);
-                mainDiv.appendChild(pointsWrapper);
-                mainDiv.appendChild(this.buttonNext.element);
+            mainDiv.appendChild(logo);
+            mainDiv.appendChild(questionText.generateQuestion({ questionNumber: this.currentQuestionNumber }));
+            mainDiv.appendChild(pointsDiv);
+            mainDiv.appendChild(questionPicture);
+            mainDiv.appendChild(answerDiv);
+            mainDiv.appendChild(timerAndDeathStarDiv);
+            mainDiv.appendChild(pointsWrapper);
+            mainDiv.appendChild(this.buttonNext.element);
+        });
 
-                return mainDiv;
-            },
-        );
-        return quizGameDiv;
+        return mainDiv;
     }
 }

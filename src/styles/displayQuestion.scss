@@ -7,9 +7,11 @@
     @extend %common-shadow;
     @extend %common-border;
     padding: 20px;
+    height: 100%;
 }
 
 .display-question-text {
     color: colors.$primary-text;
     @extend %typography-h5;
+    font-size: 30px;
 }
