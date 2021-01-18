@@ -113,6 +113,17 @@ export class Mainpage {
             onClick: onClickStart,
         });
 
+        this.rankingDiv.style.display = 'none';
+        this.categoryLevelWrapper.style.display = 'flex';
+        this.categoryLevelWrapper.innerHTML = '';
+        for (const element of this.categoriesBtns.elements) {
+            this.categoryLevelWrapper.appendChild(element);
+        }
+        for (const element of this.levelsBtns.elements) {
+            this.categoryLevelWrapper.appendChild(element);
+        }
+        this.menuBtn.replaceWith(this.rankingBtn);
+
         this.mainpageDiv.append(
             this.logo,
             this.userInput,
