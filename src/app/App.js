@@ -1,6 +1,6 @@
 import { QuizGame } from './domain/quiz-game';
-import { Mainpage } from './domain/Mainpage';
-import { Summary } from './domain/Summary';
+import { Mainpage } from './components/Mainpage';
+import { Summary } from './components/Summary';
 
 export const App = () => {
     const swquizz = document.querySelector('#swquiz-app');

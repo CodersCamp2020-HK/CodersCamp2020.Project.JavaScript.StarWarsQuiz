@@ -1,16 +1,16 @@
-import { Button } from '../components/Button';
-import { logoPicture } from '../components/logo';
-import { buttonCreated } from '../components/CategoriesButtons';
-import { InputName } from '../components/UserName';
-import { generateRanking } from '../components/RankingView';
-import { generateLeaderBoard } from '../components/LeaderBoardView';
+import { Button } from './Button';
+import { logoPicture } from './logo';
+import { buttonCreated } from './CategoriesButtons';
+import { InputName } from './UserName';
+import { generateRanking } from './RankingView';
+import { generateLeaderBoard } from './LeaderBoardView';
 import {
     generateRankingButton,
     generateRulesButton,
     generateStartButton,
     generateMenuButton,
-} from '../components/RulesRankingStart';
-import { generateRulesModal } from '../components/Rules';
+} from './RulesRankingStart';
+import { generateRulesModal } from './Rules';
 
 export class Mainpage {
     constructor() {

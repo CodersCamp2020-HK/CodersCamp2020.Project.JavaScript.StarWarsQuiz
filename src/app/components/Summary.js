@@ -1,12 +1,12 @@
-import { generateRanking } from '../components/RankingView';
-import { generatePlayAgainButton } from '../components/generatePlayAgainButton';
-import { logoPicture } from '../components/logo';
-import { GameOver } from '../components/GameOver';
-import { generateReturnButton } from '../components/generateReturnButton';
-import { ComputerScore } from '../components/ComputerScore';
+import { generateRanking } from './RankingView';
+import { generatePlayAgainButton } from './generatePlayAgainButton';
+import { logoPicture } from './logo';
+import { GameOver } from './GameOver';
+import { generateReturnButton } from './generateReturnButton';
+import { ComputerScore } from './ComputerScore';
 import { computerScore } from '../infrastructure/computerScore';
 import { updateRanking } from '../infrastructure/updateRanking';
-import { viewScore } from '../components/viewScore';
+import { viewScore } from './viewScore';
 
 export class Summary {
     constructor(name, points, level, numberOfQuestion, correctAnswers, onReturn, hereWeGoAgain) {
