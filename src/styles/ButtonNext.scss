@@ -2,9 +2,11 @@
     grid-area: next;
     @extend %common-border-button;
     @extend %typography-button;
+    @extend %common-shadow;
     background-color: colors.$primary-background;
     color: colors.$primary-text;
-    width:100%; 
+    width: 100%;
+    height: 100%;
 }
 
 .button-next:disabled {
@@ -14,15 +16,23 @@
     @extend %typography-button;
     background-color: colors.$primary-background;
     color: colors.$secondary-inactive;
-    width:100%;  
+    width: 100%;
+    //border-width: 0px;
+    border-color: transparent;
+}
+
+.button-next:disabled:hover {
+    @extend %common-shadow;
+    cursor: default;
+    //border-width: 0px;
+    border-color: transparent;
 }
 
 .button-next:focus {
     @extend %common-shadow-onhover;
-    outline:none;
+    outline: none;
 }
 
-.button-next:hover{
+.button-next:hover {
     @extend %common-shadow-onhover;
 }
-

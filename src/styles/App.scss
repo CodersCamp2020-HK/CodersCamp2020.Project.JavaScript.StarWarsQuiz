@@ -45,4 +45,5 @@ body {
     // font-family: $font;
     @extend %background-image;
     background-position: center;
+    background-attachment: fixed;
 }

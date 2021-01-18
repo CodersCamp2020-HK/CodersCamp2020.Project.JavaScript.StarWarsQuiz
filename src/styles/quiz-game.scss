@@ -28,9 +28,7 @@
         'logo question score'
         'picture answers timer'
         'points . next';
-    gap: 5vh 5vw;
-
-
+    gap: 4vh 4vw;
 }
 
 .answers-wrapper {
@@ -133,7 +131,6 @@
 
     button.answer-button {
         height: 20%;
-        padding-top: 5px;
-        border-width: 2px;
+        border-width: 3px;
     }
 }
