@@ -4,7 +4,7 @@ export const deathStar = ({ sec }) => {
 
     deathStarDiv.className = 'deathStarDiv';
     image.className = 'deathStar';
-    image.src = '../static/assets/img/modes/deathStar/deathstar.png';
+    image.src = './static/assets/img/modes/deathStar/deathstar.png';
     deathStarDiv.appendChild(image);
     const animation = image.animate(
         [
