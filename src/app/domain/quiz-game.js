@@ -64,7 +64,7 @@ export class QuizGame {
         animatioDiv.src = tenorGifSrc;
         mainDiv.appendChild(animatioDiv);
         const timeBefore = new Date();
-        const animationTimeMs = 2 * 1000;
+        const animationTimeMs = 1.5 * 1000;
 
         createController({ category: category, numberOfQuestions: numberOfQuestions }).then(async (quizController) => {
             const leftMs = new Date() - timeBefore;

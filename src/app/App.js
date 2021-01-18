@@ -6,8 +6,8 @@ import { convertSeconds } from './components/Timer';
 export const App = () => {
     const swquizz = document.querySelector('#swquiz-app');
     const mainpage = new Mainpage();
-    const numberOfQuestions = 3;
-    const timeInSeconds = 30;
+    const numberOfQuestions = 10;
+    const timeInSeconds = 100;
     const onClickStart = () => {
         const category = mainpage.categoriesBtns.level;
         const level = mainpage.levelsBtns.level;
